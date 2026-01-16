@@ -1,16 +1,12 @@
-
 import './App.css'
-import { Person } from "./Person";
-
-
 
 function App() {
-  return( <>
-          <Person name={"Pedro"} age={22} isMarried={false} /> {""}
-          <Person name={"Colin"} age={28} isMarried={true} /> {""}
-
-         </>
-    );
+  return (
+    <main>
+      <h1>sofia bodnar</h1>
+      <p>17 y/o high school student</p>
+    </main>
+  )
 }
 
 export default App

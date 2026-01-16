@@ -1,0 +1,1080 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{React + TypeScript Assessment}
+\lhead{100 Questions}
+\cfoot{\thepage}
+
+\definecolor{easy}{rgb}{0.2,0.6,0.2}
+\definecolor{medium}{rgb}{0.8,0.6,0.0}
+\definecolor{hard}{rgb}{0.8,0.2,0.2}
+
+\title{\Huge\textbf{React \& TypeScript Mastery Quiz}\\[0.5cm]
+\Large 100 Multiple Choice Questions\\[0.3cm]
+\normalsize Progressive Difficulty: Easy → Expert}
+\author{Self-Assessment for First Principles Learning}
+\date{January 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tcolorbox}[width=0.8\textwidth,colback=gray!5,colframe=gray!50]
+\textbf{Instructions:}
+\begin{itemize}
+    \item Questions 1-30: \textcolor{easy}{\textbf{Easy}} - Fundamental concepts
+    \item Questions 31-60: \textcolor{medium}{\textbf{Medium}} - Applied knowledge
+    \item Questions 61-85: \textcolor{hard}{\textbf{Hard}} - Advanced concepts
+    \item Questions 86-100: \textcolor{hard}{\textbf{Expert}} - Deep understanding required
+\end{itemize}
+Each question has exactly ONE correct answer. Time yourself: 90 minutes recommended.
+\end{tcolorbox}
+\end{center}
+
+\newpage
+
+%==============================================================================
+% EASY QUESTIONS (1-30)
+%==============================================================================
+\section*{\textcolor{easy}{Section 1: Easy (Questions 1-30)}}
+
+\begin{enumerate}
+
+% Q1 - Answer: C
+\item What does HTML stand for?
+\begin{enumerate}[label=\Alph*)]
+    \item Hyper Text Making Language
+    \item High Technical Modern Language
+    \item Hyper Text Markup Language
+    \item Home Tool Markup Language
+\end{enumerate}
+
+% Q2 - Answer: B
+\item Which technology is used to style web pages?
+\begin{enumerate}[label=\Alph*)]
+    \item HTML
+    \item CSS
+    \item JavaScript
+    \item TypeScript
+\end{enumerate}
+
+% Q3 - Answer: A
+\item What is Node.js?
+\begin{enumerate}[label=\Alph*)]
+    \item A runtime environment that allows JavaScript to run outside browsers
+    \item A web browser for developers
+    \item A CSS framework
+    \item A database management system
+\end{enumerate}
+
+% Q4 - Answer: D
+\item What does npm stand for?
+\begin{enumerate}[label=\Alph*)]
+    \item New Programming Method
+    \item Node Project Manager
+    \item Network Package Module
+    \item Node Package Manager
+\end{enumerate}
+
+% Q5 - Answer: B
+\item Which command creates a new Vite project?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{vite new project}
+    \item \texttt{npm create vite@latest}
+    \item \texttt{create-vite-app}
+    \item \texttt{npm init vite}
+\end{enumerate}
+
+% Q6 - Answer: C
+\item What is the purpose of the \texttt{node\_modules} folder?
+\begin{enumerate}[label=\Alph*)]
+    \item Store your source code
+    \item Store images and assets
+    \item Store downloaded packages/dependencies
+    \item Store compiled output
+\end{enumerate}
+
+% Q7 - Answer: A
+\item Which file extension indicates a TypeScript React component?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{.tsx}
+    \item \texttt{.jsx}
+    \item \texttt{.ts}
+    \item \texttt{.react}
+\end{enumerate}
+
+% Q8 - Answer: D
+\item What is JSX?
+\begin{enumerate}[label=\Alph*)]
+    \item A JavaScript testing framework
+    \item A CSS preprocessor
+    \item A database query language
+    \item HTML-like syntax that compiles to JavaScript
+\end{enumerate}
+
+% Q9 - Answer: B
+\item In React, what is a component?
+\begin{enumerate}[label=\Alph*)]
+    \item A CSS class
+    \item A reusable piece of UI
+    \item A JavaScript variable
+    \item A HTML element
+\end{enumerate}
+
+% Q10 - Answer: C
+\item Which command starts the Vite development server?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{npm start}
+    \item \texttt{npm server}
+    \item \texttt{npm run dev}
+    \item \texttt{npm run start}
+\end{enumerate}
+
+% Q11 - Answer: A
+\item What does ``localhost'' refer to?
+\begin{enumerate}[label=\Alph*)]
+    \item Your own computer
+    \item A remote server
+    \item The internet
+    \item A cloud service
+\end{enumerate}
+
+% Q12 - Answer: D
+\item What is Git?
+\begin{enumerate}[label=\Alph*)]
+    \item A code editor
+    \item A programming language
+    \item A web browser
+    \item A version control system
+\end{enumerate}
+
+% Q13 - Answer: B
+\item Which command initializes a new Git repository?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{git start}
+    \item \texttt{git init}
+    \item \texttt{git new}
+    \item \texttt{git create}
+\end{enumerate}
+
+% Q14 - Answer: C
+\item What does \texttt{git add .} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Creates a new file
+    \item Removes all files
+    \item Stages all changes for commit
+    \item Pushes to remote repository
+\end{enumerate}
+
+% Q15 - Answer: A
+\item In TypeScript, how do you declare a variable that holds a string?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{let name: string = "Sofia";}
+    \item \texttt{let name = string("Sofia");}
+    \item \texttt{string name = "Sofia";}
+    \item \texttt{var name as string = "Sofia";}
+\end{enumerate}
+
+% Q16 - Answer: D
+\item What is the purpose of \texttt{export default}?
+\begin{enumerate}[label=\Alph*)]
+    \item Delete a component
+    \item Import a component
+    \item Style a component
+    \item Make a component available to other files
+\end{enumerate}
+
+% Q17 - Answer: B
+\item Which HTML tag represents the main content of a document?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{<content>}
+    \item \texttt{<main>}
+    \item \texttt{<body>}
+    \item \texttt{<div>}
+\end{enumerate}
+
+% Q18 - Answer: C
+\item In CSS, what does \texttt{margin: 0 auto;} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Removes all margins
+    \item Adds automatic margins everywhere
+    \item Centers the element horizontally
+    \item Centers the element vertically
+\end{enumerate}
+
+% Q19 - Answer: A
+\item What is the correct syntax for a React function component?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{function MyComponent() \{ return <div>Hello</div>; \}}
+    \item \texttt{class MyComponent \{ render <div>Hello</div> \}}
+    \item \texttt{component MyComponent() \{ <div>Hello</div> \}}
+    \item \texttt{def MyComponent(): return <div>Hello</div>}
+\end{enumerate}
+
+% Q20 - Answer: D
+\item Which symbol is used for single-line comments in JavaScript?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{\#}
+    \item \texttt{<!-- -->}
+    \item \texttt{/* */}
+    \item \texttt{//}
+\end{enumerate}
+
+% Q21 - Answer: B
+\item What does CSS stand for?
+\begin{enumerate}[label=\Alph*)]
+    \item Computer Style System
+    \item Cascading Style Sheets
+    \item Creative Styling Standard
+    \item Coded Style Syntax
+\end{enumerate}
+
+% Q22 - Answer: C
+\item In React, how do you render a variable inside JSX?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{(variable)}
+    \item \texttt{[variable]}
+    \item \texttt{\{variable\}}
+    \item \texttt{<variable>}
+\end{enumerate}
+
+% Q23 - Answer: A
+\item What is the difference between \texttt{==} and \texttt{===} in JavaScript?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{===} checks type and value, \texttt{==} only checks value
+    \item They are identical
+    \item \texttt{==} is for numbers, \texttt{===} is for strings
+    \item \texttt{===} is deprecated
+\end{enumerate}
+
+% Q24 - Answer: D
+\item Which command pushes commits to a remote repository?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{git upload}
+    \item \texttt{git send}
+    \item \texttt{git commit}
+    \item \texttt{git push}
+\end{enumerate}
+
+% Q25 - Answer: B
+\item What is the purpose of the \texttt{.gitignore} file?
+\begin{enumerate}[label=\Alph*)]
+    \item List files to delete
+    \item List files Git should not track
+    \item List important files
+    \item Configure Git settings
+\end{enumerate}
+
+% Q26 - Answer: C
+\item In TypeScript, what does \texttt{?} after a property name indicate?
+\begin{enumerate}[label=\Alph*)]
+    \item The property is required
+    \item The property is deprecated
+    \item The property is optional
+    \item The property is read-only
+\end{enumerate}
+
+% Q27 - Answer: A
+\item What is the purpose of \texttt{index.html} in a React project?
+\begin{enumerate}[label=\Alph*)]
+    \item It's the HTML shell where React mounts
+    \item It contains all CSS styles
+    \item It stores component data
+    \item It configures the build process
+\end{enumerate}
+
+% Q28 - Answer: D
+\item Which CSS property changes text color?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{text-color}
+    \item \texttt{font-color}
+    \item \texttt{background-color}
+    \item \texttt{color}
+\end{enumerate}
+
+% Q29 - Answer: B
+\item What does the \texttt{cd} command do in terminal?
+\begin{enumerate}[label=\Alph*)]
+    \item Copy directory
+    \item Change directory
+    \item Create directory
+    \item Clear directory
+\end{enumerate}
+
+% Q30 - Answer: C
+\item In a React component, what does the \texttt{return} statement contain?
+\begin{enumerate}[label=\Alph*)]
+    \item CSS styles
+    \item JavaScript logic only
+    \item JSX/HTML to be rendered
+    \item Data to be saved
+\end{enumerate}
+
+%==============================================================================
+% MEDIUM QUESTIONS (31-60)
+%==============================================================================
+\newpage
+\section*{\textcolor{medium}{Section 2: Medium (Questions 31-60)}}
+
+% Q31 - Answer: B
+\item What is destructuring in JavaScript?
+\begin{enumerate}[label=\Alph*)]
+    \item Deleting objects from memory
+    \item Extracting values from objects/arrays into variables
+    \item Breaking code into smaller files
+    \item Converting objects to strings
+\end{enumerate}
+
+% Q32 - Answer: D
+\item Given \texttt{const [count, setCount] = useState(0)}, what does \texttt{setCount} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Gets the current count
+    \item Resets count to zero
+    \item Deletes the count variable
+    \item Updates the count value and triggers re-render
+\end{enumerate}
+
+% Q33 - Answer: A
+\item What is the purpose of \texttt{key} prop when rendering lists in React?
+\begin{enumerate}[label=\Alph*)]
+    \item Helps React identify which items changed
+    \item Encrypts the list data
+    \item Styles the list items
+    \item Sorts the list automatically
+\end{enumerate}
+
+% Q34 - Answer: C
+\item What does \texttt{Array.map()} return?
+\begin{enumerate}[label=\Alph*)]
+    \item A boolean
+    \item The original array modified
+    \item A new array with transformed elements
+    \item Nothing (undefined)
+\end{enumerate}
+
+% Q35 - Answer: B
+\item In \texttt{const \{ name, age \} = person}, what is this syntax called?
+\begin{enumerate}[label=\Alph*)]
+    \item Spread operator
+    \item Object destructuring
+    \item Rest parameters
+    \item Template literals
+\end{enumerate}
+
+% Q36 - Answer: D
+\item What is the difference between \texttt{props} and \texttt{state} in React?
+\begin{enumerate}[label=\Alph*)]
+    \item Props are mutable, state is immutable
+    \item They are the same thing
+    \item Props are for styling, state is for logic
+    \item Props come from parent, state is managed internally
+\end{enumerate}
+
+% Q37 - Answer: A
+\item What does \texttt{npm install} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Downloads dependencies listed in package.json
+    \item Creates a new npm project
+    \item Uploads your project to npm
+    \item Removes all packages
+\end{enumerate}
+
+% Q38 - Answer: C
+\item In TypeScript, what is an interface used for?
+\begin{enumerate}[label=\Alph*)]
+    \item Creating visual components
+    \item Defining CSS styles
+    \item Defining the shape/structure of objects
+    \item Connecting to databases
+\end{enumerate}
+
+% Q39 - Answer: B
+\item What does the \texttt{children} prop represent in React?
+\begin{enumerate}[label=\Alph*)]
+    \item Child components in a separate file
+    \item Content placed between component's opening and closing tags
+    \item Nested CSS rules
+    \item Sub-routes in routing
+\end{enumerate}
+
+% Q40 - Answer: D
+\item What is the purpose of \texttt{useEffect} hook?
+\begin{enumerate}[label=\Alph*)]
+    \item Create visual effects
+    \item Define component styles
+    \item Handle form inputs
+    \item Perform side effects (API calls, DOM updates, etc.)
+\end{enumerate}
+
+% Q41 - Answer: A
+\item What does CSS \texttt{display: flex} enable?
+\begin{enumerate}[label=\Alph*)]
+    \item Flexbox layout
+    \item Grid layout
+    \item Float layout
+    \item Absolute positioning
+\end{enumerate}
+
+% Q42 - Answer: C
+\item In \texttt{useEffect(() => \{\}, [dependency])}, what does the dependency array do?
+\begin{enumerate}[label=\Alph*)]
+    \item Lists functions to call
+    \item Lists components to render
+    \item Controls when the effect re-runs
+    \item Lists variables to export
+\end{enumerate}
+
+% Q43 - Answer: B
+\item What does \texttt{event.preventDefault()} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Prevents rendering
+    \item Stops the default browser behavior for that event
+    \item Prevents state updates
+    \item Stops event bubbling
+\end{enumerate}
+
+% Q44 - Answer: D
+\item What is the correct way to conditionally render in JSX?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{if (condition) <Component />}
+    \item \texttt{<if condition><Component /></if>}
+    \item \texttt{<Component if=\{condition\} />}
+    \item \texttt{\{condition \&\& <Component />\}}
+\end{enumerate}
+
+% Q45 - Answer: A
+\item In CSS, what is the BEM naming convention?
+\begin{enumerate}[label=\Alph*)]
+    \item Block\_\_Element--Modifier
+    \item Basic Element Method
+    \item Browser Extension Module
+    \item Build Element Modify
+\end{enumerate}
+
+% Q46 - Answer: C
+\item What does \texttt{:root} select in CSS?
+\begin{enumerate}[label=\Alph*)]
+    \item The body element
+    \item The first div
+    \item The html element (document root)
+    \item All elements
+\end{enumerate}
+
+% Q47 - Answer: B
+\item What is a TypeScript union type?
+\begin{enumerate}[label=\Alph*)]
+    \item Combining two objects
+    \item A type that can be one of several types (e.g., \texttt{string | number})
+    \item Merging two arrays
+    \item Joining two functions
+\end{enumerate}
+
+% Q48 - Answer: D
+\item What does \texttt{localStorage.setItem('key', 'value')} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Deletes data from browser
+    \item Reads data from a file
+    \item Sends data to a server
+    \item Stores data in the browser that persists after closing
+\end{enumerate}
+
+% Q49 - Answer: A
+\item What is the purpose of React Context?
+\begin{enumerate}[label=\Alph*)]
+    \item Share data across components without prop drilling
+    \item Define component context/description
+    \item Handle routing
+    \item Manage CSS styles
+\end{enumerate}
+
+% Q50 - Answer: C
+\item What does \texttt{flex-direction: column} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Arranges items horizontally
+    \item Hides items
+    \item Arranges items vertically (stacked)
+    \item Rotates items 90 degrees
+\end{enumerate}
+
+% Q51 - Answer: B
+\item In TypeScript, what does \texttt{: void} indicate for a function?
+\begin{enumerate}[label=\Alph*)]
+    \item The function takes no parameters
+    \item The function returns nothing
+    \item The function is empty
+    \item The function is deprecated
+\end{enumerate}
+
+% Q52 - Answer: D
+\item What is the purpose of \texttt{useRef} hook?
+\begin{enumerate}[label=\Alph*)]
+    \item Create references to other files
+    \item Manage state that triggers re-renders
+    \item Handle API requests
+    \item Reference DOM elements or store mutable values without re-render
+\end{enumerate}
+
+% Q53 - Answer: A
+\item What does \texttt{git commit -m "message"} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Creates a snapshot of staged changes with a description
+    \item Sends changes to remote server
+    \item Deletes previous commits
+    \item Merges branches
+\end{enumerate}
+
+% Q54 - Answer: C
+\item In CSS, what does \texttt{transition: color 0.3s ease} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Changes color instantly
+    \item Removes color
+    \item Animates color change over 0.3 seconds
+    \item Delays color change by 0.3 seconds
+\end{enumerate}
+
+% Q55 - Answer: B
+\item What does the spread operator (\texttt{...}) do?
+\begin{enumerate}[label=\Alph*)]
+    \item Multiplies values
+    \item Expands an array/object into individual elements
+    \item Creates a range of numbers
+    \item Concatenates strings
+\end{enumerate}
+
+% Q56 - Answer: D
+\item What is the purpose of \texttt{package.json}?
+\begin{enumerate}[label=\Alph*)]
+    \item Store application data
+    \item Configure Git settings
+    \item Define HTML structure
+    \item Define project metadata and dependencies
+\end{enumerate}
+
+% Q57 - Answer: A
+\item What does \texttt{target="\_blank"} do on an anchor tag?
+\begin{enumerate}[label=\Alph*)]
+    \item Opens link in a new tab
+    \item Opens link in same tab
+    \item Downloads the link
+    \item Hides the link
+\end{enumerate}
+
+% Q58 - Answer: C
+\item In TypeScript, what does \texttt{Experience[]} mean?
+\begin{enumerate}[label=\Alph*)]
+    \item An Experience object with an array inside
+    \item The length of Experience
+    \item An array of Experience objects
+    \item An optional Experience
+\end{enumerate}
+
+% Q59 - Answer: B
+\item What does CSS \texttt{gap: 1rem} do in a flex container?
+\begin{enumerate}[label=\Alph*)]
+    \item Creates space outside the container
+    \item Creates space between flex items
+    \item Creates space inside each item
+    \item Removes all spacing
+\end{enumerate}
+
+% Q60 - Answer: D
+\item What is the purpose of \texttt{aria-label} attribute?
+\begin{enumerate}[label=\Alph*)]
+    \item Style the element
+    \item Add a visible label
+    \item Create an animation
+    \item Provide text for screen readers (accessibility)
+\end{enumerate}
+
+%==============================================================================
+% HARD QUESTIONS (61-85)
+%==============================================================================
+\newpage
+\section*{\textcolor{hard}{Section 3: Hard (Questions 61-85)}}
+
+% Q61 - Answer: C
+\item In the code \texttt{useState(() => computeInitialValue())}, why use a function?
+\begin{enumerate}[label=\Alph*)]
+    \item It's required syntax
+    \item To make the code shorter
+    \item To defer expensive computation until actually needed (lazy initialization)
+    \item To make the value immutable
+\end{enumerate}
+
+% Q62 - Answer: A
+\item What happens when you call \texttt{setState} with the same value as current state?
+\begin{enumerate}[label=\Alph*)]
+    \item React bails out and doesn't re-render
+    \item React always re-renders
+    \item An error is thrown
+    \item The component unmounts
+\end{enumerate}
+
+% Q63 - Answer: D
+\item In \texttt{useEffect}, what does returning a function do?
+\begin{enumerate}[label=\Alph*)]
+    \item Prevents the effect from running
+    \item Caches the effect result
+    \item Delays the effect
+    \item Provides cleanup when component unmounts or before re-run
+\end{enumerate}
+
+% Q64 - Answer: B
+\item What is the issue with \texttt{onClick=\{handleClick()\}} vs \texttt{onClick=\{handleClick\}}?
+\begin{enumerate}[label=\Alph*)]
+    \item No difference
+    \item With (), the function executes immediately on render instead of on click
+    \item Without (), the function never runs
+    \item With () is the correct syntax
+\end{enumerate}
+
+% Q65 - Answer: C
+\item What is ``prop drilling'' in React?
+\begin{enumerate}[label=\Alph*)]
+    \item Testing props in components
+    \item Removing unused props
+    \item Passing props through many levels of components
+    \item Creating props with default values
+\end{enumerate}
+
+% Q66 - Answer: A
+\item Why might you use \texttt{useCallback} hook?
+\begin{enumerate}[label=\Alph*)]
+    \item To memoize a function and prevent unnecessary re-creation
+    \item To call a function after render
+    \item To handle async callbacks
+    \item To create global callbacks
+\end{enumerate}
+
+% Q67 - Answer: D
+\item In TypeScript, what does \texttt{as const} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Converts to a constant variable
+    \item Creates a copy
+    \item Enables strict mode
+    \item Makes the type literal and readonly (const assertion)
+\end{enumerate}
+
+% Q68 - Answer: B
+\item What is the purpose of \texttt{React.StrictMode}?
+\begin{enumerate}[label=\Alph*)]
+    \item Enforces TypeScript strict mode
+    \item Highlights potential problems by running effects twice in dev
+    \item Prevents any errors from occurring
+    \item Enables production optimizations
+\end{enumerate}
+
+% Q69 - Answer: C
+\item What does \texttt{document.getElementById('root')!} mean in TypeScript?
+\begin{enumerate}[label=\Alph*)]
+    \item Negates the result
+    \item Checks if element exists
+    \item Non-null assertion (tells TypeScript it won't be null)
+    \item Makes the call optional
+\end{enumerate}
+
+% Q70 - Answer: A
+\item What is the difference between \texttt{createContext(undefined)} and \texttt{createContext(null)}?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{undefined} allows detecting missing provider, \texttt{null} is a valid value
+    \item They are identical
+    \item \texttt{null} is preferred for performance
+    \item \texttt{undefined} causes errors
+\end{enumerate}
+
+% Q71 - Answer: D
+\item In CSS, what does \texttt{preserve\-Aspect\-Ratio="xMidYMid meet"} do on SVG?
+\begin{enumerate}[label=\Alph*)]
+    \item Stretches SVG to fill container
+    \item Crops the SVG
+    \item Rotates the SVG
+    \item Scales uniformly while centering and fitting within container
+\end{enumerate}
+
+% Q72 - Answer: B
+\item What is the CSS specificity order (lowest to highest)?
+\begin{enumerate}[label=\Alph*)]
+    \item ID, Class, Element
+    \item Element, Class, ID
+    \item Class, ID, Element
+    \item Element, ID, Class
+\end{enumerate}
+
+% Q73 - Answer: C
+\item Why use \texttt{rel="noopener noreferrer"} with \texttt{target="\_blank"}?
+\begin{enumerate}[label=\Alph*)]
+    \item For SEO purposes
+    \item To improve loading speed
+    \item To prevent the new page from accessing the original page (security)
+    \item For accessibility
+\end{enumerate}
+
+% Q74 - Answer: A
+\item What is a closure in JavaScript?
+\begin{enumerate}[label=\Alph*)]
+    \item A function that has access to variables from its outer scope
+    \item A way to close browser windows
+    \item A method to end loops
+    \item A type of object
+\end{enumerate}
+
+% Q75 - Answer: D
+\item What does \texttt{npm run build} typically produce?
+\begin{enumerate}[label=\Alph*)]
+    \item A new npm package
+    \item Source maps only
+    \item Node modules
+    \item Optimized, minified production files in dist folder
+\end{enumerate}
+
+% Q76 - Answer: B
+\item In \texttt{setCount(prev => prev + 1)}, why use a function instead of \texttt{setCount(count + 1)}?
+\begin{enumerate}[label=\Alph*)]
+    \item It's faster
+    \item Ensures correct value when multiple updates are batched
+    \item It's required syntax
+    \item For TypeScript compatibility
+\end{enumerate}
+
+% Q77 - Answer: C
+\item What is the virtual DOM?
+\begin{enumerate}[label=\Alph*)]
+    \item A backup of the real DOM
+    \item The DOM in virtual reality
+    \item A lightweight JavaScript representation of the DOM for efficient updates
+    \item The DOM stored in memory cache
+\end{enumerate}
+
+% Q78 - Answer: A
+\item What does \texttt{Object.freeze(obj)} do?
+\begin{enumerate}[label=\Alph*)]
+    \item Makes the object immutable (can't add/modify/delete properties)
+    \item Stores object in cache
+    \item Creates a copy of the object
+    \item Converts object to string
+\end{enumerate}
+
+% Q79 - Answer: D
+\item Why might CSS custom properties (variables) be preferred over preprocessor variables?
+\begin{enumerate}[label=\Alph*)]
+    \item They compile faster
+    \item They use less memory
+    \item They're easier to write
+    \item They can be changed at runtime and scoped to elements
+\end{enumerate}
+
+% Q80 - Answer: B
+\item In TypeScript, what is a generic type?
+\begin{enumerate}[label=\Alph*)]
+    \item A type that works everywhere
+    \item A type parameter that makes functions/classes work with multiple types
+    \item A default type
+    \item A type with no restrictions
+\end{enumerate}
+
+% Q81 - Answer: C
+\item What is reconciliation in React?
+\begin{enumerate}[label=\Alph*)]
+    \item Combining multiple components
+    \item Resolving merge conflicts
+    \item The algorithm React uses to diff the virtual DOM and update real DOM
+    \item Connecting to a database
+\end{enumerate}
+
+% Q82 - Answer: A
+\item What does \texttt{window.matchMedia('(prefers-color-scheme: dark)')} return?
+\begin{enumerate}[label=\Alph*)]
+    \item A MediaQueryList indicating if user prefers dark mode
+    \item A boolean true/false
+    \item The current color scheme
+    \item A CSS style object
+\end{enumerate}
+
+% Q83 - Answer: D
+\item Why is it important to keep the key prop stable across re-renders?
+\begin{enumerate}[label=\Alph*)]
+    \item For security
+    \item For SEO
+    \item For styling
+    \item To preserve component state and avoid unnecessary DOM operations
+\end{enumerate}
+
+% Q84 - Answer: B
+\item What is the difference between \texttt{npm} and \texttt{npx}?
+\begin{enumerate}[label=\Alph*)]
+    \item npx is faster
+    \item npx executes packages without installing, npm manages packages
+    \item npm is deprecated
+    \item They're the same
+\end{enumerate}
+
+% Q85 - Answer: C
+\item In CSS, what does \texttt{box-sizing: border-box} change?
+\begin{enumerate}[label=\Alph*)]
+    \item Adds a border to all boxes
+    \item Removes padding from elements
+    \item Makes width/height include padding and border, not just content
+    \item Centers the element
+\end{enumerate}
+
+%==============================================================================
+% EXPERT QUESTIONS (86-100)
+%==============================================================================
+\newpage
+\section*{\textcolor{hard}{Section 4: Expert (Questions 86-100)}}
+
+% Q86 - Answer: D
+\item Consider this code:
+\begin{verbatim}
+const [items, setItems] = useState([1, 2, 3]);
+const addItem = () => {
+  items.push(4);
+  setItems(items);
+};
+\end{verbatim}
+Why won't clicking the button trigger a re-render?
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{useState} doesn't work with arrays
+    \item \texttt{push} is not a valid array method
+    \item The syntax is incorrect
+    \item Same array reference is passed; React uses referential equality
+\end{enumerate}
+
+% Q87 - Answer: A
+\item What is the time complexity of React's reconciliation algorithm?
+\begin{enumerate}[label=\Alph*)]
+    \item O(n) where n is number of elements
+    \item O(n\textsuperscript{2})
+    \item O(n\textsuperscript{3})
+    \item O(log n)
+\end{enumerate}
+
+% Q88 - Answer: C
+\item In this TypeScript code, what is the type of \texttt{result}?
+\begin{verbatim}
+const obj = { a: 1, b: "hello" } as const;
+type Result = typeof obj;
+\end{verbatim}
+\begin{enumerate}[label=\Alph*)]
+    \item \texttt{\{ a: number, b: string \}}
+    \item \texttt{\{ a: any, b: any \}}
+    \item \texttt{\{ readonly a: 1, readonly b: "hello" \}}
+    \item \texttt{Object}
+\end{enumerate}
+
+% Q89 - Answer: B
+\item What is the stale closure problem in React hooks?
+\begin{enumerate}[label=\Alph*)]
+    \item Using old hook syntax
+    \item Callbacks capturing outdated values from previous renders
+    \item Memory leaks from closures
+    \item Infinite loops in useEffect
+\end{enumerate}
+
+% Q90 - Answer: D
+\item Why might you wrap a context value in \texttt{useMemo}?
+\begin{enumerate}[label=\Alph*)]
+    \item To make the value immutable
+    \item For TypeScript compatibility
+    \item To enable caching
+    \item To prevent unnecessary re-renders of all consumers on provider re-render
+\end{enumerate}
+
+% Q91 - Answer: A
+\item What is tree shaking in JavaScript bundlers?
+\begin{enumerate}[label=\Alph*)]
+    \item Removing unused code from the final bundle
+    \item Reorganizing the component tree
+    \item Optimizing recursive functions
+    \item Creating backup copies
+\end{enumerate}
+
+% Q92 - Answer: C
+\item In TypeScript, what does this type represent?
+\begin{verbatim}
+type NonNullable<T> = T extends null | undefined ? never : T;
+\end{verbatim}
+\begin{enumerate}[label=\Alph*)]
+    \item A type that only allows null
+    \item A generic parameter
+    \item A conditional type that excludes null and undefined
+    \item A type guard
+\end{enumerate}
+
+% Q93 - Answer: B
+\item What is the purpose of React Fiber?
+\begin{enumerate}[label=\Alph*)]
+    \item Network optimization
+    \item Incremental rendering with the ability to pause, abort, or reuse work
+    \item CSS-in-JS implementation
+    \item Server-side rendering
+\end{enumerate}
+
+% Q94 - Answer: D
+\item Given this CSS:
+\begin{verbatim}
+:root { --color: blue; }
+.dark { --color: white; }
+.component { color: var(--color); }
+\end{verbatim}
+If \texttt{<div class="dark"><span class="component">Text</span></div>}, what color is Text?
+\begin{enumerate}[label=\Alph*)]
+    \item Blue (root always wins)
+    \item Undefined (error)
+    \item Black (default)
+    \item White (inherits from parent's custom property)
+\end{enumerate}
+
+% Q95 - Answer: A
+\item What is the difference between controlled and uncontrolled components?
+\begin{enumerate}[label=\Alph*)]
+    \item Controlled: React state drives the value; Uncontrolled: DOM holds the value
+    \item Controlled: read-only; Uncontrolled: editable
+    \item They're the same
+    \item Controlled is for forms, uncontrolled is for display
+\end{enumerate}
+
+% Q96 - Answer: C
+\item In this code, what's the problem?
+\begin{verbatim}
+useEffect(() => {
+  const data = await fetchData();
+  setData(data);
+}, []);
+\end{verbatim}
+\begin{enumerate}[label=\Alph*)]
+    \item fetchData might return undefined
+    \item setData is called incorrectly
+    \item useEffect callback cannot be async; await is invalid here
+    \item The dependency array is wrong
+\end{enumerate}
+
+% Q97 - Answer: B
+\item What is the render-commit phase distinction in React?
+\begin{enumerate}[label=\Alph*)]
+    \item Render is server-side, commit is client-side
+    \item Render calculates changes (can be paused), commit applies them to DOM (cannot)
+    \item Render is development, commit is production
+    \item They're the same phase
+\end{enumerate}
+
+% Q98 - Answer: D
+\item In TypeScript, what does this mapped type do?
+\begin{verbatim}
+type Readonly<T> = { readonly [P in keyof T]: T[P] };
+\end{verbatim}
+\begin{enumerate}[label=\Alph*)]
+    \item Removes all properties
+    \item Makes all properties optional
+    \item Creates a copy of T
+    \item Makes all properties readonly by iterating over keys of T
+\end{enumerate}
+
+% Q99 - Answer: A
+\item What is the purpose of \texttt{React.memo()}?
+\begin{enumerate}[label=\Alph*)]
+    \item Memoizes a component to prevent re-render if props haven't changed
+    \item Stores component in memory cache
+    \item Creates a memo/note about the component
+    \item Enables strict mode for a component
+\end{enumerate}
+
+% Q100 - Answer: C
+\item Consider this scenario: A parent component re-renders. It passes an inline object \texttt{\{id: 1\}} as a prop to a child wrapped in \texttt{React.memo()}. Will the child re-render?
+\begin{enumerate}[label=\Alph*)]
+    \item No, the object values are the same
+    \item No, React.memo prevents all re-renders
+    \item Yes, because a new object reference is created each render
+    \item Only if the child has state
+\end{enumerate}
+
+\end{enumerate}
+
+%==============================================================================
+% ANSWER KEY
+%==============================================================================
+\newpage
+\section*{Answer Key}
+
+\begin{center}
+\textbf{Tear off or cover this page while taking the quiz.}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tabular}{|c|c||c|c||c|c||c|c|}
+\hline
+\textbf{Q} & \textbf{Ans} & \textbf{Q} & \textbf{Ans} & \textbf{Q} & \textbf{Ans} & \textbf{Q} & \textbf{Ans} \\
+\hline
+1 & C & 26 & C & 51 & B & 76 & B \\
+2 & B & 27 & A & 52 & D & 77 & C \\
+3 & A & 28 & D & 53 & A & 78 & A \\
+4 & D & 29 & B & 54 & C & 79 & D \\
+5 & B & 30 & C & 55 & B & 80 & B \\
+6 & C & 31 & B & 56 & D & 81 & C \\
+7 & A & 32 & D & 57 & A & 82 & A \\
+8 & D & 33 & A & 58 & C & 83 & D \\
+9 & B & 34 & C & 59 & B & 84 & B \\
+10 & C & 35 & B & 60 & D & 85 & C \\
+11 & A & 36 & D & 61 & C & 86 & D \\
+12 & D & 37 & A & 62 & A & 87 & A \\
+13 & B & 38 & C & 63 & D & 88 & C \\
+14 & C & 39 & B & 64 & B & 89 & B \\
+15 & A & 40 & D & 65 & C & 90 & D \\
+16 & D & 41 & A & 66 & A & 91 & A \\
+17 & B & 42 & C & 67 & D & 92 & C \\
+18 & C & 43 & B & 68 & B & 93 & B \\
+19 & A & 44 & D & 69 & C & 94 & D \\
+20 & D & 45 & A & 70 & A & 95 & A \\
+21 & B & 46 & C & 71 & D & 96 & C \\
+22 & C & 47 & B & 72 & B & 97 & B \\
+23 & A & 48 & D & 73 & C & 98 & D \\
+24 & D & 49 & A & 74 & A & 99 & A \\
+25 & B & 50 & C & 75 & D & 100 & C \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+
+\subsection*{Scoring Guide}
+\begin{itemize}
+    \item \textbf{90-100}: Expert level - Ready for production React/TypeScript
+    \item \textbf{75-89}: Advanced - Strong foundation, review missed concepts
+    \item \textbf{60-74}: Intermediate - Good progress, more practice needed
+    \item \textbf{45-59}: Beginner+ - Revisit tutorial chapters
+    \item \textbf{Below 45}: Beginner - Start from Chapter 1 again
+\end{itemize}
+
+\subsection*{Answer Distribution}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Answer} & \textbf{Count} \\
+\hline
+A & 25 \\
+B & 25 \\
+C & 26 \\
+D & 24 \\
+\hline
+\end{tabular}
+
+\vspace{0.5cm}
+Answers are distributed roughly evenly and randomized---no patterns to exploit!
+
+\end{document}
