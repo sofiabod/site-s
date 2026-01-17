@@ -1,5 +1,5 @@
 import './App.css'
-import { useRef, useCallback, useState } from 'react'
+import { useRef, useCallback, useState, useEffect } from 'react'
 import ForceGraph3D from 'react-force-graph-3d'
 import SpriteText from 'three-spritetext'
 
@@ -107,7 +107,18 @@ const experiences: Experience[] = [
 function App() {
   const fgRef = useRef<any>(null)
   const spritesRef = useRef<Map<string, any>>(new Map())
-  const [showNotes, setShowNotes] = useState<string | null>(null)
+  const [showNotes, setShowNotes] = useState<string | null>(() => {
+    const hash = window.location.hash.slice(1)
+    return hash === 'zep' ? 'zep' : null
+  })
+
+  useEffect(() => {
+    if (showNotes) {
+      window.location.hash = showNotes
+    } else {
+      history.replaceState(null, '', window.location.pathname)
+    }
+  }, [showNotes])
 
   const updateLabelVisibility = useCallback(() => {
     if (!fgRef.current) return
@@ -144,9 +155,25 @@ function App() {
             cursor: 'default'
           }}
         >
-          <h2 style={{ fontSize: '0.9rem', fontWeight: 700, marginBottom: '12px', flexShrink: 0 }}>
-            short note on <a href="https://arxiv.org/pdf/2501.13956" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>ZEP</a>
-          </h2>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexShrink: 0 }}>
+            <h2 style={{ fontSize: '0.9rem', fontWeight: 700, margin: 0 }}>
+              short note on <a href="https://arxiv.org/pdf/2501.13956" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>ZEP</a>
+            </h2>
+            <button
+              onClick={() => setShowNotes(null)}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                marginRight: '8px',
+                cursor: 'pointer',
+                fontSize: '1.1rem'
+              }}
+              title="Back to home"
+            >
+              ⌂
+            </button>
+          </div>
           <div style={{ maxHeight: '75vh', overflow: 'auto', border: '1px solid #000' }}>
             <img
               src="/zep-notes.png"
