@@ -29,7 +29,7 @@ const topics = [
   // Meta-learning
   "Meta-Learning", "Few-Shot Learning", "Transfer Learning",
   // Training
-  "Backpropagation", "Gradient Descent", "LoRA", "LISA", "Quantization",
+  "Backpropagation", "Gradient Descent", "LoRA", "Quantization",
   // Clustering
   "K-Means Clustering",
   // Memory-related
@@ -50,7 +50,7 @@ const topics = [
   // Data
   "Data Augmentation", "Synthetic Data", "Active Learning",
   // Spatial/Forecasting
-  "LISA", "Moran's I", "Spatial Autocorrelation", "Changepoint Detection",
+  "Moran's I", "Spatial Autocorrelation", "Changepoint Detection",
   "CUSUM", "Time Series Forecasting", "Geospatial ML", "Feature Engineering"
 ]
 
@@ -179,9 +179,7 @@ const links: { source: string; target: string }[] = [
   { source: "LoRA", target: "Fine-tuning" },
   { source: "Quantization", target: "LLMs" },
   { source: "LoRA", target: "Quantization" },
-  { source: "LISA", target: "Fine-tuning" },
-  { source: "LISA", target: "LoRA" },
-
+  
   // === CLUSTERING ===
   { source: "K-Means Clustering", target: "Embeddings" },
 
@@ -259,12 +257,10 @@ const links: { source: string; target: string }[] = [
   { source: "Synthetic Data", target: "LLMs" },
 
   // === SPATIAL/FORECASTING ===
-  { source: "LISA", target: "Spatial Autocorrelation" },
-  { source: "LISA", target: "Moran's I" },
   { source: "Moran's I", target: "Spatial Autocorrelation" },
-  { source: "LISA", target: "K-Means Clustering" },
-  { source: "Geospatial ML", target: "LISA" },
+  { source: "Geospatial ML", target: "Moran's I" },
   { source: "Geospatial ML", target: "CNNs" },
+  { source: "Geospatial ML", target: "K-Means Clustering" },
   { source: "Changepoint Detection", target: "CUSUM" },
   { source: "Changepoint Detection", target: "Time Series Forecasting" },
   { source: "Time Series Forecasting", target: "LSTMs" },
@@ -303,6 +299,7 @@ const experiences: Experience[] = [
 function App() {
   const fgRef = useRef<any>(null)
   const spritesRef = useRef<Map<string, any>>(new Map())
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const [showNotes, setShowNotes] = useState<string | null>(() => {
     const hash = window.location.hash.slice(1)
     return hash === 'zep' ? 'zep' : null
@@ -315,6 +312,12 @@ function App() {
       history.replaceState(null, '', window.location.pathname)
     }
   }, [showNotes])
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const updateLabelVisibility = useCallback(() => {
     if (!fgRef.current) return
@@ -407,8 +410,9 @@ function App() {
         <p style={{ fontSize: '0.95rem' }}>17 y/o high school student</p>
       </div>
 
-      <div className="graph-container">
-        <ForceGraph3D
+      {!isMobile && (
+        <div className="graph-container">
+          <ForceGraph3D
           ref={fgRef}
           graphData={graphData}
           width={500}
@@ -444,7 +448,8 @@ function App() {
             }
           }}
         />
-      </div>
+        </div>
+      )}
 
       <div>
 
@@ -455,6 +460,7 @@ function App() {
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>predicted forecast failures using LISA and ensemble ML for HSBDC 2026</p>
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>created first ML and math community at my hs</p>
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>recently hosted <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>G Hacks</a> and <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Claude x Socratica</a></p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>generated over <a href="https://www.tiktok.com/@infinitybouquets.ca?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>150k views</a> and sold <a href="https://www.instagram.com/infinitybouquets.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>100+ bouquets</a></p>
         </div>
 
         <div style={{ marginTop: '60px' }}>
