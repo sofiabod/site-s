@@ -395,7 +395,7 @@ function App() {
         <div className="header-row">
           <h1 style={{ fontSize: '1.5rem' }}>sofia bodnar</h1>
           <nav className="nav-links">
-            <a href="/"><img src="/cute.svg" alt="" style={{ height: '80px', marginRight: '-20px' }} /></a>
+            <a href="/"><img src="/cute.svg" alt="" style={{ height: '80px', marginRight: '-10px' }} /></a>
             <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
               <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
             </a>
@@ -512,6 +512,10 @@ function App() {
         ))}
         </div>
       </div>
+
+      <footer style={{ marginTop: '80px', fontSize: '0.75rem', color: '#666' }}>
+        2026 © Sofia Bodnar
+      </footer>
     </main>
   )
 }

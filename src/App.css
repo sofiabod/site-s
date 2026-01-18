@@ -14,17 +14,29 @@ main {
 
 @media (max-width: 768px) {
   .header-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .header-row h1 {
+    font-size: 1.1rem;
+    margin-top: 50px;
   }
 
   .nav-links {
-    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
+  .nav-links a:first-child img {
+    height: 80px !important;
+    margin-right: -40px !important;
+    margin-left: -60px !important;
+  }
+
+  .nav-links {
+    margin-left: -20px;
   }
 }
