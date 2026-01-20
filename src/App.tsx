@@ -519,15 +519,16 @@ function App() {
                 placeholder="search nodes..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setShowSearch(true)}
-                onBlur={() => setTimeout(() => setShowSearch(false), 150)}
+                onFocus={(e) => { e.currentTarget.style.border = '1px solid #000'; setShowSearch(true) }}
+                onBlur={(e) => { e.currentTarget.style.border = '1px solid #ccc'; setTimeout(() => setShowSearch(false), 150) }}
                 style={{
                   padding: '6px 10px',
                   fontSize: '0.8rem',
                   border: '1px solid #ccc',
                   borderRadius: '4px',
                   width: '200px',
-                  fontFamily: 'Manrope, sans-serif'
+                  fontFamily: 'Manrope, sans-serif',
+                  outline: 'none'
                 }}
               />
             </div>
