@@ -6,6 +6,8 @@ import SpriteText from 'three-spritetext'
 const topics = [
   // Core
   "Zep", "Memory Systems", "RAG", "Knowledge Graphs", "LLMs",
+  // Statistical Learning
+  "Statistical Learning", "Linear Regression", "Classification",
   // Graph
   "Graph Neural Networks", "Graph Embeddings", "Graph Traversal",
   // Embeddings & Search
@@ -276,6 +278,18 @@ const links: { source: string; target: string }[] = [
   { source: "P-Value", target: "Spatial Autocorrelation" },
   { source: "P-Value", target: "Gaussian Processes" },
   { source: "P-Value", target: "Multi-Armed Bandits" },
+
+  // === STATISTICAL LEARNING ===
+  { source: "Statistical Learning", target: "K-Means Clustering" },
+  { source: "Statistical Learning", target: "Linear Regression" },
+  { source: "Statistical Learning", target: "Classification" },
+  { source: "Statistical Learning", target: "Gradient Descent" },
+  { source: "Statistical Learning", target: "Feature Engineering" },
+  { source: "Statistical Learning", target: "P-Value" },
+  { source: "Statistical Learning", target: "Gaussian Processes" },
+  { source: "Statistical Learning", target: "Backpropagation" },
+  { source: "Linear Regression", target: "Gradient Descent" },
+  { source: "Classification", target: "Embeddings" },
 ]
 
 const graphData = { nodes, links }
@@ -307,11 +321,36 @@ const experiences: Experience[] = [
 function App() {
   const fgRef = useRef<any>(null)
   const spritesRef = useRef<Map<string, any>>(new Map())
+  const nodePositions = useRef<Map<string, {x: number, y: number, z: number}>>(new Map())
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1554)
   const [showNotes, setShowNotes] = useState<string | null>(() => {
     const hash = window.location.hash.slice(1)
-    return hash === 'zep' ? 'zep' : null
+    if (hash === 'zep') return 'zep'
+    if (hash === 'p-value') return 'p-value'
+    if (hash === 'statistical-learning') return 'statistical-learning'
+    return null
   })
+  const [searchQuery, setSearchQuery] = useState('')
+  const [showSearch, setShowSearch] = useState(false)
+
+  const filteredNodes = searchQuery.length > 0
+    ? nodes.filter(n => n.id.toLowerCase().includes(searchQuery.toLowerCase()))
+    : []
+
+  const zoomToNode = useCallback((nodeId: string) => {
+    if (!fgRef.current) return
+    const pos = nodePositions.current.get(nodeId)
+    if (pos) {
+      const distance = 50
+      fgRef.current.cameraPosition(
+        { x: pos.x + distance, y: pos.y + distance, z: pos.z + distance },
+        { x: pos.x, y: pos.y, z: pos.z },
+        1500
+      )
+    }
+    setSearchQuery('')
+    setShowSearch(false)
+  }, [])
 
   useEffect(() => {
     if (showNotes) {
@@ -350,6 +389,13 @@ function App() {
     spritesRef.current.forEach((sprite) => {
       sprite.visible = showLabels
     })
+
+    // Store node positions for search zoom
+    graphData.nodes.forEach((node: any) => {
+      if (node.x !== undefined) {
+        nodePositions.current.set(node.id, { x: node.x, y: node.y, z: node.z })
+      }
+    })
   }, [])
 
   if (showNotes) {
@@ -383,6 +429,9 @@ function App() {
               )}
               {showNotes === 'p-value' && (
                 <>short note on P-Value</>
+              )}
+              {showNotes === 'statistical-learning' && (
+                <>short note on Statistical Learning</>
               )}
             </h2>
             <button
@@ -423,6 +472,17 @@ function App() {
                 }}
               />
             )}
+            {showNotes === 'statistical-learning' && (
+              <img
+                src="/notes/stat.png"
+                alt="Statistical Learning Notes"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -452,6 +512,63 @@ function App() {
 
       {!isMobile && (
         <div className="graph-container">
+          <div style={{ position: 'relative', marginBottom: '8px', marginLeft: '150px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <input
+                type="text"
+                placeholder="search nodes..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setShowSearch(true)}
+                onBlur={() => setTimeout(() => setShowSearch(false), 150)}
+                style={{
+                  padding: '6px 10px',
+                  fontSize: '0.8rem',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  width: '200px',
+                  fontFamily: 'Manrope, sans-serif'
+                }}
+              />
+            </div>
+            {showSearch && filteredNodes.length > 0 && (
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                width: '200px',
+                maxHeight: '200px',
+                overflowY: 'auto',
+                backgroundColor: '#fff',
+                border: '1px solid #ccc',
+                borderRadius: '4px',
+                zIndex: 100,
+                marginTop: '4px'
+              }}>
+                {filteredNodes.slice(0, 10).map(node => (
+                  <div
+                    key={node.id}
+                    onMouseDown={(e) => {
+                      e.currentTarget.style.backgroundColor = '#d0d0d0'
+                      zoomToNode(node.id)
+                    }}
+                    style={{
+                      padding: '8px 10px',
+                      fontSize: '0.8rem',
+                      cursor: 'pointer',
+                      borderBottom: '1px solid #eee',
+                      fontFamily: 'Manrope, sans-serif',
+                      userSelect: 'none'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#fff'}
+                  >
+                    {node.id}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           <ForceGraph3D
           ref={fgRef}
           graphData={graphData}
@@ -485,6 +602,8 @@ function App() {
               setShowNotes('zep')
             } else if (n.id === 'P-Value') {
               setShowNotes('p-value')
+            } else if (n.id === 'Statistical Learning') {
+              setShowNotes('statistical-learning')
             } else if (n.url) {
               window.open(n.url, '_blank')
             }
