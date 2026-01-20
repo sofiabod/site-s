@@ -496,7 +496,7 @@ function App() {
       <div>
 
         <div style={{ marginTop: '40px' }}>
-          <h2 style={{ fontSize: '0.9rem', fontWeight: 700 }}>previous builds</h2>
+          <h2 style={{ fontSize: '1.3rem', fontWeight: 700 }}>previous builds</h2>
 
           <p style={{ fontSize: '0.8rem', marginTop: '20px' }}>created <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Axiom</a>, a startup competition for youth</p>
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>predicted forecast failures using LISA and ensemble ML for HSBDC 2026</p>
@@ -506,9 +506,9 @@ function App() {
         </div>
 
         <div style={{ marginTop: '60px' }}>
-          <h2 id="experience" style={{ fontSize: '0.9rem', fontWeight: 700 }}>experience</h2>
+          <h2 id="experience" style={{ fontSize: '1.3rem', fontWeight: 700 }}>experience</h2>
         {experiences.map((exp, index) => (
-          <div key={index} style={{ marginTop: '40px' }}>
+          <div key={index} style={{ marginTop: index === 0 ? '20px' : '40px' }}>
             <h3 style={{ fontSize: '0.95rem' }}>{exp.title}<span style={{ fontWeight: 300 }}>, {exp.company}</span>
               {exp.company === 'Sentra' && (
                 <>
