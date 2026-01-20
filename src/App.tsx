@@ -51,7 +51,9 @@ const topics = [
   "Data Augmentation", "Synthetic Data", "Active Learning",
   // Spatial/Forecasting
   "Moran's I", "Spatial Autocorrelation", "Changepoint Detection",
-  "CUSUM", "Time Series Forecasting", "Geospatial ML", "Feature Engineering"
+  "CUSUM", "Time Series Forecasting", "Geospatial ML", "Feature Engineering",
+  // Statistics
+  "P-Value"
 ]
 
 const nodes = topics.map((topic) => ({
@@ -268,6 +270,12 @@ const links: { source: string; target: string }[] = [
   { source: "Feature Engineering", target: "Gradient Descent" },
   { source: "Feature Engineering", target: "Data Augmentation" },
   { source: "CUSUM", target: "Time Series Forecasting" },
+
+  // === STATISTICS ===
+  { source: "P-Value", target: "Moran's I" },
+  { source: "P-Value", target: "Spatial Autocorrelation" },
+  { source: "P-Value", target: "Gaussian Processes" },
+  { source: "P-Value", target: "Multi-Armed Bandits" },
 ]
 
 const graphData = { nodes, links }
@@ -299,7 +307,7 @@ const experiences: Experience[] = [
 function App() {
   const fgRef = useRef<any>(null)
   const spritesRef = useRef<Map<string, any>>(new Map())
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1554)
   const [showNotes, setShowNotes] = useState<string | null>(() => {
     const hash = window.location.hash.slice(1)
     return hash === 'zep' ? 'zep' : null
@@ -314,10 +322,24 @@ function App() {
   }, [showNotes])
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768)
+    const handleResize = () => setIsMobile(window.innerWidth < 1554)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  useEffect(() => {
+    if (fgRef.current) {
+      const controls = fgRef.current.controls()
+      controls.minDistance = 0.1
+      controls.maxDistance = 10000
+      controls.enablePan = true
+      controls.panSpeed = 5
+      controls.rotateSpeed = 5
+      controls.zoomSpeed = 3
+      controls.enableDamping = true
+      controls.dampingFactor = 0.1
+    }
+  }, [isMobile])
 
   const updateLabelVisibility = useCallback(() => {
     if (!fgRef.current) return
@@ -356,7 +378,12 @@ function App() {
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexShrink: 0 }}>
             <h2 style={{ fontSize: '0.9rem', fontWeight: 700, margin: 0 }}>
-              short note on <a href="https://arxiv.org/pdf/2501.13956" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>ZEP</a>
+              {showNotes === 'zep' && (
+                <>short note on <a href="https://arxiv.org/pdf/2501.13956" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>ZEP</a></>
+              )}
+              {showNotes === 'p-value' && (
+                <>short note on P-Value</>
+              )}
             </h2>
             <button
               onClick={() => setShowNotes(null)}
@@ -374,15 +401,28 @@ function App() {
             </button>
           </div>
           <div style={{ maxHeight: '75vh', overflow: 'auto', border: '1px solid #000' }}>
-            <img
-              src="/zep-notes.png"
-              alt="Zep Memory Retrieval Notes"
-              style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block'
-              }}
-            />
+            {showNotes === 'zep' && (
+              <img
+                src="/zep-notes.png"
+                alt="Zep Memory Retrieval Notes"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+            )}
+            {showNotes === 'p-value' && (
+              <img
+                src="/notes/p_value.png"
+                alt="P-Value Notes"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -443,6 +483,8 @@ function App() {
             const n = node as { id?: string; url?: string }
             if (n.id === 'Zep') {
               setShowNotes('zep')
+            } else if (n.id === 'P-Value') {
+              setShowNotes('p-value')
             } else if (n.url) {
               window.open(n.url, '_blank')
             }

@@ -12,6 +12,17 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 1554px) {
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .header-row h1 {
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 768px) {
   .header-row {
     flex-direction: row;
@@ -28,15 +39,12 @@ main {
   .nav-links {
     gap: 8px;
     align-items: center;
+    margin-left: -20px;
   }
 
   .nav-links a:first-child img {
     height: 80px !important;
     margin-right: -40px !important;
     margin-left: -60px !important;
-  }
-
-  .nav-links {
-    margin-left: -20px;
   }
 }
