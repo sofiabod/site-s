@@ -4,82 +4,64 @@ import ForceGraph3D from 'react-force-graph-3d'
 import SpriteText from 'three-spritetext'
 
 const topics = [
-  // Core
   "Zep", "Memory Systems", "RAG", "Knowledge Graphs", "LLMs",
-  // Statistical Learning
   "Statistical Learning", "Linear Regression", "Classification",
-  // Graph
   "Graph Neural Networks", "Graph Embeddings", "Graph Traversal",
-  // Embeddings & Search
   "Embeddings", "Semantic Search", "Cosine Similarity", "Multi-Vector Retrieval",
-  // Retrieval
   "ColBERT", "Late Interaction", "Dense Retrieval", "Sparse Retrieval", "BM25", "Hybrid Search", "Reranking",
-  // Bayesian Optimization
   "Bayesian Optimization", "Gaussian Processes", "Expected Improvement",
   "Multi-Objective Optimization", "Gradient-Free Optimization",
-  // Reinforcement Learning
   "Reinforcement Learning", "Q-Learning", "Policy Gradient",
   "Experience Replay", "Credit Assignment", "Reward Shaping", "RLHF", "DPO",
-  // RL Fundamentals
   "Value Function", "Bellman Equation", "Markov Decision Process",
   "Exploration vs Exploitation", "Epsilon-Greedy", "Multi-Armed Bandits",
-  // LLM/Transformers
   "Transformers", "Self-Attention", "Fine-tuning", "Prompt Engineering",
   "In-Context Learning", "Chain-of-Thought",
-  // Generative
   "Diffusion Models", "VAEs", "GANs",
-  // Meta-learning
   "Meta-Learning", "Few-Shot Learning", "Transfer Learning",
-  // Training
   "Backpropagation", "Gradient Descent", "LoRA", "Quantization",
-  // Clustering
   "K-Means Clustering",
-  // Memory-related
   "Attention Mechanisms", "Context Windows", "Long-Term Memory", "Episodic Memory",
   "Memory Consolidation", "Knowledge Distillation", "Continual Learning", "Catastrophic Forgetting",
-  // Architecture
   "Mixture of Experts", "RNNs", "LSTMs", "CNNs",
-  // NLP
   "Tokenization", "BPE", "Word2Vec", "BERT", "Sentence Transformers",
-  // Modern LLM
   "Flash Attention", "KV Cache", "Speculative Decoding", "Mamba",
-  // Optimization
   "Adam", "SGD", "Learning Rate Scheduling",
-  // Interpretability
   "Mechanistic Interpretability", "Attention Visualization",
-  // Safety/Alignment
   "Constitutional AI", "Red Teaming", "Adversarial Examples",
-  // Data
   "Data Augmentation", "Synthetic Data", "Active Learning",
-  // Spatial/Forecasting
   "Moran's I", "Spatial Autocorrelation", "Changepoint Detection",
   "CUSUM", "Time Series Forecasting", "Geospatial ML", "Feature Engineering",
-  // Statistics
   "P-Value"
 ]
+
+const customUrls: Record<string, string> = {
+  "In-Context Learning": "https://www.lakera.ai/blog/what-is-in-context-learning"
+}
+
+const notesMap: Record<string, string> = {
+  "Zep": "zep",
+  "P-Value": "p-value",
+  "Statistical Learning": "statistical-learning",
+}
 
 const nodes = topics.map((topic) => ({
   id: topic,
   gray: Math.floor(Math.random() * 200) + 30,
-  url: `https://en.wikipedia.org/wiki/${topic.replace(/ /g, '_')}`
+  url: customUrls[topic] || `https://en.wikipedia.org/wiki/${topic.replace(/ /g, '_')}`
 }))
 
 const links: { source: string; target: string }[] = [
-  // === ZEP ===
   { source: "Zep", target: "Memory Systems" },
   { source: "Zep", target: "RAG" },
   { source: "Zep", target: "Knowledge Graphs" },
   { source: "Zep", target: "LLMs" },
   { source: "Zep", target: "Semantic Search" },
-
-  // === CORE CONNECTIONS ===
   { source: "RAG", target: "LLMs" },
   { source: "RAG", target: "Embeddings" },
   { source: "RAG", target: "Semantic Search" },
   { source: "RAG", target: "Knowledge Graphs" },
   { source: "Memory Systems", target: "LLMs" },
-
-  // === GRAPH ===
   { source: "Knowledge Graphs", target: "Graph Neural Networks" },
   { source: "Knowledge Graphs", target: "Graph Traversal" },
   { source: "Knowledge Graphs", target: "Graph Embeddings" },
@@ -87,16 +69,12 @@ const links: { source: string; target: string }[] = [
   { source: "Graph Neural Networks", target: "Embeddings" },
   { source: "Graph Traversal", target: "Graph Neural Networks" },
   { source: "Graph Embeddings", target: "Embeddings" },
-
-  // === EMBEDDINGS & SEARCH ===
   { source: "Embeddings", target: "Cosine Similarity" },
   { source: "Embeddings", target: "Semantic Search" },
   { source: "Embeddings", target: "Multi-Vector Retrieval" },
   { source: "Cosine Similarity", target: "Semantic Search" },
   { source: "Semantic Search", target: "Multi-Vector Retrieval" },
   { source: "Multi-Vector Retrieval", target: "RAG" },
-
-  // === RETRIEVAL ===
   { source: "ColBERT", target: "Late Interaction" },
   { source: "ColBERT", target: "Multi-Vector Retrieval" },
   { source: "Late Interaction", target: "Dense Retrieval" },
@@ -109,8 +87,6 @@ const links: { source: string; target: string }[] = [
   { source: "Reranking", target: "Semantic Search" },
   { source: "Reranking", target: "ColBERT" },
   { source: "BM25", target: "Semantic Search" },
-
-  // === BAYESIAN OPTIMIZATION ===
   { source: "Bayesian Optimization", target: "Gaussian Processes" },
   { source: "Bayesian Optimization", target: "Expected Improvement" },
   { source: "Bayesian Optimization", target: "Gradient-Free Optimization" },
@@ -125,8 +101,6 @@ const links: { source: string; target: string }[] = [
   { source: "Gaussian Processes", target: "Embeddings" },
   { source: "Gaussian Processes", target: "Cosine Similarity" },
   { source: "Expected Improvement", target: "Q-Learning" },
-
-  // === REINFORCEMENT LEARNING ===
   { source: "Reinforcement Learning", target: "Q-Learning" },
   { source: "Reinforcement Learning", target: "Policy Gradient" },
   { source: "Reinforcement Learning", target: "Experience Replay" },
@@ -140,8 +114,6 @@ const links: { source: string; target: string }[] = [
   { source: "RLHF", target: "Reward Shaping" },
   { source: "DPO", target: "RLHF" },
   { source: "DPO", target: "LLMs" },
-
-  // === RL FUNDAMENTALS ===
   { source: "Reinforcement Learning", target: "Value Function" },
   { source: "Value Function", target: "Bellman Equation" },
   { source: "Reinforcement Learning", target: "Markov Decision Process" },
@@ -152,8 +124,6 @@ const links: { source: string; target: string }[] = [
   { source: "Multi-Armed Bandits", target: "Exploration vs Exploitation" },
   { source: "Multi-Armed Bandits", target: "Bayesian Optimization" },
   { source: "Epsilon-Greedy", target: "Q-Learning" },
-
-  // === LLM/TRANSFORMERS ===
   { source: "LLMs", target: "Transformers" },
   { source: "Transformers", target: "Self-Attention" },
   { source: "Self-Attention", target: "Attention Mechanisms" },
@@ -164,30 +134,20 @@ const links: { source: string; target: string }[] = [
   { source: "Prompt Engineering", target: "Chain-of-Thought" },
   { source: "In-Context Learning", target: "Few-Shot Learning" },
   { source: "RAG", target: "In-Context Learning" },
-
-  // === GENERATIVE ===
   { source: "Diffusion Models", target: "GANs" },
   { source: "VAEs", target: "GANs" },
   { source: "VAEs", target: "Embeddings" },
   { source: "Diffusion Models", target: "Gradient Descent" },
-
-  // === META-LEARNING ===
   { source: "Meta-Learning", target: "Few-Shot Learning" },
   { source: "Meta-Learning", target: "Transfer Learning" },
   { source: "Transfer Learning", target: "Fine-tuning" },
   { source: "Few-Shot Learning", target: "In-Context Learning" },
-
-  // === TRAINING ===
   { source: "Backpropagation", target: "Gradient Descent" },
   { source: "Gradient Descent", target: "Bayesian Optimization" },
   { source: "LoRA", target: "Fine-tuning" },
   { source: "Quantization", target: "LLMs" },
   { source: "LoRA", target: "Quantization" },
-  
-  // === CLUSTERING ===
   { source: "K-Means Clustering", target: "Embeddings" },
-
-  // === MEMORY-RELATED ===
   { source: "Memory Systems", target: "Long-Term Memory" },
   { source: "Memory Systems", target: "Episodic Memory" },
   { source: "Long-Term Memory", target: "Episodic Memory" },
@@ -212,15 +172,11 @@ const links: { source: string; target: string }[] = [
   { source: "Catastrophic Forgetting", target: "Experience Replay" },
   { source: "Catastrophic Forgetting", target: "Long-Term Memory" },
   { source: "Continual Learning", target: "Transfer Learning" },
-
-  // === ARCHITECTURE ===
   { source: "LLMs", target: "Mixture of Experts" },
   { source: "Mixture of Experts", target: "Transformers" },
   { source: "RNNs", target: "LSTMs" },
   { source: "LSTMs", target: "Memory Systems" },
   { source: "CNNs", target: "Embeddings" },
-
-  // === NLP ===
   { source: "LLMs", target: "Tokenization" },
   { source: "Tokenization", target: "BPE" },
   { source: "Word2Vec", target: "Embeddings" },
@@ -228,39 +184,27 @@ const links: { source: string; target: string }[] = [
   { source: "BERT", target: "Embeddings" },
   { source: "Sentence Transformers", target: "BERT" },
   { source: "Sentence Transformers", target: "Semantic Search" },
-
-  // === MODERN LLM ===
   { source: "Flash Attention", target: "Self-Attention" },
   { source: "KV Cache", target: "Transformers" },
   { source: "KV Cache", target: "Context Windows" },
   { source: "Speculative Decoding", target: "LLMs" },
   { source: "Mamba", target: "LLMs" },
   { source: "Mamba", target: "RNNs" },
-
-  // === OPTIMIZATION ===
   { source: "Adam", target: "Gradient Descent" },
   { source: "SGD", target: "Gradient Descent" },
   { source: "Learning Rate Scheduling", target: "Gradient Descent" },
   { source: "Adam", target: "SGD" },
-
-  // === INTERPRETABILITY ===
   { source: "Mechanistic Interpretability", target: "LLMs" },
   { source: "Attention Visualization", target: "Self-Attention" },
   { source: "Mechanistic Interpretability", target: "Attention Visualization" },
-
-  // === SAFETY/ALIGNMENT ===
   { source: "Constitutional AI", target: "RLHF" },
   { source: "Red Teaming", target: "LLMs" },
   { source: "Adversarial Examples", target: "Red Teaming" },
   { source: "Constitutional AI", target: "DPO" },
-
-  // === DATA ===
   { source: "Data Augmentation", target: "Fine-tuning" },
   { source: "Synthetic Data", target: "Data Augmentation" },
   { source: "Active Learning", target: "Meta-Learning" },
   { source: "Synthetic Data", target: "LLMs" },
-
-  // === SPATIAL/FORECASTING ===
   { source: "Moran's I", target: "Spatial Autocorrelation" },
   { source: "Geospatial ML", target: "Moran's I" },
   { source: "Geospatial ML", target: "CNNs" },
@@ -272,14 +216,10 @@ const links: { source: string; target: string }[] = [
   { source: "Feature Engineering", target: "Gradient Descent" },
   { source: "Feature Engineering", target: "Data Augmentation" },
   { source: "CUSUM", target: "Time Series Forecasting" },
-
-  // === STATISTICS ===
   { source: "P-Value", target: "Moran's I" },
   { source: "P-Value", target: "Spatial Autocorrelation" },
   { source: "P-Value", target: "Gaussian Processes" },
   { source: "P-Value", target: "Multi-Armed Bandits" },
-
-  // === STATISTICAL LEARNING ===
   { source: "Statistical Learning", target: "K-Means Clustering" },
   { source: "Statistical Learning", target: "Linear Regression" },
   { source: "Statistical Learning", target: "Classification" },
@@ -390,7 +330,6 @@ function App() {
       sprite.visible = showLabels
     })
 
-    // Store node positions for search zoom
     graphData.nodes.forEach((node: any) => {
       if (node.x !== undefined) {
         nodePositions.current.set(node.id, { x: node.x, y: node.y, z: node.z })
@@ -599,12 +538,8 @@ function App() {
           onEngineTick={updateLabelVisibility}
           onNodeClick={(node: any) => {
             const n = node as { id?: string; url?: string }
-            if (n.id === 'Zep') {
-              setShowNotes('zep')
-            } else if (n.id === 'P-Value') {
-              setShowNotes('p-value')
-            } else if (n.id === 'Statistical Learning') {
-              setShowNotes('statistical-learning')
+            if (n.id && notesMap[n.id]) {
+              setShowNotes(notesMap[n.id])
             } else if (n.url) {
               window.open(n.url, '_blank')
             }
