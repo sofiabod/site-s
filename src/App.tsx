@@ -298,6 +298,7 @@ function App() {
   })
   const [searchQuery, setSearchQuery] = useState('')
   const [showSearch, setShowSearch] = useState(false)
+  const [showGraphInfo, setShowGraphInfo] = useState(false)
 
   const filteredNodes = searchQuery.length > 0
     ? nodes.filter(n => n.id.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -569,6 +570,7 @@ function App() {
           <div style={{ position: 'relative', marginBottom: '8px', marginLeft: '80px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <a href="/"><img src="/cute.svg" alt="" style={{ height: '75px', marginRight: '-15px', marginTop: '10px' }} /></a>
+              <div style={{ position: 'relative' }}>
               <input
                 type="text"
                 placeholder="search nodes..."
@@ -586,44 +588,45 @@ function App() {
                   outline: 'none'
                 }}
               />
-            </div>
-            {showSearch && filteredNodes.length > 0 && (
-              <div style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                width: '200px',
-                maxHeight: '200px',
-                overflowY: 'auto',
-                backgroundColor: '#fff',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-                zIndex: 100,
-                marginTop: '4px'
-              }}>
-                {filteredNodes.slice(0, 10).map(node => (
-                  <div
-                    key={node.id}
-                    onMouseDown={(e) => {
-                      e.currentTarget.style.backgroundColor = '#d0d0d0'
-                      zoomToNode(node.id)
-                    }}
-                    style={{
-                      padding: '8px 10px',
-                      fontSize: '0.8rem',
-                      cursor: 'pointer',
-                      borderBottom: '1px solid #eee',
-                      fontFamily: 'Manrope, sans-serif',
-                      userSelect: 'none'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
-                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#fff'}
-                  >
-                    {node.id}
-                  </div>
-                ))}
+              {showSearch && filteredNodes.length > 0 && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: 0,
+                  width: '200px',
+                  maxHeight: '200px',
+                  overflowY: 'auto',
+                  backgroundColor: '#fff',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  zIndex: 100,
+                  marginTop: '4px'
+                }}>
+                  {filteredNodes.slice(0, 10).map(node => (
+                    <div
+                      key={node.id}
+                      onMouseDown={(e) => {
+                        e.currentTarget.style.backgroundColor = '#d0d0d0'
+                        zoomToNode(node.id)
+                      }}
+                      style={{
+                        padding: '8px 10px',
+                        fontSize: '0.8rem',
+                        cursor: 'pointer',
+                        borderBottom: '1px solid #eee',
+                        fontFamily: 'Manrope, sans-serif',
+                        userSelect: 'none'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#fff'}
+                    >
+                      {node.id}
+                    </div>
+                  ))}
+                </div>
+              )}
               </div>
-            )}
+            </div>
           </div>
           <ForceGraph3D
           ref={fgRef}
@@ -661,7 +664,7 @@ function App() {
             }
           }}
         />
-        </div>
+                  </div>
       )}
 
       <div>
