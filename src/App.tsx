@@ -8,7 +8,7 @@ const topics = [
   "Statistical Learning", "Linear Regression", "Classification",
   "Graph Neural Networks", "Graph Embeddings", "Graph Traversal",
   "Embeddings", "Semantic Search", "Cosine Similarity", "Multi-Vector Retrieval",
-  "ColBERT", "Late Interaction", "Dense Retrieval", "Sparse Retrieval", "BM25", "Hybrid Search", "Reranking",
+  "ColBERT", "ColBERT v2", "Late Interaction", "MaxSim", "MUVERA", "Dense Retrieval", "Sparse Retrieval", "BM25", "Hybrid Search", "Reranking",
   "Bayesian Optimization", "Gaussian Processes", "Expected Improvement",
   "Multi-Objective Optimization", "Gradient-Free Optimization",
   "Reinforcement Learning", "Q-Learning", "Policy Gradient",
@@ -32,11 +32,15 @@ const topics = [
   "Data Augmentation", "Synthetic Data", "Active Learning",
   "Moran's I", "Spatial Autocorrelation", "Changepoint Detection",
   "CUSUM", "Time Series Forecasting", "Geospatial ML", "Feature Engineering",
-  "P-Value"
+  "P-Value", "Moravec's Paradox"
 ]
 
 const customUrls: Record<string, string> = {
-  "In-Context Learning": "https://www.lakera.ai/blog/what-is-in-context-learning"
+  "In-Context Learning": "https://www.lakera.ai/blog/what-is-in-context-learning",
+  "ColBERT v2": "https://arxiv.org/abs/2112.01488",
+  "MUVERA": "https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/",
+  "MaxSim": "https://jina.ai/news/what-is-colbert-and-late-interaction-and-why-they-matter-in-search/",
+  "Late Interaction": "https://jina.ai/news/what-is-colbert-and-late-interaction-and-why-they-matter-in-search/"
 }
 
 const notesMap: Record<string, string> = {
@@ -77,6 +81,16 @@ const links: { source: string; target: string }[] = [
   { source: "Multi-Vector Retrieval", target: "RAG" },
   { source: "ColBERT", target: "Late Interaction" },
   { source: "ColBERT", target: "Multi-Vector Retrieval" },
+  { source: "ColBERT", target: "MaxSim" },
+  { source: "ColBERT v2", target: "ColBERT" },
+  { source: "ColBERT v2", target: "Multi-Vector Retrieval" },
+  { source: "ColBERT v2", target: "Dense Retrieval" },
+  { source: "MaxSim", target: "Late Interaction" },
+  { source: "MaxSim", target: "Cosine Similarity" },
+  { source: "MUVERA", target: "Multi-Vector Retrieval" },
+  { source: "MUVERA", target: "ColBERT" },
+  { source: "MUVERA", target: "Dense Retrieval" },
+  { source: "MUVERA", target: "Embeddings" },
   { source: "Late Interaction", target: "Dense Retrieval" },
   { source: "Dense Retrieval", target: "Embeddings" },
   { source: "Dense Retrieval", target: "Semantic Search" },
@@ -230,6 +244,9 @@ const links: { source: string; target: string }[] = [
   { source: "Statistical Learning", target: "Backpropagation" },
   { source: "Linear Regression", target: "Gradient Descent" },
   { source: "Classification", target: "Embeddings" },
+  { source: "Moravec's Paradox", target: "CNNs" },
+  { source: "Moravec's Paradox", target: "Reinforcement Learning" },
+  { source: "Moravec's Paradox", target: "LLMs" },
 ]
 
 const graphData = { nodes, links }
