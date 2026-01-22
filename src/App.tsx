@@ -32,7 +32,8 @@ const topics = [
   "Data Augmentation", "Synthetic Data", "Active Learning",
   "Moran's I", "Spatial Autocorrelation", "Changepoint Detection",
   "CUSUM", "Time Series Forecasting", "Geospatial ML", "Feature Engineering",
-  "P-Value", "Moravec's Paradox"
+  "P-Value", "Moravec's Paradox",
+  "Process Driven Autoformalization", "FORML4"
 ]
 
 const customUrls: Record<string, string> = {
@@ -47,6 +48,8 @@ const notesMap: Record<string, string> = {
   "Zep": "zep",
   "P-Value": "p-value",
   "Statistical Learning": "statistical-learning",
+  "Mixture of Experts": "moe",
+  "FORML4": "forml4",
 }
 
 const nodes = topics.map((topic) => ({
@@ -247,6 +250,9 @@ const links: { source: string; target: string }[] = [
   { source: "Moravec's Paradox", target: "CNNs" },
   { source: "Moravec's Paradox", target: "Reinforcement Learning" },
   { source: "Moravec's Paradox", target: "LLMs" },
+  { source: "Process Driven Autoformalization", target: "Bayesian Optimization" },
+  { source: "Process Driven Autoformalization", target: "Feature Engineering" },
+  { source: "FORML4", target: "Process Driven Autoformalization" },
 ]
 
 const graphData = { nodes, links }
@@ -280,11 +286,14 @@ function App() {
   const spritesRef = useRef<Map<string, any>>(new Map())
   const nodePositions = useRef<Map<string, {x: number, y: number, z: number}>>(new Map())
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1554)
+  const [showMindset, setShowMindset] = useState(false)
   const [showNotes, setShowNotes] = useState<string | null>(() => {
     const hash = window.location.hash.slice(1)
     if (hash === 'zep') return 'zep'
     if (hash === 'p-value') return 'p-value'
     if (hash === 'statistical-learning') return 'statistical-learning'
+    if (hash === 'moe') return 'moe'
+    if (hash === 'forml4') return 'forml4'
     return null
   })
   const [searchQuery, setSearchQuery] = useState('')
@@ -359,6 +368,62 @@ function App() {
     })
   }, [])
 
+  if (showMindset) {
+    return (
+      <main>
+        <div>
+          <div className="header-row">
+            <h1 style={{ fontSize: '1.5rem' }}>mindset</h1>
+            <nav className="nav-links" style={{ position: 'absolute', left: '655px' }}>
+              <a onClick={() => setShowMindset(false)} style={{ cursor: 'pointer' }}><img src="/penguin.svg" alt="Back" style={{ height: '65px', marginRight: '-25px', marginTop: '-2px' }} /></a>
+              <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
+                <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
+              </a>
+              <a href="mailto:sofiabodnar1729@gmail.com">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M22 6L12 13L2 6" />
+                </svg>
+              </a>
+            </nav>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '40px' }}>
+          <p style={{ fontSize: '0.8rem', fontWeight: 700 }}>
+            every waking hour is a working hour
+          </p>
+          <p style={{ fontSize: '0.8rem', fontStyle: 'italic', marginTop: '12px' }}>
+            "I will figure it out"
+          </p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>
+            your maximum is someone's minimum
+          </p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>
+            your time is extremely precious
+          </p>
+          <p style={{ fontSize: '0.8rem', fontWeight: 700, marginTop: '12px' }}>
+            go above and beyond, over prepare, be obsessed
+          </p>
+          <p style={{ fontSize: '0.8rem', marginTop: '30px' }}>
+            fav quote:
+          </p>
+          <p style={{ fontSize: '0.8rem', fontStyle: 'italic', marginTop: '8px' }}>
+            "I work from the moment I wake up to the moment I go<br />to sleep" - Jensen Huang
+          </p>
+        </div>
+
+        <div style={{ marginTop: '40px' }}>
+          <img src="/penguin-side.avif" alt="" style={{ width: '280px' }} />
+          <p style={{ fontSize: '0.65rem', marginTop: '8px', maxWidth: '280px' }}>
+            In 2007, Werner Herzog filmed a lone penguin breaking away from his colony. Instead of heading to the sea to feed, he turned toward the interior of Antarctica. A 70 kilometer march toward the mountains. <span style={{ fontWeight: 700 }}>The penguin moves forward. Proof that purpose is a choice.</span> If you want it badly enough, you will make it happen. If you don't, you will find an excuse.
+          </p>
+        </div>
+
+        </main>
+    )
+  }
+
   if (showNotes) {
     return (
       <div
@@ -393,6 +458,12 @@ function App() {
               )}
               {showNotes === 'statistical-learning' && (
                 <>short note on Statistical Learning</>
+              )}
+              {showNotes === 'moe' && (
+                <>short note on Mixture of Experts</>
+              )}
+              {showNotes === 'forml4' && (
+                <>short note on FORML4</>
               )}
             </h2>
             <button
@@ -444,6 +515,28 @@ function App() {
                 }}
               />
             )}
+            {showNotes === 'moe' && (
+              <img
+                src="/notes/moe.png"
+                alt="Mixture of Experts Notes"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+            )}
+            {showNotes === 'forml4' && (
+              <img
+                src="/notes/forml4.png"
+                alt="FORML4 Notes"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -455,8 +548,8 @@ function App() {
       <div>
         <div className="header-row">
           <h1 style={{ fontSize: '1.5rem' }}>sofia bodnar</h1>
-          <nav className="nav-links">
-            <a href="/"><img src="/cute.svg" alt="" style={{ height: '80px', marginRight: '-10px' }} /></a>
+          <nav className="nav-links" style={{ position: 'absolute', left: '655px' }}>
+            <a onClick={() => setShowMindset(true)} style={{ cursor: 'pointer' }}><img src="/penguin.svg" alt="Mindset" style={{ height: '65px', marginRight: '-25px', marginTop: '-2px' }} /></a>
             <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
               <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
             </a>
@@ -473,8 +566,9 @@ function App() {
 
       {!isMobile && (
         <div className="graph-container">
-          <div style={{ position: 'relative', marginBottom: '8px', marginLeft: '150px' }}>
+          <div style={{ position: 'relative', marginBottom: '8px', marginLeft: '80px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <a href="/"><img src="/cute.svg" alt="" style={{ height: '75px', marginRight: '-15px', marginTop: '10px' }} /></a>
               <input
                 type="text"
                 placeholder="search nodes..."
