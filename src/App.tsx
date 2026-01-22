@@ -329,11 +329,16 @@ function App() {
       controls.minDistance = 0.1
       controls.maxDistance = 10000
       controls.enablePan = true
-      controls.panSpeed = 5
-      controls.rotateSpeed = 5
-      controls.zoomSpeed = 3
+      controls.panSpeed = 10
+      controls.rotateSpeed = 8
+      controls.zoomSpeed = 5
       controls.enableDamping = true
-      controls.dampingFactor = 0.1
+      controls.dampingFactor = 0.2
+      controls.mouseButtons = {
+        LEFT: 0,    // rotate
+        MIDDLE: 1,  // zoom
+        RIGHT: 2    // pan
+      }
     }
   }, [isMobile])
 
