@@ -298,7 +298,6 @@ function App() {
   })
   const [searchQuery, setSearchQuery] = useState('')
   const [showSearch, setShowSearch] = useState(false)
-  const [showGraphInfo, setShowGraphInfo] = useState(false)
 
   const filteredNodes = searchQuery.length > 0
     ? nodes.filter(n => n.id.toLowerCase().includes(searchQuery.toLowerCase()))
