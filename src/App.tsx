@@ -50,6 +50,7 @@ const notesMap: Record<string, string> = {
   "Statistical Learning": "statistical-learning",
   "Mixture of Experts": "moe",
   "FORML4": "forml4",
+  "Process Driven Autoformalization": "process-driven-autoformalization",
 }
 
 const nodes = topics.map((topic) => ({
@@ -294,6 +295,7 @@ function App() {
     if (hash === 'statistical-learning') return 'statistical-learning'
     if (hash === 'moe') return 'moe'
     if (hash === 'forml4') return 'forml4'
+    if (hash === 'process-driven-autoformalization') return 'process-driven-autoformalization'
     return null
   })
   const [searchQuery, setSearchQuery] = useState('')
@@ -465,6 +467,9 @@ function App() {
               {showNotes === 'forml4' && (
                 <>short note on FORML4</>
               )}
+              {showNotes === 'process-driven-autoformalization' && (
+                <>short note on Process Driven Autoformalization</>
+              )}
             </h2>
             <button
               onClick={() => setShowNotes(null)}
@@ -530,6 +535,17 @@ function App() {
               <img
                 src="/notes/forml4.png"
                 alt="FORML4 Notes"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+            )}
+            {showNotes === 'process-driven-autoformalization' && (
+              <img
+                src="/notes/process-driven-autoformalization.png"
+                alt="Process Driven Autoformalization Notes"
                 style={{
                   width: '100%',
                   height: 'auto',
