@@ -401,11 +401,14 @@ function App() {
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>
             your maximum is someone's minimum
           </p>
-          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>
-            your time is extremely precious
-          </p>
           <p style={{ fontSize: '0.8rem', fontWeight: 700, marginTop: '12px' }}>
             go above and beyond, over prepare, be obsessed
+          </p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>
+            create your own opportunities
+          </p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>
+            your time is extremely precious
           </p>
           <p style={{ fontSize: '0.8rem', marginTop: '30px' }}>
             fav quote:
@@ -451,7 +454,7 @@ function App() {
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexShrink: 0 }}>
-            <h2 style={{ fontSize: '0.9rem', fontWeight: 700, margin: 0 }}>
+            <h2 style={{ fontSize: '0.9rem', fontWeight: 700, margin: 0, fontFamily: 'Manrope, sans-serif' }}>
               {showNotes === 'zep' && (
                 <>short note on <a href="https://arxiv.org/pdf/2501.13956" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>ZEP</a></>
               )}
@@ -685,16 +688,6 @@ function App() {
       <div>
 
         <div style={{ marginTop: '40px' }}>
-          <h2 style={{ fontSize: '1.3rem', fontWeight: 700 }}>previous builds</h2>
-
-          <p style={{ fontSize: '0.8rem', marginTop: '20px' }}>created <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Axiom</a>, a startup competition for youth</p>
-          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>predicted forecast failures using LISA and ensemble ML for HSBDC 2026</p>
-          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>created first ML and math community at my hs</p>
-          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>recently hosted <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>G Hacks</a> and <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Claude x Socratica</a></p>
-          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>generated over <a href="https://www.tiktok.com/@infinitybouquets.ca?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>150k views</a> and sold <a href="https://www.instagram.com/infinitybouquets.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>100+ bouquets</a></p>
-        </div>
-
-        <div style={{ marginTop: '60px' }}>
           <h2 id="experience" style={{ fontSize: '1.3rem', fontWeight: 700 }}>experience</h2>
         {experiences.map((exp, index) => (
           <div key={index} style={{ marginTop: index === 0 ? '20px' : '40px' }}>
@@ -741,6 +734,16 @@ function App() {
             )}
           </div>
         ))}
+        </div>
+
+        <div style={{ marginTop: '60px' }}>
+          <h2 style={{ fontSize: '1.3rem', fontWeight: 700 }}>sidequests</h2>
+
+          <p style={{ fontSize: '0.8rem', marginTop: '20px' }}>created <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Axiom</a>, a startup competition for youth</p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>predicted forecast failures using LISA and ensemble ML for HSBDC 2026</p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>created first ML and math community at my hs</p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>recently hosted <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>G Hacks</a> and <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Claude x Socratica</a></p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>generated over <a href="https://www.tiktok.com/@infinitybouquets.ca?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>150k views</a> and sold <a href="https://www.instagram.com/infinitybouquets.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>100+ bouquets</a></p>
         </div>
       </div>
 
