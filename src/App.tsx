@@ -418,12 +418,8 @@ function App() {
           </p>
         </div>
 
-        <div style={{ marginTop: '40px' }}>
-          <img src="/penguin-side.avif" alt="" style={{ width: '280px' }} />
-          <p style={{ fontSize: '0.65rem', marginTop: '8px', maxWidth: '280px' }}>
-            In 2007, Werner Herzog filmed a lone penguin breaking away from his colony. Instead of heading to the sea to feed, he turned toward the interior of Antarctica. A 70 kilometer march toward the mountains. <span style={{ fontWeight: 700 }}>The penguin moves forward. Proof that purpose is a choice.</span> If you want it badly enough, you will make it happen. If you don't, you will find an excuse.
-          </p>
-          <p style={{ fontSize: '0.8rem', fontWeight: 700, marginTop: '30px' }}>
+        <div style={{ marginTop: '20px' }}>
+          <p style={{ fontSize: '0.8rem', fontWeight: 700 }}>
             iterate. iterate. iterate.
           </p>
         </div>
