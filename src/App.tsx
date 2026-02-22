@@ -696,7 +696,9 @@ function App() {
                   <a href="https://www.sentra.app/" target="_blank" rel="noopener noreferrer">
                     <img src="/sentra.svg" alt="Sentra" style={{ height: '28px', marginLeft: '8px', verticalAlign: 'middle' }} />
                   </a>
-                  <img src="/a16z.png" alt="a16z" style={{ height: '22px', marginLeft: '4px', verticalAlign: 'middle' }} />
+                  <a href="https://www.forbes.com/sites/charliefink/2026/02/02/sentra-raises-5-million-to-build-enterprise-general-intelligence/" target="_blank" rel="noopener noreferrer">
+                    <img src="/a16z.png" alt="a16z" style={{ height: '22px', marginLeft: '4px', verticalAlign: 'middle' }} />
+                  </a>
                 </>
               )}
               {exp.company === 'Omen' && (
