@@ -266,7 +266,7 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: "Machine Learning Research Intern",
+    title: "ML Research Engineer",
     company: "Sentra",
     date: "oct 2025 - current"
   },
@@ -276,7 +276,7 @@ const experiences: Experience[] = [
     date: "sep 2025 - current"
   },
   {
-    title: "Intern",
+    title: "Research Engineer",
     company: "Convictional",
     date: "july 2025 - aug 2025"
   }
@@ -434,7 +434,10 @@ function App() {
         onClick={() => setShowNotes(null)}
         style={{
           position: 'fixed',
-          inset: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
           backgroundColor: '#fafafa',
           zIndex: 1000,
           display: 'flex',
