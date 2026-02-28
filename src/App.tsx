@@ -36,27 +36,117 @@ const topics = [
   "Process Driven Autoformalization", "FORML4"
 ]
 
-const customUrls: Record<string, string> = {
-  "In-Context Learning": "https://www.lakera.ai/blog/what-is-in-context-learning",
+const topicUrls: Record<string, string> = {
+  "Zep": "https://www.getzep.com/",
+  "Memory Systems": "https://www.geeksforgeeks.org/machine-learning/types-of-memory-in-ai-agents/",
+  "RAG": "https://www.geeksforgeeks.org/machine-learning/retrieval-augmented-generation-rag/",
+  "Knowledge Graphs": "https://www.geeksforgeeks.org/machine-learning/knowledge-graphs-in-ai/",
+  "LLMs": "https://www.geeksforgeeks.org/machine-learning/large-language-model-llm/",
+  "Statistical Learning": "https://www.geeksforgeeks.org/machine-learning/statistical-learning-approach-in-machine-learning/",
+  "Linear Regression": "https://www.geeksforgeeks.org/machine-learning/ml-linear-regression/",
+  "Classification": "https://www.geeksforgeeks.org/machine-learning/getting-started-with-classification/",
+  "Graph Neural Networks": "https://distill.pub/2021/gnn-intro/",
+  "Graph Embeddings": "https://www.geeksforgeeks.org/machine-learning/graph-embedding-in-nlp/",
+  "Graph Traversal": "https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/",
+  "Embeddings": "https://www.geeksforgeeks.org/machine-learning/word-embeddings-in-nlp/",
+  "Semantic Search": "https://www.sbert.net/examples/applications/semantic-search/README.html",
+  "Cosine Similarity": "https://www.geeksforgeeks.org/machine-learning/cosine-similarity/",
+  "Multi-Vector Retrieval": "https://python.langchain.com/docs/how_to/multi_vector/",
+  "ColBERT": "https://arxiv.org/abs/2004.12832",
   "ColBERT v2": "https://arxiv.org/abs/2112.01488",
-  "MUVERA": "https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/",
+  "Late Interaction": "https://jina.ai/news/what-is-colbert-and-late-interaction-and-why-they-matter-in-search/",
   "MaxSim": "https://jina.ai/news/what-is-colbert-and-late-interaction-and-why-they-matter-in-search/",
-  "Late Interaction": "https://jina.ai/news/what-is-colbert-and-late-interaction-and-why-they-matter-in-search/"
-}
-
-const notesMap: Record<string, string> = {
-  "Zep": "zep",
-  "P-Value": "p-value",
-  "Statistical Learning": "statistical-learning",
-  "Mixture of Experts": "moe",
-  "FORML4": "forml4",
-  "Process Driven Autoformalization": "process-driven-autoformalization",
+  "MUVERA": "https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/",
+  "Dense Retrieval": "https://www.geeksforgeeks.org/machine-learning/dense-retrieval/",
+  "Sparse Retrieval": "https://www.pinecone.io/learn/sparse-dense-embeddings/",
+  "BM25": "https://www.geeksforgeeks.org/understanding-tf-idf-term-frequency-inverse-document-frequency/",
+  "Hybrid Search": "https://www.pinecone.io/learn/hybrid-search-intro/",
+  "Reranking": "https://www.pinecone.io/learn/series/rag/rerankers/",
+  "Bayesian Optimization": "https://distill.pub/2020/bayesian-optimization/",
+  "Gaussian Processes": "https://distill.pub/2019/visual-exploration-gaussian-processes/",
+  "Expected Improvement": "https://ekamperi.github.io/machine%20learning/2021/06/11/acquisition-functions.html",
+  "Multi-Objective Optimization": "https://www.geeksforgeeks.org/machine-learning/multi-objective-optimization/",
+  "Gradient-Free Optimization": "https://www.geeksforgeeks.org/machine-learning/derivative-free-optimization/",
+  "Reinforcement Learning": "https://www.geeksforgeeks.org/machine-learning/what-is-reinforcement-learning/",
+  "Q-Learning": "https://www.geeksforgeeks.org/machine-learning/q-learning-in-python/",
+  "Policy Gradient": "https://www.geeksforgeeks.org/machine-learning/policy-gradient-methods-in-reinforcement-learning/",
+  "Experience Replay": "https://www.geeksforgeeks.org/machine-learning/experience-replay-in-deep-q-network/",
+  "Credit Assignment": "https://ai.stackexchange.com/questions/12908/what-is-the-credit-assignment-problem",
+  "Reward Shaping": "https://gibberblot.github.io/rl-notes/single-agent/reward-shaping.html",
+  "RLHF": "https://huggingface.co/blog/rlhf",
+  "DPO": "https://arxiv.org/abs/2305.18290",
+  "Value Function": "https://www.geeksforgeeks.org/machine-learning/value-function-in-reinforcement-learning/",
+  "Bellman Equation": "https://www.geeksforgeeks.org/machine-learning/bellman-equation/",
+  "Markov Decision Process": "https://www.geeksforgeeks.org/machine-learning/markov-decision-process/",
+  "Exploration vs Exploitation": "https://www.geeksforgeeks.org/machine-learning/exploration-vs-exploitation-in-reinforcement-learning/",
+  "Epsilon-Greedy": "https://www.geeksforgeeks.org/machine-learning/epsilon-greedy-algorithm-in-reinforcement-learning/",
+  "Multi-Armed Bandits": "https://www.geeksforgeeks.org/machine-learning/multi-armed-bandit-problem/",
+  "Transformers": "https://jalammar.github.io/illustrated-transformer/",
+  "Self-Attention": "https://jalammar.github.io/illustrated-transformer/",
+  "Fine-tuning": "https://www.geeksforgeeks.org/machine-learning/fine-tuning-large-language-models/",
+  "Prompt Engineering": "https://www.promptingguide.ai/",
+  "In-Context Learning": "https://www.lakera.ai/blog/what-is-in-context-learning",
+  "Chain-of-Thought": "https://www.promptingguide.ai/techniques/cot",
+  "Diffusion Models": "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/",
+  "VAEs": "https://www.geeksforgeeks.org/machine-learning/variational-autoencoders/",
+  "GANs": "https://www.geeksforgeeks.org/machine-learning/generative-adversarial-network-gan/",
+  "Meta-Learning": "https://lilianweng.github.io/posts/2018-11-30-meta-learning/",
+  "Few-Shot Learning": "https://www.geeksforgeeks.org/machine-learning/ml-few-shot-learning/",
+  "Transfer Learning": "https://www.geeksforgeeks.org/machine-learning/ml-introduction-to-transfer-learning/",
+  "Backpropagation": "https://www.geeksforgeeks.org/machine-learning/backpropagation-in-neural-network/",
+  "Gradient Descent": "https://www.geeksforgeeks.org/machine-learning/gradient-descent-algorithm-and-its-variants/",
+  "LoRA": "https://huggingface.co/docs/peft/conceptual_guides/lora",
+  "Quantization": "https://huggingface.co/docs/optimum/concept_guides/quantization",
+  "K-Means Clustering": "https://www.geeksforgeeks.org/machine-learning/k-means-clustering-introduction/",
+  "Attention Mechanisms": "https://lilianweng.github.io/posts/2018-06-24-attention/",
+  "Context Windows": "https://www.hopsworks.ai/dictionary/context-window-for-llms",
+  "Long-Term Memory": "https://www.geeksforgeeks.org/machine-learning/types-of-memory-in-ai-agents/",
+  "Episodic Memory": "https://www.geeksforgeeks.org/machine-learning/types-of-memory-in-ai-agents/",
+  "Memory Consolidation": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3721510/",
+  "Knowledge Distillation": "https://www.geeksforgeeks.org/machine-learning/knowledge-distillation/",
+  "Continual Learning": "https://www.geeksforgeeks.org/machine-learning/continual-learning/",
+  "Catastrophic Forgetting": "https://www.geeksforgeeks.org/machine-learning/catastrophic-forgetting/",
+  "Mixture of Experts": "https://huggingface.co/blog/moe",
+  "RNNs": "https://www.geeksforgeeks.org/machine-learning/introduction-to-recurrent-neural-network/",
+  "LSTMs": "https://www.geeksforgeeks.org/machine-learning/deep-learning-introduction-to-long-short-term-memory/",
+  "CNNs": "https://www.geeksforgeeks.org/machine-learning/introduction-convolution-neural-network/",
+  "Tokenization": "https://huggingface.co/docs/transformers/tokenizer_summary",
+  "BPE": "https://huggingface.co/learn/nlp-course/chapter6/5",
+  "Word2Vec": "https://www.geeksforgeeks.org/machine-learning/python-word-embedding-using-word2vec/",
+  "BERT": "https://jalammar.github.io/illustrated-bert/",
+  "Sentence Transformers": "https://www.sbert.net/",
+  "Flash Attention": "https://arxiv.org/abs/2205.14135",
+  "KV Cache": "https://www.dipkumar.com/posts/kv-caching/",
+  "Speculative Decoding": "https://arxiv.org/abs/2211.17192",
+  "Mamba": "https://arxiv.org/abs/2312.00752",
+  "Adam": "https://www.geeksforgeeks.org/machine-learning/adam-optimizer/",
+  "SGD": "https://www.geeksforgeeks.org/machine-learning/ml-stochastic-gradient-descent-sgd/",
+  "Learning Rate Scheduling": "https://www.geeksforgeeks.org/machine-learning/how-to-use-a-learning-rate-scheduler-in-pytorch/",
+  "Mechanistic Interpretability": "https://www.neelnanda.io/mechanistic-interpretability/getting-started",
+  "Attention Visualization": "https://jalammar.github.io/illustrated-transformer/",
+  "Constitutional AI": "https://arxiv.org/abs/2212.08073",
+  "Red Teaming": "https://huggingface.co/blog/red-teaming",
+  "Adversarial Examples": "https://www.geeksforgeeks.org/machine-learning/adversarial-examples-in-deep-learning/",
+  "Data Augmentation": "https://www.geeksforgeeks.org/machine-learning/data-augmentation-in-deep-learning/",
+  "Synthetic Data": "https://www.geeksforgeeks.org/machine-learning/synthetic-data/",
+  "Active Learning": "https://www.geeksforgeeks.org/machine-learning/active-learning-in-machine-learning/",
+  "Moran's I": "https://www.geeksforgeeks.org/morans-i-spatial-autocorrelation/",
+  "Spatial Autocorrelation": "https://www.geeksforgeeks.org/spatial-auto-correlation/",
+  "Changepoint Detection": "https://www.geeksforgeeks.org/change-point-detection-in-time-series-data/",
+  "CUSUM": "https://www.geeksforgeeks.org/cusum-control-charts/",
+  "Time Series Forecasting": "https://www.geeksforgeeks.org/machine-learning/time-series-forecasting-using-machine-learning/",
+  "Geospatial ML": "https://www.geeksforgeeks.org/geospatial-data-analysis/",
+  "Feature Engineering": "https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/",
+  "P-Value": "https://www.geeksforgeeks.org/understanding-the-p-value/",
+  "Moravec's Paradox": "https://www.geeksforgeeks.org/moravecs-paradox/",
+  "Process Driven Autoformalization": "https://arxiv.org/abs/2406.01940",
+  "FORML4": "https://arxiv.org/abs/2406.01940",
 }
 
 const nodes = topics.map((topic) => ({
   id: topic,
   gray: Math.floor(Math.random() * 200) + 30,
-  url: customUrls[topic] || `https://en.wikipedia.org/wiki/${topic.replace(/ /g, '_')}`
+  url: topicUrls[topic],
 }))
 
 const links: { source: string; target: string }[] = [
@@ -288,45 +378,6 @@ function App() {
   const nodePositions = useRef<Map<string, {x: number, y: number, z: number}>>(new Map())
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1554)
   const [showMindset, setShowMindset] = useState(false)
-  const [showNotes, setShowNotes] = useState<string | null>(() => {
-    const hash = window.location.hash.slice(1)
-    if (hash === 'zep') return 'zep'
-    if (hash === 'p-value') return 'p-value'
-    if (hash === 'statistical-learning') return 'statistical-learning'
-    if (hash === 'moe') return 'moe'
-    if (hash === 'forml4') return 'forml4'
-    if (hash === 'process-driven-autoformalization') return 'process-driven-autoformalization'
-    return null
-  })
-  const [searchQuery, setSearchQuery] = useState('')
-  const [showSearch, setShowSearch] = useState(false)
-
-  const filteredNodes = searchQuery.length > 0
-    ? nodes.filter(n => n.id.toLowerCase().includes(searchQuery.toLowerCase()))
-    : []
-
-  const zoomToNode = useCallback((nodeId: string) => {
-    if (!fgRef.current) return
-    const pos = nodePositions.current.get(nodeId)
-    if (pos) {
-      const distance = 50
-      fgRef.current.cameraPosition(
-        { x: pos.x + distance, y: pos.y + distance, z: pos.z + distance },
-        { x: pos.x, y: pos.y, z: pos.z },
-        1500
-      )
-    }
-    setSearchQuery('')
-    setShowSearch(false)
-  }, [])
-
-  useEffect(() => {
-    if (showNotes) {
-      window.location.hash = showNotes
-    } else {
-      history.replaceState(null, '', window.location.pathname)
-    }
-  }, [showNotes])
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1554)
@@ -428,141 +479,6 @@ function App() {
     )
   }
 
-  if (showNotes) {
-    return (
-      <div
-        onClick={() => setShowNotes(null)}
-        style={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          backgroundColor: '#fafafa',
-          zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer'
-        }}
-      >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            maxWidth: '500px',
-            display: 'flex',
-            flexDirection: 'column',
-            cursor: 'default'
-          }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexShrink: 0 }}>
-            <h2 style={{ fontSize: '0.9rem', fontWeight: 700, margin: 0, fontFamily: 'Manrope, sans-serif' }}>
-              {showNotes === 'zep' && (
-                <>short note on <a href="https://arxiv.org/pdf/2501.13956" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>ZEP</a></>
-              )}
-              {showNotes === 'p-value' && (
-                <>short note on P-Value</>
-              )}
-              {showNotes === 'statistical-learning' && (
-                <>short note on Statistical Learning</>
-              )}
-              {showNotes === 'moe' && (
-                <>short note on Mixture of Experts</>
-              )}
-              {showNotes === 'forml4' && (
-                <>short note on FORML4</>
-              )}
-              {showNotes === 'process-driven-autoformalization' && (
-                <>short note on Process Driven Autoformalization</>
-              )}
-            </h2>
-            <button
-              onClick={() => setShowNotes(null)}
-              style={{
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                marginRight: '8px',
-                cursor: 'pointer',
-                fontSize: '1.1rem'
-              }}
-              title="Back to home"
-            >
-              ⌂
-            </button>
-          </div>
-          <div style={{ maxHeight: '75vh', overflow: 'auto', border: '1px solid #000' }}>
-            {showNotes === 'zep' && (
-              <img
-                src="/zep-notes.png"
-                alt="Zep Memory Retrieval Notes"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block'
-                }}
-              />
-            )}
-            {showNotes === 'p-value' && (
-              <img
-                src="/notes/p_value.png"
-                alt="P-Value Notes"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block'
-                }}
-              />
-            )}
-            {showNotes === 'statistical-learning' && (
-              <img
-                src="/notes/stat.png"
-                alt="Statistical Learning Notes"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block'
-                }}
-              />
-            )}
-            {showNotes === 'moe' && (
-              <img
-                src="/notes/moe.png"
-                alt="Mixture of Experts Notes"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block'
-                }}
-              />
-            )}
-            {showNotes === 'forml4' && (
-              <img
-                src="/notes/forml4.png"
-                alt="FORML4 Notes"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block'
-                }}
-              />
-            )}
-            {showNotes === 'process-driven-autoformalization' && (
-              <img
-                src="/notes/process-driven-autoformalization.png"
-                alt="Process Driven Autoformalization Notes"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block'
-                }}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <main>
@@ -587,67 +503,6 @@ function App() {
 
       {!isMobile && (
         <div className="graph-container">
-          <div style={{ position: 'relative', marginBottom: '8px', marginLeft: '80px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <a href="/"><img src="/cute.svg" alt="" style={{ height: '75px', marginRight: '-15px', marginTop: '10px' }} /></a>
-              <div style={{ position: 'relative' }}>
-              <input
-                type="text"
-                placeholder="search nodes..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={(e) => { e.currentTarget.style.border = '1px solid #000'; setShowSearch(true) }}
-                onBlur={(e) => { e.currentTarget.style.border = '1px solid #ccc'; setTimeout(() => setShowSearch(false), 150) }}
-                style={{
-                  padding: '6px 10px',
-                  fontSize: '0.8rem',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  width: '200px',
-                  fontFamily: 'Manrope, sans-serif',
-                  outline: 'none'
-                }}
-              />
-              {showSearch && filteredNodes.length > 0 && (
-                <div style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: 0,
-                  width: '200px',
-                  maxHeight: '200px',
-                  overflowY: 'auto',
-                  backgroundColor: '#fff',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  zIndex: 100,
-                  marginTop: '4px'
-                }}>
-                  {filteredNodes.slice(0, 10).map(node => (
-                    <div
-                      key={node.id}
-                      onMouseDown={(e) => {
-                        e.currentTarget.style.backgroundColor = '#d0d0d0'
-                        zoomToNode(node.id)
-                      }}
-                      style={{
-                        padding: '8px 10px',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                        borderBottom: '1px solid #eee',
-                        fontFamily: 'Manrope, sans-serif',
-                        userSelect: 'none'
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#fff'}
-                    >
-                      {node.id}
-                    </div>
-                  ))}
-                </div>
-              )}
-              </div>
-            </div>
-          </div>
           <ForceGraph3D
           ref={fgRef}
           graphData={graphData}
@@ -677,9 +532,7 @@ function App() {
           onEngineTick={updateLabelVisibility}
           onNodeClick={(node: any) => {
             const n = node as { id?: string; url?: string }
-            if (n.id && notesMap[n.id]) {
-              setShowNotes(notesMap[n.id])
-            } else if (n.url) {
+            if (n.url) {
               window.open(n.url, '_blank')
             }
           }}
@@ -746,7 +599,7 @@ function App() {
           <p style={{ fontSize: '0.8rem', marginTop: '20px' }}>created <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Axiom</a>, a startup competition for youth</p>
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>predicted forecast failures using LISA and ensemble ML,<br /><span style={{ fontStyle: 'italic' }}>published by <a href="https://journal.stemfellowship.org/doi/epdf/10.17975/sfj-2026-002" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Canadian Science Publishing</a></span></p>
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>created first ML and math community at my hs</p>
-          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>recently hosted <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>G Hacks</a> and <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Claude x Socratica</a></p>
+          <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>recently hosted <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>G Hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>Claude x Socratica</a> and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>PRISM</a></p>
           <p style={{ fontSize: '0.8rem', marginTop: '12px' }}>generated over <a href="https://www.tiktok.com/@infinitybouquets.ca?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>150k views</a> and sold <a href="https://www.instagram.com/infinitybouquets.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 700 }}>100+ bouquets</a></p>
         </div>
       </div>
