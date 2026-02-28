@@ -276,7 +276,7 @@ const experiences: Experience[] = [
     date: "sep 2025 - current"
   },
   {
-    title: "Research Engineer",
+    title: "Machine Learning Intern",
     company: "Convictional",
     date: "july 2025 - aug 2025"
   }
