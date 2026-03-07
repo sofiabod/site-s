@@ -10,7 +10,7 @@ export interface Experience {
 
 export const personalInfo = {
     name: "sofia bodnar" ,
-    tagline: "17 y/o highschool student" ,
+    tagline: "" ,
     belief: {
         text: "we are entering the era of experience"
         link: { text: "experience" , url: "https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf"}

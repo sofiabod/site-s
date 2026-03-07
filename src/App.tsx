@@ -498,7 +498,6 @@ function App() {
             </a>
           </nav>
         </div>
-        <p style={{ fontSize: '0.95rem' }}>17 y/o high school student</p>
       </div>
 
       {!isMobile && (
