@@ -3,39 +3,6 @@ import { useRef, useCallback, useState, useEffect } from 'react'
 import ForceGraph3D from 'react-force-graph-3d'
 import SpriteText from 'three-spritetext'
 
-const topics = [
-  "Zep", "Memory Systems", "RAG", "Knowledge Graphs", "LLMs",
-  "Statistical Learning", "Linear Regression", "Classification",
-  "Graph Neural Networks", "Graph Embeddings", "Graph Traversal",
-  "Embeddings", "Semantic Search", "Cosine Similarity", "Multi-Vector Retrieval",
-  "ColBERT", "ColBERT v2", "Late Interaction", "MaxSim", "MUVERA", "Dense Retrieval", "Sparse Retrieval", "BM25", "Hybrid Search", "Reranking",
-  "Bayesian Optimization", "Gaussian Processes", "Expected Improvement",
-  "Multi-Objective Optimization", "Gradient-Free Optimization",
-  "Reinforcement Learning", "Q-Learning", "Policy Gradient",
-  "Experience Replay", "Credit Assignment", "Reward Shaping", "RLHF", "DPO",
-  "Value Function", "Bellman Equation", "Markov Decision Process",
-  "Exploration vs Exploitation", "Epsilon-Greedy", "Multi-Armed Bandits",
-  "Transformers", "Self-Attention", "Fine-tuning", "Prompt Engineering",
-  "In-Context Learning", "Chain-of-Thought",
-  "Diffusion Models", "VAEs", "GANs",
-  "Meta-Learning", "Few-Shot Learning", "Transfer Learning",
-  "Backpropagation", "Gradient Descent", "LoRA", "Quantization",
-  "K-Means Clustering",
-  "Attention Mechanisms", "Context Windows", "Long-Term Memory", "Episodic Memory",
-  "Memory Consolidation", "Knowledge Distillation", "Continual Learning", "Catastrophic Forgetting",
-  "Mixture of Experts", "RNNs", "LSTMs", "CNNs",
-  "Tokenization", "BPE", "Word2Vec", "BERT", "Sentence Transformers",
-  "Flash Attention", "KV Cache", "Speculative Decoding", "Mamba",
-  "Adam", "SGD", "Learning Rate Scheduling",
-  "Mechanistic Interpretability", "Attention Visualization",
-  "Constitutional AI", "Red Teaming", "Adversarial Examples",
-  "Data Augmentation", "Synthetic Data", "Active Learning",
-  "Moran's I", "Spatial Autocorrelation", "Changepoint Detection",
-  "CUSUM", "Time Series Forecasting", "Geospatial ML", "Feature Engineering",
-  "P-Value", "Moravec's Paradox",
-  "Process Driven Autoformalization", "FORML4"
-]
-
 const topicUrls: Record<string, string> = {
   "Zep": "https://www.getzep.com/",
   "Memory Systems": "https://www.geeksforgeeks.org/machine-learning/types-of-memory-in-ai-agents/",
@@ -142,6 +109,8 @@ const topicUrls: Record<string, string> = {
   "Process Driven Autoformalization": "https://arxiv.org/abs/2406.01940",
   "FORML4": "https://arxiv.org/abs/2406.01940",
 }
+
+const topics = Object.keys(topicUrls)
 
 const nodes = topics.map((topic) => ({
   id: topic,
@@ -375,7 +344,6 @@ const experiences: Experience[] = [
 function App() {
   const fgRef = useRef<any>(null)
   const spritesRef = useRef<Map<string, any>>(new Map())
-  const nodePositions = useRef<Map<string, {x: number, y: number, z: number}>>(new Map())
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1554)
   const [showMindset, setShowMindset] = useState(false)
 
@@ -413,13 +381,24 @@ function App() {
     spritesRef.current.forEach((sprite) => {
       sprite.visible = showLabels
     })
-
-    graphData.nodes.forEach((node: any) => {
-      if (node.x !== undefined) {
-        nodePositions.current.set(node.id, { x: node.x, y: node.y, z: node.z })
-      }
-    })
   }, [])
+
+  const navLinks = (
+    <nav className="nav-links" style={{ position: 'absolute', left: '655px' }}>
+      <a onClick={() => setShowMindset(!showMindset)} style={{ cursor: 'pointer' }}>
+        <img src="/penguin.svg" alt={showMindset ? "Back" : "Mindset"} style={{ height: '65px', marginRight: '-25px', marginTop: '-2px' }} />
+      </a>
+      <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
+        <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
+      </a>
+      <a href="mailto:sofiabodnar1729@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M22 6L12 13L2 6" />
+        </svg>
+      </a>
+    </nav>
+  )
 
   if (showMindset) {
     return (
@@ -427,18 +406,7 @@ function App() {
         <div>
           <div className="header-row">
             <h1 style={{ fontSize: '1.5rem' }}>mindset</h1>
-            <nav className="nav-links" style={{ position: 'absolute', left: '655px' }}>
-              <a onClick={() => setShowMindset(false)} style={{ cursor: 'pointer' }}><img src="/penguin.svg" alt="Back" style={{ height: '65px', marginRight: '-25px', marginTop: '-2px' }} /></a>
-              <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
-                <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
-              </a>
-              <a href="mailto:sofiabodnar1729@gmail.com">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="M22 6L12 13L2 6" />
-                </svg>
-              </a>
-            </nav>
+            {navLinks}
           </div>
         </div>
 
@@ -485,18 +453,7 @@ function App() {
       <div>
         <div className="header-row">
           <h1 style={{ fontSize: '1.5rem' }}>sofia bodnar</h1>
-          <nav className="nav-links" style={{ position: 'absolute', left: '655px' }}>
-            <a onClick={() => setShowMindset(true)} style={{ cursor: 'pointer' }}><img src="/penguin.svg" alt="Mindset" style={{ height: '65px', marginRight: '-25px', marginTop: '-2px' }} /></a>
-            <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
-              <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
-            </a>
-            <a href="mailto:sofiabodnar1729@gmail.com">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="M22 6L12 13L2 6" />
-              </svg>
-            </a>
-          </nav>
+          {navLinks}
         </div>
       </div>
 
@@ -536,7 +493,7 @@ function App() {
             }
           }}
         />
-                  </div>
+        </div>
       )}
 
       <div>
