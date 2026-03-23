@@ -384,18 +384,12 @@ function App() {
   }, [])
 
   const navLinks = (
-    <nav className="nav-links" style={{ position: 'absolute', left: '655px' }}>
+    <nav className="nav-links" style={{ position: 'absolute', left: '600px' }}>
       <a onClick={() => setShowMindset(!showMindset)} style={{ cursor: 'pointer' }}>
         <img src="/penguin.svg" alt={showMindset ? "Back" : "Mindset"} style={{ height: '65px', marginRight: '-25px', marginTop: '-2px' }} />
       </a>
       <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
         <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
-      </a>
-      <a href="mailto:sofiabodnar1729@gmail.com">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="4" width="20" height="16" rx="2" />
-          <path d="M22 6L12 13L2 6" />
-        </svg>
       </a>
     </nav>
   )
@@ -532,12 +526,12 @@ function App() {
             <p style={{ fontStyle: 'italic', fontSize: '0.8rem' }}>{exp.date}</p>
             {exp.company === 'Sentra' && (
               <p style={{ fontSize: '0.8rem', marginTop: '4px' }}>
-                developing a self-optimizing memory framework that curates knowledge from experience,<br />working with <img src="/mit.svg" alt="MIT" style={{ height: '22px', verticalAlign: 'middle', margin: '0 6px' }} /> prof
+                developing a self-optimizing memory framework that curates knowledge from<br />experience, working with <img src="/mit.svg" alt="MIT" style={{ height: '22px', verticalAlign: 'middle', margin: '0 6px' }} /> prof
               </p>
             )}
             {exp.company === 'Omen' && (
               <p style={{ fontSize: '0.8rem', marginTop: '4px' }}>
-                building automation infrastructure for company onboarding and cap table management
+                building automation infrastructure for company onboarding and cap table<br />management
               </p>
             )}
             {exp.company === 'Convictional' && (
@@ -561,7 +555,8 @@ function App() {
       </div>
 
       <footer style={{ marginTop: '80px', fontSize: '0.75rem', color: '#666' }}>
-        2026 © Sofia Bodnar
+        <span>2026 © Sofia Bodnar</span>
+        <span style={{ marginLeft: '100px' }}>sofiabodnar1729 [at] gmail [dot] com</span>
       </footer>
     </main>
   )
