@@ -1,4 +1,4 @@
-# sofia bodnar m
+# sofia bodnar 
 
 personal portfolio site 
 
