@@ -71,19 +71,8 @@ a:hover {
   text-decoration: none;
 }
 
-.graph-container {
-  position: absolute;
-  right: 150px;
-}
-
 @media (max-width: 900px) {
-  .graph-container {
-    position: static;
-    margin: 20px 0;
-  }
-
   main {
     margin-left: 20px;
   }
-
 }
