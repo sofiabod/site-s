@@ -21,6 +21,11 @@ main {
   .header-row h1 {
     white-space: nowrap;
   }
+
+  .nav-links {
+    position: static !important;
+    margin-left: 140px;
+  }
 }
 
 @media (max-width: 768px) {

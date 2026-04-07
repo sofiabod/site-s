@@ -34,7 +34,7 @@ function App() {
   const [showMindset, setShowMindset] = useState(false)
 
   const navLinks = (
-    <nav className="nav-links" style={{ position: 'absolute', left: '540px' }}>
+    <nav className="nav-links">
       <a onClick={() => setShowMindset(!showMindset)} style={{ cursor: 'pointer' }}>
         <img src="/penguin.svg" alt={showMindset ? "Back" : "Mindset"} style={{ height: '65px', marginRight: '-25px', marginTop: '-2px' }} />
       </a>
