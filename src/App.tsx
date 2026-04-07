@@ -50,54 +50,6 @@ function App() {
     </nav>
   )
 
-  if (showMindset) {
-    return (
-      <main>
-        <div>
-          <div className="header-row">
-            <h1 style={{ fontSize: '1.35rem' }}>mindset</h1>
-            {navLinks}
-          </div>
-        </div>
-
-        <div style={{ marginTop: '40px' }}>
-          <p style={{ fontSize: '0.72rem', fontWeight: 500 }}>
-            every waking hour is a working hour
-          </p>
-          <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '12px' }}>
-            "I will figure it out"
-          </p>
-          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
-            your maximum is someone's minimum
-          </p>
-          <p style={{ fontSize: '0.72rem', fontWeight: 500, marginTop: '12px' }}>
-            go above and beyond, over prepare, be obsessed
-          </p>
-          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
-            create your own opportunities
-          </p>
-          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
-            your time is extremely precious
-          </p>
-          <p style={{ fontSize: '0.72rem', marginTop: '30px' }}>
-            fav quote:
-          </p>
-          <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '8px' }}>
-            "I work from the moment I wake up to the moment I go<br />to sleep" - Jensen Huang
-          </p>
-        </div>
-
-        <div style={{ marginTop: '20px' }}>
-          <p style={{ fontSize: '0.72rem', fontWeight: 500 }}>
-            iterate. iterate. iterate.
-          </p>
-        </div>
-
-        </main>
-    )
-  }
-
-
   return (
     <main>
       <div>
@@ -106,6 +58,43 @@ function App() {
           {navLinks}
         </div>
       </div>
+
+      {showMindset ? (
+        <>
+          <div style={{ marginTop: '40px' }}>
+            <p style={{ fontSize: '0.72rem', fontWeight: 500 }}>
+              every waking hour is a working hour
+            </p>
+            <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '12px' }}>
+              "I will figure it out"
+            </p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
+              your maximum is someone's minimum
+            </p>
+            <p style={{ fontSize: '0.72rem', fontWeight: 500, marginTop: '12px' }}>
+              go above and beyond, over prepare, be obsessed
+            </p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
+              create your own opportunities
+            </p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
+              your time is extremely precious
+            </p>
+            <p style={{ fontSize: '0.72rem', marginTop: '30px' }}>
+              fav quote:
+            </p>
+            <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '8px' }}>
+              "I work from the moment I wake up to the moment I go<br />to sleep" - Jensen Huang
+            </p>
+          </div>
+          <div style={{ marginTop: '20px' }}>
+            <p style={{ fontSize: '0.72rem', fontWeight: 500 }}>
+              iterate. iterate. iterate.
+            </p>
+          </div>
+        </>
+      ) : (
+        <>
 
 
       <div>
@@ -189,6 +178,8 @@ function App() {
         <span>2026 © Sofia Bodnar</span>
         <span style={{ marginLeft: '100px' }}>sofiabodnar1729 [at] gmail [dot] com</span>
       </footer>
+        </>
+      )}
     </main>
   )
 }
