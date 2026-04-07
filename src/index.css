@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 300;
   line-height: 1.6;
   color: #3c3c41;
@@ -42,19 +42,19 @@ main {
 }
 
 h1, h2 {
-  font-family: "Gentium Basic", Georgia, "Times New Roman", serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   color: #000000;
 }
 
 h3 {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 300;
   color: #000000;
 }
 
 h1 {
-  font-family: "Gentium Basic", Georgia, "Times New Roman", serif;
+  font-family: 'Inter', sans-serif;
   font-size: 48px;
   font-weight: 400;
   line-height: 62.4px;
