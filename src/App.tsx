@@ -32,6 +32,7 @@ const experiences: Experience[] = [
 
 function App() {
   const [showMindset, setShowMindset] = useState(false)
+  const [openPubs, setOpenPubs] = useState<Set<number>>(new Set())
 
   const navLinks = (
     <nav className="nav-links">
@@ -140,12 +141,25 @@ function App() {
                   developing self-optimizing memory systems, working with MIT prof across<br />formal memory theory, model compression, RL, and predictive world models
                 </p>
                 <p style={{ fontSize: '0.72rem', fontWeight: 500, marginTop: '14px' }}>recent publications</p>
-                <div className="pub-branch-wrapper" style={{ marginLeft: '2px', cursor: 'pointer' }}>
+                <div className="pub-branch-wrapper" style={{ marginLeft: '2px' }}>
                   <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                    <div className="pub-branch" style={{ borderLeft: '1px solid black', borderBottom: '1px solid black', width: '20px', height: '20px', flexShrink: 0 }} />
-                    <a href="https://arxiv.org/abs/2603.27116v1" target="_blank" rel="noopener noreferrer" className="pub-title" style={{ fontSize: '0.72rem', fontWeight: 500, display: 'inline-block', marginLeft: '6px', color: 'inherit' }}>interference is structural</a>
+                    <div className="pub-branch" style={{ borderLeft: '1px solid #ccc', borderBottom: '1px solid #ccc', width: '20px', height: '20px', flexShrink: 0 }} />
+                    <span onClick={() => setOpenPubs(prev => { const next = new Set(prev); next.has(0) ? next.delete(0) : next.add(0); return next })} style={{ fontSize: '0.6rem', color: '#aaa', cursor: 'pointer', userSelect: 'none', lineHeight: 1, marginLeft: '2px', transform: 'translateY(3px)' }}>{openPubs.has(0) ? '−' : '+'}</span>
+                    <a href="https://arxiv.org/abs/2603.27116v1" target="_blank" rel="noopener noreferrer" className="pub-title" style={{ fontSize: '0.72rem', fontWeight: 500, display: 'inline-block', marginLeft: '6px', color: 'inherit', transform: 'translateY(3px)' }}>interference is structural</a>
                   </div>
-                  <p style={{ fontSize: '0.68rem', marginTop: '2px', marginLeft: '26px' }}>proved interference, forgetting, and false recall are structural<br />consequences of finite effective rank in semantic embedding spaces</p>
+                  {openPubs.has(0) && (
+                    <p style={{ fontSize: '0.62rem', marginTop: '2px', marginLeft: '32px' }}>proved interference, forgetting, and false recall are structural<br />consequences of finite effective rank in semantic embedding spaces</p>
+                  )}
+                </div>
+                <div className="pub-branch-wrapper" style={{ marginLeft: '2px' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+                    <div className="pub-branch" style={{ borderLeft: '1px solid #ccc', borderBottom: '1px solid #ccc', width: '20px', height: '20px', flexShrink: 0 }} />
+                    <span onClick={() => setOpenPubs(prev => { const next = new Set(prev); next.has(1) ? next.delete(1) : next.add(1); return next })} style={{ fontSize: '0.6rem', color: '#aaa', cursor: 'pointer', userSelect: 'none', lineHeight: 1, marginLeft: '2px', transform: 'translateY(3px)' }}>{openPubs.has(1) ? '−' : '+'}</span>
+                    <a href="https://arxiv.org/abs/2604.06222" target="_blank" rel="noopener noreferrer" className="pub-title" style={{ fontSize: '0.72rem', fontWeight: 500, display: 'inline-block', marginLeft: '6px', color: 'inherit', transform: 'translateY(3px)' }}>effective rank governs memory</a>
+                  </div>
+                  {openPubs.has(1) && (
+                    <p style={{ fontSize: '0.62rem', marginTop: '2px', marginLeft: '32px' }}>power-law forgetting and false recall emerge from low intrinsic<br />dimensionality in semantic manifolds, matching human rates<br />with zero tuning</p>
+                  )}
                 </div>
               </>
             )}
