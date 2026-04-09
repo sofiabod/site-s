@@ -55,7 +55,10 @@ function App() {
     <main>
       <div>
         <div className="header-row">
-          <h1 style={{ fontSize: '1.35rem', fontWeight: 400 }}>sofia bodnar</h1>
+          <div>
+            <h1 style={{ fontSize: '1.35rem', fontWeight: 400, marginBottom: '0px' }}>sofia bodnar</h1>
+            <p style={{ fontSize: '0.72rem', margin: 0, marginTop: '-10px' }}>17y/o ukrainian</p>
+          </div>
           {navLinks}
         </div>
       </div>
@@ -145,7 +148,7 @@ function App() {
                   <div style={{ display: 'flex', alignItems: 'flex-end' }}>
                     <div className="pub-branch" style={{ borderLeft: '1px solid #ccc', borderBottom: '1px solid #ccc', width: '20px', height: '20px', flexShrink: 0 }} />
                     <span onClick={() => setOpenPubs(prev => { const next = new Set(prev); next.has(0) ? next.delete(0) : next.add(0); return next })} style={{ fontSize: '0.6rem', color: '#aaa', cursor: 'pointer', userSelect: 'none', lineHeight: 1, marginLeft: '2px', transform: 'translateY(3px)' }}>{openPubs.has(0) ? '−' : '+'}</span>
-                    <a href="https://arxiv.org/abs/2603.27116v1" target="_blank" rel="noopener noreferrer" className="pub-title" style={{ fontSize: '0.72rem', fontWeight: 500, display: 'inline-block', marginLeft: '6px', color: 'inherit', transform: 'translateY(3px)' }}>interference is structural</a>
+                    <a href="https://arxiv.org/abs/2603.27116v1" target="_blank" rel="noopener noreferrer" className="pub-title" style={{ fontSize: '0.72rem', fontWeight: 500, display: 'inline-block', marginLeft: '6px', color: 'inherit', transform: 'translateY(5px)' }}>interference is structural</a>
                   </div>
                   {openPubs.has(0) && (
                     <p style={{ fontSize: '0.62rem', marginTop: '2px', marginLeft: '32px' }}>proved interference, forgetting, and false recall are structural<br />consequences of finite effective rank in semantic embedding spaces</p>
@@ -155,7 +158,7 @@ function App() {
                   <div style={{ display: 'flex', alignItems: 'flex-end' }}>
                     <div className="pub-branch" style={{ borderLeft: '1px solid #ccc', borderBottom: '1px solid #ccc', width: '20px', height: '20px', flexShrink: 0 }} />
                     <span onClick={() => setOpenPubs(prev => { const next = new Set(prev); next.has(1) ? next.delete(1) : next.add(1); return next })} style={{ fontSize: '0.6rem', color: '#aaa', cursor: 'pointer', userSelect: 'none', lineHeight: 1, marginLeft: '2px', transform: 'translateY(3px)' }}>{openPubs.has(1) ? '−' : '+'}</span>
-                    <a href="https://arxiv.org/abs/2604.06222" target="_blank" rel="noopener noreferrer" className="pub-title" style={{ fontSize: '0.72rem', fontWeight: 500, display: 'inline-block', marginLeft: '6px', color: 'inherit', transform: 'translateY(3px)' }}>effective rank governs memory</a>
+                    <a href="https://arxiv.org/abs/2604.06222" target="_blank" rel="noopener noreferrer" className="pub-title" style={{ fontSize: '0.72rem', fontWeight: 500, display: 'inline-block', marginLeft: '6px', color: 'inherit', transform: 'translateY(5px)' }}>effective rank governs memory</a>
                   </div>
                   {openPubs.has(1) && (
                     <p style={{ fontSize: '0.62rem', marginTop: '2px', marginLeft: '32px' }}>power-law forgetting and false recall emerge from low intrinsic<br />dimensionality in semantic manifolds, matching human rates<br />with zero tuning</p>
