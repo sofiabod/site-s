@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface Experience {
   title: string
@@ -31,8 +31,14 @@ const experiences: Experience[] = [
 ]
 
 function App() {
-  const [showMindset, setShowMindset] = useState(false)
-  const [openPubs, setOpenPubs] = useState<Set<number>>(new Set())
+  const [showMindset, setShowMindset] = useState(() => localStorage.getItem('showMindset') === 'true')
+  const [openPubs, setOpenPubs] = useState<Set<number>>(() => {
+    const saved = localStorage.getItem('openPubs')
+    return saved ? new Set(JSON.parse(saved)) : new Set()
+  })
+
+  useEffect(() => { localStorage.setItem('showMindset', String(showMindset)) }, [showMindset])
+  useEffect(() => { localStorage.setItem('openPubs', JSON.stringify([...openPubs])) }, [openPubs])
 
   const navLinks = (
     <nav className="nav-links">

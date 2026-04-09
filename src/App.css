@@ -60,13 +60,13 @@ main {
   text-decoration: underline;
   text-underline-offset: 3px;
   background-image: linear-gradient(black, black);
-  background-size: 0% 1px;
-  background-position: left bottom;
+  background-size: 0% 0.5px;
+  background-position: left calc(100% - 3px);
   background-repeat: no-repeat;
   text-decoration: none;
   transition: background-size 0.6s ease;
 }
 
 .pub-title:hover {
-  background-size: 100% 1px;
+  background-size: 100% 0.5px;
 }
