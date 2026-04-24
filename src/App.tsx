@@ -63,7 +63,6 @@ function App() {
         <div className="header-row">
           <div>
             <h1 style={{ fontSize: '1.35rem', fontWeight: 400, marginBottom: '0px' }}>sofia bodnar</h1>
-            <p style={{ fontSize: '0.72rem', margin: 0, marginTop: '-10px' }}>17y/o ukrainian</p>
           </div>
           {navLinks}
         </div>
