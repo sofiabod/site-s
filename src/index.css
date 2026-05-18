@@ -22,6 +22,8 @@ main {
   margin-top: 100px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .nav-links {
@@ -29,6 +31,7 @@ main {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .nav-links a {

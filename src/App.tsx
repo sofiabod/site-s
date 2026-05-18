@@ -126,7 +126,7 @@ function App() {
               your time is extremely precious
             </p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>
-              "I work from the moment I wake up to the moment I go<br />to sleep" - Jensen Huang
+              "I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang
             </p>
           </div>
         </>
@@ -139,25 +139,25 @@ function App() {
             <h3 style={{ fontSize: '0.85rem', fontWeight: 500 }}>{exp.title}<span style={{ fontWeight: 500 }}>, {exp.company === 'Sentra' ? <a href="https://www.sentra.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Sentra</a> : exp.company === 'Convictional' ? <a href="https://get.convictional.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Convictional</a> : exp.company === 'Shopify' ? <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Shopify</a> : exp.company}</span>
               {exp.company === 'Shopify' && (
                 <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer">
-                  <img src="/shopify.svg" alt="Shopify" style={{ height: '24px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-7px' }} />
+                  <img src="/shopify.svg" alt="Shopify" style={{ height: '17px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-5px' }} />
                 </a>
               )}
               {exp.company === 'Sentra' && (
                 <>
                   <a href="https://www.forbes.com/sites/charliefink/2026/02/02/sentra-raises-5-million-to-build-enterprise-general-intelligence/" target="_blank" rel="noopener noreferrer">
-                    <img src="/a16z.png" alt="a16z" style={{ height: '22px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-4px' }} />
+                    <img src="/a16z.png" alt="a16z" style={{ height: '16px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-3px' }} />
                   </a>
-                  <img src="/mit.svg" alt="MIT" style={{ height: '22px', marginLeft: '4px', verticalAlign: 'middle', filter: 'invert(1)' }} />
+                  <img src="/mit.svg" alt="MIT" style={{ height: '16px', marginLeft: '4px', verticalAlign: 'middle', filter: 'invert(1)' }} />
                 </>
               )}
               {exp.company === 'Omen' && (
                 <a href="https://omen.trade/" target="_blank" rel="noopener noreferrer">
-                  <img src="/omen.svg" alt="Omen" style={{ height: '28px', marginLeft: '8px', verticalAlign: 'middle' }} />
+                  <img src="/omen.svg" alt="Omen" style={{ height: '15px', marginLeft: '8px', verticalAlign: 'middle' }} />
                 </a>
               )}
               {exp.company === 'Convictional' && (
                 <a href="https://www.ycombinator.com/companies/convictional" target="_blank" rel="noopener noreferrer">
-                    <img src="/yc.svg" alt="Y Combinator" style={{ height: '18px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-7px' }} />
+                    <img src="/yc.svg" alt="Y Combinator" style={{ height: '13px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-5px' }} />
                   </a>
               )}
             </h3>
@@ -203,13 +203,13 @@ function App() {
       )}
 
       {mode === 'random' && (
-        <div style={{ marginTop: '40px' }}>
-          <p style={{ fontSize: '0.72rem' }}>research at <a href="https://www.csail.mit.edu/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>MIT CSAIL</a> at <a href="https://compbio.mit.edu/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>Kellis Lab</a></p>
-          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>created <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>Axiom</a>, a startup competition for youth</p>
-          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>published by <a href="https://journal.stemfellowship.org/doi/epdf/10.17975/sfj-2026-002" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>Canadian Science Publishing</a></p>
+        <div className="random-section" style={{ marginTop: '40px' }}>
+          <p style={{ fontSize: '0.72rem' }}>research at <a href="https://www.csail.mit.edu/" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>MIT CSAIL</a> at <a href="https://compbio.mit.edu/" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>Kellis Lab</a></p>
+          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>created <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>Axiom</a>, a startup competition for youth</p>
+          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>published by <a href="https://journal.stemfellowship.org/doi/epdf/10.17975/sfj-2026-002" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>Canadian Science Publishing</a></p>
           <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>founded 3 clubs in hs</p>
-          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>recently hosted <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>G Hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>Claude x Socratica</a> and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>PRISM</a></p>
-          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>generated over <a href="https://www.tiktok.com/@infinitybouquets.ca?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>150k views</a> and sold <a href="https://www.instagram.com/infinitybouquets.ca/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', fontWeight: 500 }}>100+ bouquets</a></p>
+          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>recently hosted <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>G Hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>Claude x Socratica</a> and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>PRISM</a></p>
+          <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>generated over <a href="https://www.tiktok.com/@infinitybouquets.ca?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>150k views</a> and sold <a href="https://www.instagram.com/infinitybouquets.ca/" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 500 }}>100+ bouquets</a></p>
         </div>
       )}
 
