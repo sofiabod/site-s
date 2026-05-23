@@ -125,6 +125,9 @@ function App() {
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
               your time is extremely precious
             </p>
+            <p style={{ fontSize: '0.9rem', fontWeight: 700, marginTop: '12px' }}>
+              i think i can, therefore i can.
+            </p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>
               "I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang
             </p>
