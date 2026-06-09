@@ -130,6 +130,34 @@ main > footer {
   transform: scale(1);
 }
 
+.section-label {
+  font-size: 0.78rem;
+  color: #777;
+  margin-bottom: 16px;
+  user-select: none;
+}
+
+.previously-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-size: 0.78rem;
+  color: #777;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.previously-toggle:hover { color: #aaa; }
+
+.previously-caret {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.previously-caret.open { transform: rotate(90deg); }
+
 .random-section a {
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);

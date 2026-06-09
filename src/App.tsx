@@ -34,6 +34,7 @@ interface Experience {
   title: string
   company: string
   date: string
+  previous?: boolean
 }
 
 const experiences: Experience[] = [
@@ -48,16 +49,87 @@ const experiences: Experience[] = [
     date: "oct 2025 - current"
   },
   {
+    title: "Research Engineer",
+    company: "CSS lab",
+    date: "may 2026 - current"
+  },
+  {
     title: "Software Engineer",
     company: "Omen",
-    date: "sep 2025 - current"
+    date: "sep 2025 - may 2026",
+    previous: true
   },
   {
     title: "Research Engineer",
     company: "Convictional",
-    date: "july 2025 - aug 2025"
+    date: "july 2025 - aug 2025",
+    previous: true
   }
 ]
+
+// renders the title, date and blurb for a single experience
+function renderExperience(exp: Experience) {
+  return (
+    <>
+      <h3 style={{ fontSize: '0.85rem', fontWeight: 500 }}>{exp.title}<span style={{ fontWeight: 500 }}>, {exp.company === 'Sentra' ? <a href="https://www.sentra.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Sentra</a> : exp.company === 'Convictional' ? <a href="https://get.convictional.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Convictional</a> : exp.company === 'Shopify' ? <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Shopify</a> : exp.company}</span>
+        {exp.company === 'Shopify' && (
+          <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer">
+            <img src="/shopify.svg" alt="Shopify" style={{ height: '17px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-5px' }} />
+          </a>
+        )}
+        {exp.company === 'Sentra' && (
+          <>
+            <a href="https://www.forbes.com/sites/charliefink/2026/02/02/sentra-raises-5-million-to-build-enterprise-general-intelligence/" target="_blank" rel="noopener noreferrer">
+              <img src="/a16z.png" alt="a16z" style={{ height: '16px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-3px' }} />
+            </a>
+            <img src="/mit.svg" alt="MIT" style={{ height: '16px', marginLeft: '4px', verticalAlign: 'middle', filter: 'invert(1)' }} />
+          </>
+        )}
+        {exp.company === 'Omen' && (
+          <a href="https://omen.trade/" target="_blank" rel="noopener noreferrer">
+            <img src="/omen.svg" alt="Omen" style={{ height: '15px', marginLeft: '8px', verticalAlign: 'middle' }} />
+          </a>
+        )}
+        {exp.company === 'Convictional' && (
+          <a href="https://www.ycombinator.com/companies/convictional" target="_blank" rel="noopener noreferrer">
+              <img src="/yc.svg" alt="Y Combinator" style={{ height: '13px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-5px' }} />
+            </a>
+        )}
+        {exp.company === 'CSS lab' && (
+          <a href="https://csslab.cs.toronto.edu/" target="_blank" rel="noopener noreferrer">
+            <img src="/uoft.png" alt="University of Toronto" style={{ height: '24px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-3px' }} />
+          </a>
+        )}
+      </h3>
+      {exp.previous && <p style={{ fontStyle: 'italic', fontSize: '0.72rem' }}>{exp.date}</p>}
+      {exp.company === 'Shopify' && (
+        <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
+          core team
+        </p>
+      )}
+      {exp.company === 'Sentra' && (
+        <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
+          working with MIT prof across formal memory theory,<br />model compression, RL, and predictive world models
+        </p>
+      )}
+      {exp.company === 'Omen' && (
+        <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
+          investment agents that automate trades
+        </p>
+      )}
+      {exp.company === 'Convictional' && (
+        <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
+          applied research on late-interaction retrieval
+        </p>
+      )}
+      {exp.company === 'CSS lab' && (
+        <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
+          llm chess reasoning
+        </p>
+      )}
+    </>
+  )
+}
 
 const MODES = ['work', 'publications', 'random', 'mindset'] as const
 type Mode = typeof MODES[number]
@@ -67,6 +139,7 @@ function App() {
     const saved = localStorage.getItem('mode') as Mode | null
     return saved && MODES.includes(saved) ? saved : 'work'
   })
+  const [showPrevious, setShowPrevious] = useState(false)
 
   useEffect(() => { localStorage.setItem('mode', mode) }, [mode])
   useEffect(() => { initAsciiRenderer() }, [])
@@ -137,54 +210,18 @@ function App() {
 
       {mode === 'work' && (
         <div style={{ marginTop: '40px' }}>
-        {experiences.map((exp, index) => (
-          <div key={index} style={{ marginTop: index === 0 ? '0' : '20px' }}>
-            <h3 style={{ fontSize: '0.85rem', fontWeight: 500 }}>{exp.title}<span style={{ fontWeight: 500 }}>, {exp.company === 'Sentra' ? <a href="https://www.sentra.app/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Sentra</a> : exp.company === 'Convictional' ? <a href="https://get.convictional.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Convictional</a> : exp.company === 'Shopify' ? <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Shopify</a> : exp.company}</span>
-              {exp.company === 'Shopify' && (
-                <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer">
-                  <img src="/shopify.svg" alt="Shopify" style={{ height: '17px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-5px' }} />
-                </a>
-              )}
-              {exp.company === 'Sentra' && (
-                <>
-                  <a href="https://www.forbes.com/sites/charliefink/2026/02/02/sentra-raises-5-million-to-build-enterprise-general-intelligence/" target="_blank" rel="noopener noreferrer">
-                    <img src="/a16z.png" alt="a16z" style={{ height: '16px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-3px' }} />
-                  </a>
-                  <img src="/mit.svg" alt="MIT" style={{ height: '16px', marginLeft: '4px', verticalAlign: 'middle', filter: 'invert(1)' }} />
-                </>
-              )}
-              {exp.company === 'Omen' && (
-                <a href="https://omen.trade/" target="_blank" rel="noopener noreferrer">
-                  <img src="/omen.svg" alt="Omen" style={{ height: '15px', marginLeft: '8px', verticalAlign: 'middle' }} />
-                </a>
-              )}
-              {exp.company === 'Convictional' && (
-                <a href="https://www.ycombinator.com/companies/convictional" target="_blank" rel="noopener noreferrer">
-                    <img src="/yc.svg" alt="Y Combinator" style={{ height: '13px', marginLeft: '8px', verticalAlign: 'middle', marginTop: '-5px' }} />
-                  </a>
-              )}
-            </h3>
-            <p style={{ fontStyle: 'italic', fontSize: '0.72rem' }}>{exp.date}</p>
-            {exp.company === 'Shopify' && (
-              <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
-                incoming s26
-              </p>
-            )}
-            {exp.company === 'Sentra' && (
-              <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
-                working with MIT prof across formal memory theory,<br />model compression, RL, and predictive world models
-              </p>
-            )}
-            {exp.company === 'Omen' && (
-              <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
-                investment agents that automate trades
-              </p>
-            )}
-            {exp.company === 'Convictional' && (
-              <p style={{ fontSize: '0.72rem', marginTop: '4px' }}>
-                applied research on late-interaction retrieval
-              </p>
-            )}
+        <div className="section-label">currently</div>
+        {experiences.filter(exp => !exp.previous).map((exp, index) => (
+          <div key={exp.company} style={{ marginTop: index === 0 ? '0' : '20px' }}>
+            {renderExperience(exp)}
+          </div>
+        ))}
+        <div className="previously-toggle" onClick={() => setShowPrevious(v => !v)}>
+          <span className={`previously-caret ${showPrevious ? 'open' : ''}`}>›</span>previously
+        </div>
+        {showPrevious && experiences.filter(exp => exp.previous).map((exp) => (
+          <div key={exp.company} style={{ marginTop: '20px' }}>
+            {renderExperience(exp)}
           </div>
         ))}
         </div>
