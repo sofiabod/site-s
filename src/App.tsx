@@ -204,6 +204,9 @@ function App() {
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>
               "I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang
             </p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>
+              excellence is the capacity to take pain
+            </p>
           </div>
         </>
       )}
