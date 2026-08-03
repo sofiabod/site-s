@@ -330,7 +330,7 @@ function App() {
         <>
           <div style={{ maxWidth: '520px', margin: '24px auto 0', textAlign: 'left', color: '#5a5a5a' }}>
             <p style={{ fontSize: '0.76rem', lineHeight: 1.8 }}>
-              i am a first year cs student @ <a href="https://cs.uwaterloo.ca/" target="_blank" rel="noopener noreferrer" className="hlink">uwaterloo</a>. i view myself as extremely ambitious, obsessed, and resilient.
+              i am an incoming cs student @ <a href="https://cs.uwaterloo.ca/" target="_blank" rel="noopener noreferrer" className="hlink">uwaterloo</a>. i view myself as extremely ambitious, obsessed, and resilient.
             </p>
 
             <p style={{ fontSize: '0.76rem', marginTop: '16px', marginBottom: '4px' }}>some wins:</p>
