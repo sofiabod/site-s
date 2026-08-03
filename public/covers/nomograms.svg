@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1420">
+  <rect width="1080" height="1420" fill="#ffffff"/>
+  <defs><filter id="wc" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="70"/></filter></defs>
+  <g filter="url(#wc)" opacity="0.72">
+    <ellipse cx="360" cy="440" rx="320" ry="260" fill="#9ec5e8"/>
+    <ellipse cx="760" cy="560" rx="300" ry="250" fill="#bfe0d8"/>
+    <ellipse cx="470" cy="820" rx="360" ry="300" fill="#c9d8f0"/>
+    <ellipse cx="780" cy="1000" rx="300" ry="260" fill="#d6c8ec"/>
+    <ellipse cx="340" cy="1140" rx="300" ry="250" fill="#a9d3e0"/>
+  </g>
+  <rect x="1" y="1" width="1078" height="1418" fill="none" stroke="#e4e4e4"/>
+  <text x="540" y="740" text-anchor="middle" font-family="Geist, sans-serif" font-size="120" font-weight="500" fill="#22324a">Nomograms</text>
+</svg>

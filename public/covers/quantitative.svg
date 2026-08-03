@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1420">
+  <rect width="1080" height="1420" fill="#ffffff"/>
+  <defs><filter id="wc" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="70"/></filter></defs>
+  <g filter="url(#wc)" opacity="0.72">
+    <ellipse cx="360" cy="450" rx="330" ry="270" fill="#bfe0b0"/>
+    <ellipse cx="770" cy="580" rx="300" ry="250" fill="#ecd9a3"/>
+    <ellipse cx="470" cy="840" rx="360" ry="300" fill="#a9cfe0"/>
+    <ellipse cx="790" cy="1030" rx="300" ry="260" fill="#e9c4cf"/>
+    <ellipse cx="330" cy="1150" rx="300" ry="250" fill="#cfe6b8"/>
+  </g>
+  <rect x="1" y="1" width="1078" height="1418" fill="none" stroke="#e4e4e4"/>
+  <text x="540" y="720" text-anchor="middle" font-family="Geist, sans-serif" font-size="96" font-weight="500" fill="#2f3f28">Quantitative</text>
+  <text x="540" y="820" text-anchor="middle" font-family="Geist, sans-serif" font-size="96" font-weight="500" fill="#2f3f28">Project</text>
+</svg>

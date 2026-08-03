@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1420">
+  <rect width="1080" height="1420" fill="#ffffff"/>
+  <defs><filter id="wc" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="70"/></filter></defs>
+  <g filter="url(#wc)" opacity="0.72">
+    <ellipse cx="380" cy="460" rx="330" ry="270" fill="#cbb8e8"/>
+    <ellipse cx="770" cy="600" rx="300" ry="250" fill="#f4c4d6"/>
+    <ellipse cx="460" cy="860" rx="360" ry="300" fill="#b9d8ef"/>
+    <ellipse cx="790" cy="1040" rx="300" ry="260" fill="#d8ecc9"/>
+    <ellipse cx="330" cy="1160" rx="300" ry="250" fill="#e7c7e0"/>
+  </g>
+  <rect x="1" y="1" width="1078" height="1418" fill="none" stroke="#e4e4e4"/>
+  <text x="540" y="740" text-anchor="middle" font-family="Geist, sans-serif" font-size="82" font-weight="500" fill="#3a2a52">Autoformalization</text>
+</svg>
