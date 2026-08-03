@@ -314,7 +314,7 @@ function App() {
       <div>
         <div className="header-row">
           <div>
-            <h1 style={{ fontSize: '1.35rem', fontWeight: 400, marginBottom: '0px', textAlign: 'center' }}>sofia bodnar</h1>
+            <h1 style={{ fontSize: '1.35rem', fontWeight: 400, marginBottom: '0px', textAlign: 'center', fontFamily: 'Lora, "Lora Fallback", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif' }}>Sofia Bodnar</h1>
           </div>
           {navLinks}
         </div>
