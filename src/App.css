@@ -215,6 +215,7 @@ main > footer {
   cursor: pointer;
   user-select: none;
   transition: color 0.2s ease;
+  font-family: "Helvetica Neue", Helvetica, "Neue Haas Grotesk", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .nav-item:hover { color: #555; }
