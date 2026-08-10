@@ -428,7 +428,7 @@ function AsciiGlobe() {
       onPointerMove={e => { if (!drag.current) return; yaw.current += (e.clientX - drag.current.x) * 0.012; pitch.current = Math.max(-1.4, Math.min(1.4, pitch.current + (e.clientY - drag.current.y) * 0.012)); drag.current = { x: e.clientX, y: e.clientY }; dirty.current = true }}
       onPointerUp={() => { drag.current = null }}
       onPointerLeave={() => { drag.current = null }}
-      style={{ fontFamily: 'monospace', fontSize: '9px', lineHeight: '9px', color: '#111', cursor: 'grab', userSelect: 'none', margin: '32px auto 0', width: 'fit-content' }}
+      style={{ fontFamily: 'monospace', fontSize: '4.5px', lineHeight: '4.5px', color: '#111', cursor: 'grab', userSelect: 'none', margin: '32px auto 0', width: 'fit-content' }}
     >{frame}</pre>
   )
 }
