@@ -384,6 +384,7 @@ function App() {
   })
   const [sub, setSub] = useState<Sub>('experience')
   const [post, setPost] = useState<string | null>(null)
+  const [show2025, setShow2025] = useState(false)
   useEffect(() => { localStorage.setItem('tab', tab) }, [tab])
   useEffect(() => { initAsciiRenderer() }, [])
 
@@ -477,7 +478,23 @@ function App() {
           {sub === 'experience' && (
             <div style={{ margin: '24px auto 0', maxWidth: '520px' }}>
               <div className="jobs">
-                {jobs.map(j => (
+                {jobs.filter(j => j.current).map(j => (
+                  <div key={j.company} className="job">
+                    <span className="job-logo">
+                      <img src={j.logo} alt={j.company} style={j.round ? { height: j.h, width: j.h, borderRadius: '50%', objectFit: 'cover' } : { height: j.h }} />
+                    </span>
+                    <div>
+                      <div className="job-head">
+                        <a href={j.url} target="_blank" rel="noopener noreferrer" className="hlink">{j.company}</a>
+                        <span className="job-role">{j.role}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div onClick={() => setShow2025(v => !v)} style={{ alignSelf: 'flex-start', fontSize: '0.72rem', color: '#777', cursor: 'pointer', userSelect: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px', marginTop: '2px' }}>
+                  2025 <span style={{ display: 'inline-block', transform: show2025 ? 'rotate(90deg)' : 'none', transition: 'transform 0.25s ease' }}>›</span>
+                </div>
+                {show2025 && jobs.filter(j => !j.current).map(j => (
                   <div key={j.company} className="job">
                     <span className="job-logo">
                       <img src={j.logo} alt={j.company} style={j.round ? { height: j.h, width: j.h, borderRadius: '50%', objectFit: 'cover' } : { height: j.h }} />
