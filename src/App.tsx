@@ -385,7 +385,7 @@ function AsciiGlobe() {
   const dirty = useRef(true)
 
   useEffect(() => {
-    const W = 56, H = 28, cx = 28, cy = 14, rx = 27, ry = 13.2
+    const W = 56, H = 28, cx = 28, cy = 14, rx = 22, ry = 13.2
     const MAP: Record<string, string> = { '.': '.', H: '+', g: '*', '@': '$' }
     let raf = 0
     const loop = () => {
