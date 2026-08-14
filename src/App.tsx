@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useEffect, useRef, type ReactNode } from 'react'
+import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 import { EARTH } from './earth'
 
 let _asciiLoaded = false
@@ -31,14 +31,26 @@ function initAsciiRenderer() {
   document.head.appendChild(s)
 }
 
-type Job = { company: string; role: string; url: string; logo: string; h: string; when: string; blurb: string; current?: boolean; round?: boolean }
+type SkillGroup = { heading: string; skills: string[] }
+type Job = { company: string; role: string; url: string; logo: string; h: string; skills?: string[]; skillGroups?: SkillGroup[]; current?: boolean; round?: boolean }
 
 const jobs: Job[] = [
-  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", when: "jun 2026 — now", blurb: "building our river agent", current: true },
-  { company: "Sentra", role: "Research Engineer", url: "https://www.sentra.app/", logo: "/sentra.svg", h: "14px", when: "oct 2025 — now", blurb: "memory theory, model compression, RL, and world models", current: true },
-  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", when: "may 2026 — now", blurb: "llm chess reasoning", current: true },
-  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", when: "9 months", blurb: "investment agents that automate trades" },
-  { company: "Convictional", role: "Research Intern", url: "https://www.ycombinator.com/companies/convictional", logo: "/convictional.png", h: "18px", when: "3 months", blurb: "late-interaction retrieval", round: true },
+  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", skills: ["evals", "ETL's", "memory", "dynamic workflows", "agent mail"], current: true },
+  {
+    company: "Sentra",
+    role: "Research Engineer",
+    url: "https://www.sentra.app/",
+    logo: "/sentra.svg",
+    h: "20px",
+    skillGroups: [
+      { heading: "research eng", skills: ["memory", "RL", "world models", "evals", "benchmarks", "self-improving agents"] },
+      { heading: "software eng", skills: ["webhooks", "sandboxes"] },
+    ],
+    current: true,
+  },
+  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", skills: ["evals", "reasoning", "LLMs"], current: true },
+  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", skills: ["agents", "fintech"] },
+  { company: "Convictional", role: "Software Engineer Intern", url: "https://www.ycombinator.com/companies/convictional", logo: "/convictional.png", h: "18px", skills: ["retrieval", "embeddings"], round: true },
 ]
 
 type Card = { title: string; desc?: ReactNode; slug?: string; meta?: string; img?: string; href?: string }
@@ -49,6 +61,213 @@ const publications: Card[] = [
   { title: "The Price of Meaning", meta: "arXiv", img: "/price-of-meaning.png", href: "https://arxiv.org/abs/2603.27116v1" },
   { title: "The Geometry of Forgetting", meta: "arXiv", img: "/geometry-of-forgetting.png", href: "https://arxiv.org/abs/2604.06222" },
 ]
+
+function JobFocus({ job }: { job: Job }) {
+  if (job.skillGroups) {
+    return (
+      <div className="job-focus-groups">
+        {job.skillGroups.map(group => (
+          <p className="job-focus-row" key={group.heading}>
+            <span className="job-focus-heading">{group.heading}</span>
+            <span className="job-focus-copy">{group.skills.join(' · ')}</span>
+          </p>
+        ))}
+      </div>
+    )
+  }
+
+  return <p className="job-focus">{job.skills?.join(' · ')}</p>
+}
+
+const GOLDEN_CURVE_POINTS = Array.from({ length: 180 }, (_, i) => {
+  const theta = (i / 179) * Math.PI * 4
+  const phi = (1 + Math.sqrt(5)) / 2
+  const radius = 2 * Math.pow(phi, theta / (Math.PI / 2))
+  return `${100 + Math.cos(theta) * radius},${100 + Math.sin(theta) * radius}`
+}).join(' ')
+
+const FIGURE_GRID_STEP = 22
+const FIGURE_FRAME_SIZE = FIGURE_GRID_STEP * 8 + 1
+const GEOMETRY_FIGURE_WIDTH = FIGURE_GRID_STEP * 12 + 1
+const GEOMETRY_FIGURE_HEIGHT = FIGURE_GRID_STEP * 11 + 1
+
+function snapFigureToGrid(value: number) {
+  return Math.max(0, Math.round(value / FIGURE_GRID_STEP) * FIGURE_GRID_STEP)
+}
+
+function useSnappedFigurePositions() {
+  const [viewport, setViewport] = useState(() => ({ width: window.innerWidth, height: window.innerHeight }))
+
+  useEffect(() => {
+    const update = () => setViewport({ width: window.innerWidth, height: window.innerHeight })
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  const rightColumn = Math.max(
+    FIGURE_GRID_STEP,
+    Math.floor((viewport.width - FIGURE_GRID_STEP - FIGURE_FRAME_SIZE) / FIGURE_GRID_STEP) * FIGURE_GRID_STEP,
+  )
+  const waveWidth = Math.floor(viewport.width / FIGURE_GRID_STEP) * FIGURE_GRID_STEP + FIGURE_GRID_STEP * 8 + 1
+  const waveHeight = FIGURE_GRID_STEP * 20 + 1
+
+  return {
+    wave: {
+      left: Math.round(((viewport.width - waveWidth) / 2) / FIGURE_GRID_STEP) * FIGURE_GRID_STEP,
+      top: snapFigureToGrid(viewport.height * 0.42 - waveHeight / 2),
+      width: waveWidth,
+      height: waveHeight,
+    },
+    golden: {
+      left: rightColumn,
+      top: snapFigureToGrid(viewport.height - 145 - FIGURE_FRAME_SIZE),
+    },
+    geometry: {
+      left: FIGURE_GRID_STEP,
+      top: snapFigureToGrid(viewport.height - FIGURE_GRID_STEP - GEOMETRY_FIGURE_HEIGHT),
+    },
+  } satisfies Record<'wave' | 'golden' | 'geometry', CSSProperties>
+}
+
+function WaveMathFigure({ style }: { style: CSSProperties }) {
+  const [focusY, setFocusY] = useState(0.5)
+
+  useEffect(() => {
+    let frame = 0
+    let next = 0.5
+    const reshape = (event: PointerEvent) => {
+      next = Math.max(0, Math.min(1, event.clientY / window.innerHeight))
+      if (frame) return
+      frame = requestAnimationFrame(() => {
+        setFocusY(next)
+        frame = 0
+      })
+    }
+    window.addEventListener('pointermove', reshape, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', reshape)
+      if (frame) cancelAnimationFrame(frame)
+    }
+  }, [])
+
+  return (
+    <figure className="floating-math-card math-card-one" style={style} aria-hidden="true">
+      <div className="floating-math-inner">
+        <div className="floating-math-art">
+          <svg className="math-art math-wave" viewBox="0 0 240 160" preserveAspectRatio="none">
+            {Array.from({ length: 46 }, (_, i) => {
+              const startY = 6 + i * (148 / 45)
+              const endY = 154 - i * (148 / 45)
+              const emphasis = Math.max(0, 1 - Math.abs(i / 45 - focusY) * 5)
+              return (
+                <path
+                  key={i}
+                  d={`M 0 ${startY} C 48 ${startY}, 74 80, 90 80 L 150 80 C 166 80, 192 ${endY}, 240 ${endY}`}
+                  style={{ strokeOpacity: 0.28 + emphasis * 0.12 }}
+                />
+              )
+            })}
+          </svg>
+        </div>
+      </div>
+    </figure>
+  )
+}
+
+function GoldenRatioFigure({ style }: { style: CSSProperties }) {
+  const [curves, setCurves] = useState(4)
+  const [angle, setAngle] = useState(12)
+
+  const reshape = (event: React.PointerEvent<HTMLElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width))
+    const y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height))
+    setCurves(Math.round(2 + (1 - y) * 6))
+    setAngle(4 + x * 24)
+  }
+
+  return (
+    <figure
+      className="floating-math-card math-card-two golden-ratio-card"
+      style={style}
+      aria-label="Interactive golden-ratio curves"
+      onPointerMove={reshape}
+    >
+      <svg className="math-art golden-ratio-art" viewBox="0 0 200 200" role="img" aria-label={`${curves} golden-ratio curves`}>
+        {Array.from({ length: curves }, (_, i) => (
+          <polyline
+            key={i}
+            className="golden-spiral"
+            points={GOLDEN_CURVE_POINTS}
+            transform={`rotate(${(i - (curves - 1) / 2) * angle} 100 100)`}
+          />
+        ))}
+        <circle className="math-node golden-node" cx="100" cy="100" r="2" />
+      </svg>
+    </figure>
+  )
+}
+
+function TriangleGeometryFigure({ style }: { style: CSSProperties }) {
+  return (
+    <figure className="floating-math-card math-card-geometry" style={style}>
+      <svg className="geometry-art" viewBox="105 50 710 520" role="img" aria-label="Geometry construction for triangle BIC and the circle with diameter ST">
+        <path className="geometry-triangle-fill" d="M 300.1 83 L 329.5 423 L 784.6 423 Z" />
+        <circle className="geometry-circle geometry-circle-construction" cx="365.9" cy="196.9" r="131.4" />
+        <circle className="geometry-circle geometry-circle-left" cx="306.6" cy="400" r="163" />
+        <circle className="geometry-circle geometry-circle-right" cx="494.3" cy="314.2" r="125.6" />
+        <circle className="geometry-circle geometry-circle-inner" cx="431.7" cy="311.6" r="111.5" />
+
+        <path className="geometry-triangle" d="M 300.1 83 L 329.5 423 L 784.6 423 Z" />
+        <path className="geometry-diagonal" d="M 144.9 422.8 L 495.4 220.1" />
+        <path className="geometry-dashed-line" d="M 144.9 422.8 L 468.2 375" />
+        <path className="geometry-construction-line" d="M 495.4 220.1 L 468.2 375" />
+        <path className="geometry-bic-triangle" d="M 329.5 423 L 431.7 311.6 L 784.6 423 Z" />
+
+        {[
+          [300.1, 83], [329.5, 423], [784.6, 423], [144.9, 422.8], [321.1, 321.1], [495.4, 220.1],
+          [431.7, 311.6], [468.2, 375], [380.8, 367.1], [608.1, 367.3], [557.3, 423],
+        ].map(([cx, cy], index) => <circle className="geometry-point" key={index} cx={cx} cy={cy} r="4.8" />)}
+
+        <g className="geometry-labels">
+          <text x="276" y="82">A</text>
+          <text x="317" y="449">B</text>
+          <text x="773" y="449">C</text>
+          <text x="119" y="441">T</text>
+          <text x="297" y="322">F</text>
+          <text x="500" y="216">E</text>
+          <text x="413" y="315">I</text>
+          <text x="451" y="400">S</text>
+        </g>
+      </svg>
+      <a
+        className="geometry-caption"
+        href="https://web.evanchen.cc/problems.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open the directory of cool geometry problems"
+      >
+        <span className="geometry-caption-copy">
+          <span className="geometry-caption-title">directory of cool geometry problems</span>
+          <span className="geometry-source">Problem source: Taiwan TST Quiz 2015</span>
+        </span>
+        <span className="geometry-caption-arrow" aria-hidden="true">↗</span>
+      </a>
+    </figure>
+  )
+}
+
+function SideMathFigures() {
+  const positions = useSnappedFigurePositions()
+
+  return (
+    <div className="side-math-figures">
+      <WaveMathFigure style={positions.wave} />
+      <GoldenRatioFigure style={positions.golden} />
+      <TriangleGeometryFigure style={{ ...positions.geometry, width: GEOMETRY_FIGURE_WIDTH, height: GEOMETRY_FIGURE_HEIGHT }} />
+    </div>
+  )
+}
 
 const gjSections = [
   { id: "overview", label: "overview" },
@@ -271,7 +490,7 @@ function PiFall() {
       g.width = w
       g.height = h
       const gc = g.getContext('2d')!
-      gc.strokeStyle = 'rgba(150, 150, 150, 0.16)'
+      gc.strokeStyle = 'rgba(103, 170, 249, 0.14)'
       gc.lineWidth = 1
       gc.beginPath()
       for (let x = 0.5; x <= w; x += step) { gc.moveTo(x, 0); gc.lineTo(x, h) }
@@ -309,7 +528,7 @@ function PiFall() {
       cols = canvas.width / step
       rows = Math.floor(canvas.height / step)
       drops = Array.from({ length: rows }, () => Math.random() * cols)
-      ctx.font = `100 ${fontSize}px "Helvetica Neue", monospace`
+      ctx.font = `300 ${fontSize}px "Helvetica Neue", monospace`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'bottom'
     }
@@ -331,8 +550,8 @@ function PiFall() {
         const edge = Math.abs(x - canvas.width / 2) / (canvas.width / 2)
         // streams only show inside the grid region, middle stays clear
         if (edge >= 0.4 && y > startYAt(x)) {
-          const shade = 165 + Math.floor(Math.random() * 55)
-          ctx.fillStyle = `rgb(${shade}, ${shade}, ${shade})`
+          const alpha = 0.20 + Math.random() * 0.24
+          ctx.fillStyle = `rgba(103, 170, 249, ${alpha})`
           const digit = PI_DIGITS[(r * 47 + cell) % PI_DIGITS.length]
           ctx.fillText(digit, x, y - 1)
         }
@@ -428,7 +647,7 @@ function AsciiGlobe() {
       onPointerMove={e => { if (!drag.current) return; yaw.current += (e.clientX - drag.current.x) * 0.012; pitch.current = Math.max(-1.4, Math.min(1.4, pitch.current + (e.clientY - drag.current.y) * 0.012)); drag.current = { x: e.clientX, y: e.clientY }; dirty.current = true }}
       onPointerUp={() => { drag.current = null }}
       onPointerLeave={() => { drag.current = null }}
-      style={{ fontFamily: 'monospace', fontSize: '4.5px', lineHeight: '4.5px', color: '#111', cursor: 'grab', userSelect: 'none', margin: '32px auto 0', width: 'fit-content' }}
+      style={{ fontFamily: 'monospace', fontSize: '4.5px', lineHeight: '4.5px', color: 'var(--ink)', cursor: 'grab', userSelect: 'none', margin: '32px auto 0', width: 'fit-content' }}
     >{frame}</pre>
   )
 }
@@ -464,7 +683,7 @@ function App() {
         <img src="/x.svg" alt="X" style={{ height: '20px' }} />
       </a>
       <a href="https://scholar.google.ca/citations?hl=en&user=Z9eQbAEAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
-        <svg height="20" viewBox="0 0 24 24" fill="#000"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v3.3l7 3.8 7-3.8v-3.3l-7 3.8-7-3.8z" /></svg>
+        <svg height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v3.3l7 3.8 7-3.8v-3.3l-7 3.8-7-3.8z" /></svg>
       </a>
     </nav>
   )
@@ -484,7 +703,7 @@ function App() {
               {p.href
                 ? <a href={p.href} target="_blank" rel="noopener noreferrer" className="hlink">{p.title}</a>
                 : open
-                  ? <span onClick={open} style={{ cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px', textDecorationColor: '#999' }}>{p.title}</span>
+                  ? <span onClick={open} style={{ cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px', textDecorationColor: 'var(--muted)' }}>{p.title}</span>
                   : p.title}
             </h3>
             {p.meta && <p className="pcard-meta">{p.meta}</p>}
@@ -499,6 +718,7 @@ function App() {
     <>
     <PiFall />
     <div id="ascii-widget"><div id="ascii"></div></div>
+    <SideMathFigures />
     <main>
       <div>
         <div className="header-row">
@@ -517,15 +737,15 @@ function App() {
 
       {tab === 'work' && (
         <>
-          <div style={{ maxWidth: '520px', margin: '24px auto 0', textAlign: 'left', color: '#5a5a5a' }}>
+          <div style={{ maxWidth: '520px', margin: '24px auto 0', textAlign: 'left', color: 'var(--muted)' }}>
             <p style={{ fontSize: '0.76rem', lineHeight: 1.8 }}>
               i am an incoming cs student @ <a href="https://cs.uwaterloo.ca/" target="_blank" rel="noopener noreferrer" className="hlink">uwaterloo</a>. i view myself as extremely ambitious, obsessed, and resilient.
             </p>
 
             <p style={{ fontSize: '0.76rem', marginTop: '16px', marginBottom: '4px' }}>some wins:</p>
             <ul style={{ fontSize: '0.76rem', lineHeight: 1.9, margin: '0 0 0 20px' }}>
-              <li><span style={{ backgroundColor: '#e9f7ec', padding: '1px 5px', borderRadius: '3px' }}>the youngest intern</span> at <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" className="hlink">shopify</a><img src="/shopify.svg" alt="Shopify" style={{ height: '15px', verticalAlign: 'middle', marginLeft: '5px' }} /> at 17</li>
-              <li>in high school, worked as a software engineer across <span style={{ color: '#14532d', fontWeight: 600 }}>3 yc / a16z startups</span> + published 2 papers with an <img src="/mit.svg" alt="MIT" style={{ height: '19px', verticalAlign: 'middle', margin: '0 4px' }} /> prof</li>
+              <li><span style={{ backgroundColor: 'rgba(103, 170, 249, 0.14)', padding: '1px 5px', borderRadius: '3px' }}>the youngest intern</span> at <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" className="hlink">shopify</a><img src="/shopify.svg" alt="Shopify" style={{ height: '15px', verticalAlign: 'middle', marginLeft: '5px' }} /> at 17</li>
+              <li>in high school, i worked as a software engineer across <span style={{ color: 'var(--accent-deep)', fontWeight: 600 }}>3 yc / a16z startups</span> and published 2 papers with an <img src="/mit.svg" alt="MIT" style={{ height: '19px', verticalAlign: 'middle', margin: '0 4px' }} /> prof</li>
               <li>started from complete, absolute zero after moving from ukraine, and i take great pride in that</li>
             </ul>
           </div>
@@ -539,40 +759,40 @@ function App() {
           {sub === 'experience' && (
             <div style={{ margin: '24px auto 0', maxWidth: '520px' }}>
               <div className="jobs">
+                <div className="job-year-label">2026</div>
                 {jobs.filter(j => j.current).map(j => (
                   <div key={j.company} className="job">
                     <span className="job-logo">
                       <img src={j.logo} alt={j.company} style={j.round ? { height: j.h, width: j.h, borderRadius: '50%', objectFit: 'cover' } : { height: j.h }} />
                     </span>
-                    <div>
+                    <div className="job-main">
                       <div className="job-head">
                         <a href={j.url} target="_blank" rel="noopener noreferrer" className="hlink">{j.company}</a>
                         <span className="job-role">{j.role}</span>
                       </div>
+                      <JobFocus job={j} />
                     </div>
                   </div>
                 ))}
-                <div onClick={() => setShow2025(v => !v)} style={{ alignSelf: 'flex-start', fontSize: '0.72rem', color: '#777', cursor: 'pointer', userSelect: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px', marginTop: '2px' }}>
+                <button className="job-year-toggle" type="button" onClick={() => setShow2025(v => !v)} aria-expanded={show2025}>
                   2025 <span style={{ display: 'inline-block', transform: show2025 ? 'rotate(90deg)' : 'none', transition: 'transform 0.25s ease' }}>›</span>
-                </div>
+                </button>
                 {show2025 && jobs.filter(j => !j.current).map(j => (
                   <div key={j.company} className="job">
                     <span className="job-logo">
                       <img src={j.logo} alt={j.company} style={j.round ? { height: j.h, width: j.h, borderRadius: '50%', objectFit: 'cover' } : { height: j.h }} />
                     </span>
-                    <div>
+                    <div className="job-main">
                       <div className="job-head">
                         <a href={j.url} target="_blank" rel="noopener noreferrer" className="hlink">{j.company}</a>
                         <span className="job-role">{j.role}</span>
                       </div>
+                      <JobFocus job={j} />
                     </div>
                   </div>
                 ))}
               </div>
-              <p style={{ fontSize: '0.76rem', lineHeight: 1.8, margin: '32px auto 0', maxWidth: '560px', color: '#5a5a5a' }}>
-                in the past years, i've been pulled toward math and numbers, but early on it was business and finance that were ingrained in me. that looked like small side hustles, reselling books or running a <a href="https://www.instagram.com/infinitybouquets.ca/" target="_blank" rel="noopener noreferrer" className="hlink">small business</a> that sold <a href="https://www.tiktok.com/@infinitybouquets.ca" target="_blank" rel="noopener noreferrer" className="hlink">100+ bouquets</a>, until i realized the real leverage is what my mind can build, not just what i trade my time for.
-              </p>
-              <p style={{ fontSize: '0.76rem', lineHeight: 1.8, margin: '24px auto 0', maxWidth: '560px', color: '#5a5a5a' }}>
+              <p className="experience-notes">
                 some things i've built recently: <a href="https://github.com/cchang3906/spex" target="_blank" rel="noopener noreferrer" className="hlink">speculative tool execution that cuts coding-agent latency</a>, and the <a href="https://github.com/sofiabod/GRAPH-JEPA" target="_blank" rel="noopener noreferrer" className="hlink">first ever architecture of JEPA applied to temporal graphs</a>.
               </p>
             </div>
@@ -586,7 +806,7 @@ function App() {
 
           {sub === 'community' && (
             <div style={{ marginTop: '40px' }}>
-              <p style={{ fontSize: '0.76rem', lineHeight: 1.8, margin: '0 auto', maxWidth: '560px', color: '#5a5a5a' }}>
+              <p style={{ fontSize: '0.76rem', lineHeight: 1.8, margin: '0 auto', maxWidth: '560px', color: 'var(--muted)' }}>
                 i love being around ambitious, like-minded people, so i help create spaces for them. i started <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" className="hlink">axiom</a>, a startup competition for youth, founded 3 clubs in high school, and helped host <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" className="hlink">g hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" className="hlink">claude x socratica</a>, and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" className="hlink">prism</a>.
               </p>
               <div style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', maxWidth: '560px', marginLeft: 'auto', marginRight: 'auto' }}>
@@ -600,24 +820,22 @@ function App() {
       )}
 
       {tab === 'mindset' && (
-        <>
+        <div className="mindset-page">
         <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ textAlign: 'left', border: '1px solid #2f6fed', padding: '28px 34px' }}>
-            <p style={{ fontSize: '0.72rem', fontWeight: 500 }}>every waking hour is a working hour</p>
+          <div style={{ textAlign: 'left', border: '1px solid var(--accent)', padding: '28px 34px' }}>
+            <p style={{ fontSize: '0.72rem' }}>every waking hour is a working hour</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your maximum is someone's minimum</p>
-            <p style={{ fontSize: '0.72rem', fontWeight: 500, marginTop: '12px' }}>go above and beyond, over prepare, be obsessed</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>patience + repetition</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>go above and beyond, over prepare, be obsessed</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>create your own opportunities</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your time is extremely precious</p>
-            <p style={{ fontSize: '0.72rem', fontWeight: 500, marginTop: '12px' }}>tired == weak</p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang</p>
-            <p style={{ fontSize: '0.85rem', marginTop: '12px' }}>
-              <span style={{ backgroundColor: '#e6f0ff', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span>
-            </p>
+            <p className="mindset-quote">excellence is the capacity to take pain</p>
           </div>
         </div>
         <AsciiGlobe />
-        <p style={{ fontSize: '0.72rem', textAlign: 'center', marginTop: '10px', color: '#5a5a5a' }}>the world is yours</p>
-        </>
+        <p style={{ fontSize: '0.72rem', textAlign: 'center', marginTop: '10px', color: 'var(--muted)' }}>the world is yours</p>
+        </div>
       )}
 
     </main>
