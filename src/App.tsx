@@ -38,7 +38,7 @@ const jobs: Job[] = [
   { company: "Sentra", role: "Research Engineer", url: "https://www.sentra.app/", logo: "/sentra.svg", h: "20px", description: "built memory, retrieval, and evaluation infrastructure for self-improving agents—spanning entity resolution, adaptive RAG, durable citations, bi-temporal memory, and hallucination defense—while researching RL and predictive world models.", current: true },
   { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", description: "worked with the team behind Maia, human-like chess models that predict how people play across skill levels; built a dynamic data-selection method that lets a teacher model choose which examples a student learns from.", current: true },
   { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", description: "built agent-driven financial workflows for an all-in-one trading platform spanning prediction markets, perpetual futures, crypto, and equities." },
-  { company: "Convictional", role: "Software Engineer Intern", url: "https://www.ycombinator.com/companies/convictional", logo: "/convictional.png", h: "18px", description: "MUVERA and ColBERT v2 for late-interaction search.", round: true },
+  { company: "Convictional", role: "Software Engineering Intern", url: "https://www.ycombinator.com/companies/convictional", logo: "/convictional.png", h: "18px", description: "MUVERA and ColBERT v2 for late-interaction search.", round: true },
 ]
 
 type Card = { title: string; desc?: ReactNode; slug?: string; meta?: string; img?: string; href?: string }
