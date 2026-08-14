@@ -31,26 +31,14 @@ function initAsciiRenderer() {
   document.head.appendChild(s)
 }
 
-type SkillGroup = { heading: string; skills: string[] }
-type Job = { company: string; role: string; url: string; logo: string; h: string; skills?: string[]; skillGroups?: SkillGroup[]; current?: boolean; round?: boolean }
+type Job = { company: string; role: string; url: string; logo: string; h: string; description?: string; current?: boolean; round?: boolean }
 
 const jobs: Job[] = [
-  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", skills: ["evals", "ETL's", "memory", "dynamic workflows", "agent mail"], current: true },
-  {
-    company: "Sentra",
-    role: "Research Engineer",
-    url: "https://www.sentra.app/",
-    logo: "/sentra.svg",
-    h: "20px",
-    skillGroups: [
-      { heading: "research eng", skills: ["memory", "RL", "world models", "evals", "benchmarks", "self-improving agents"] },
-      { heading: "software eng", skills: ["webhooks", "sandboxes"] },
-    ],
-    current: true,
-  },
-  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", skills: ["evals", "reasoning", "LLMs"], current: true },
-  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", skills: ["agents", "fintech"] },
-  { company: "Convictional", role: "Software Engineer Intern", url: "https://www.ycombinator.com/companies/convictional", logo: "/convictional.png", h: "18px", skills: ["retrieval", "embeddings"], round: true },
+  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", description: "built infrastructure for reliable AI agents across evaluation, memory, data pipelines, and dynamic workflows.", current: true },
+  { company: "Sentra", role: "Research Engineer", url: "https://www.sentra.app/", logo: "/sentra.svg", h: "20px", description: "built memory, retrieval, and evaluation infrastructure for self-improving agents—spanning entity resolution, adaptive RAG, durable citations, bi-temporal memory, and hallucination defense—while researching RL and predictive world models.", current: true },
+  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", description: "worked with the team behind Maia, human-like chess models that predict how people play across skill levels; built a dynamic data-selection method that lets a teacher model choose which examples a student learns from.", current: true },
+  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", description: "built agent-driven financial workflows for an all-in-one trading platform spanning prediction markets, perpetual futures, crypto, and equities." },
+  { company: "Convictional", role: "Software Engineer Intern", url: "https://www.ycombinator.com/companies/convictional", logo: "/convictional.png", h: "18px", description: "MUVERA and ColBERT v2 for late-interaction search.", round: true },
 ]
 
 type Card = { title: string; desc?: ReactNode; slug?: string; meta?: string; img?: string; href?: string }
@@ -61,23 +49,6 @@ const publications: Card[] = [
   { title: "The Price of Meaning", meta: "arXiv", img: "/price-of-meaning.png", href: "https://arxiv.org/abs/2603.27116v1" },
   { title: "The Geometry of Forgetting", meta: "arXiv", img: "/geometry-of-forgetting.png", href: "https://arxiv.org/abs/2604.06222" },
 ]
-
-function JobFocus({ job }: { job: Job }) {
-  if (job.skillGroups) {
-    return (
-      <div className="job-focus-groups">
-        {job.skillGroups.map(group => (
-          <p className="job-focus-row" key={group.heading}>
-            <span className="job-focus-heading">{group.heading}</span>
-            <span className="job-focus-copy">{group.skills.join(' · ')}</span>
-          </p>
-        ))}
-      </div>
-    )
-  }
-
-  return <p className="job-focus">{job.skills?.join(' · ')}</p>
-}
 
 const GOLDEN_CURVE_POINTS = Array.from({ length: 180 }, (_, i) => {
   const theta = (i / 179) * Math.PI * 4
@@ -770,7 +741,7 @@ function App() {
                         <a href={j.url} target="_blank" rel="noopener noreferrer" className="hlink">{j.company}</a>
                         <span className="job-role">{j.role}</span>
                       </div>
-                      <JobFocus job={j} />
+                      {j.description && <p className="job-description">{j.description}</p>}
                     </div>
                   </div>
                 ))}
@@ -787,7 +758,7 @@ function App() {
                         <a href={j.url} target="_blank" rel="noopener noreferrer" className="hlink">{j.company}</a>
                         <span className="job-role">{j.role}</span>
                       </div>
-                      <JobFocus job={j} />
+                      {j.description && <p className="job-description">{j.description}</p>}
                     </div>
                   </div>
                 ))}

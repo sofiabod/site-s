@@ -124,7 +124,7 @@ html { scroll-behavior: smooth; font-size: 17.5px; }
 }
 
 .geometry-caption {
-  display: flex;
+  display: none;
   width: fit-content;
   max-width: calc(100% - 14px);
   margin: 7px 0 0 14px;
@@ -591,35 +591,13 @@ main > footer {
 .job-main { min-width: 0; flex: 1; }
 .job-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font-size: 0.82rem; }
 .job-role { color: #555; }
-
-.job-focus-groups {
-  display: grid;
-  gap: 4px;
-  margin-top: 7px;
-}
-
-.job-focus-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3px 7px;
-  font-size: 0.59rem;
-  line-height: 1.55;
-}
-
-.job-focus-heading {
-  color: var(--ink);
-  font-weight: 400;
-}
-
-.job-focus-copy,
-.job-focus {
-  color: var(--muted);
-}
-
-.job-focus {
+.job-description {
+  display: none;
+  max-width: 420px;
   margin-top: 6px;
-  font-size: 0.61rem;
-  line-height: 1.55;
+  color: #929292;
+  font-size: 0.68rem;
+  line-height: 1.6;
 }
 
 .job-year-toggle {
