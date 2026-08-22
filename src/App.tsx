@@ -635,7 +635,6 @@ function App() {
   })
   const [sub, setSub] = useState<Sub>('experience')
   const [post, setPost] = useState<string | null>(null)
-  const [show2025, setShow2025] = useState(false)
   useEffect(() => { localStorage.setItem('tab', tab) }, [tab])
   useEffect(() => { initAsciiRenderer() }, [])
 
@@ -745,10 +744,8 @@ function App() {
                     </div>
                   </div>
                 ))}
-                <button className="job-year-toggle" type="button" onClick={() => setShow2025(v => !v)} aria-expanded={show2025}>
-                  2025 <span style={{ display: 'inline-block', transform: show2025 ? 'rotate(90deg)' : 'none', transition: 'transform 0.25s ease' }}>›</span>
-                </button>
-                {show2025 && jobs.filter(j => !j.current).map(j => (
+                <div className="job-year-label">2025</div>
+                {jobs.filter(j => !j.current).map(j => (
                   <div key={j.company} className="job">
                     <span className="job-logo">
                       <img src={j.logo} alt={j.company} style={j.round ? { height: j.h, width: j.h, borderRadius: '50%', objectFit: 'cover' } : { height: j.h }} />
@@ -809,6 +806,12 @@ function App() {
         </div>
       )}
 
+      {tab === 'mindset' && (
+        <div className="footer-banner">
+          <img src="/photos/banner.jpeg" alt="" />
+          <a href="mailto:sofiia.bodnar@uwaterloo.ca" className="footer-email">sofiia.bodnar@uwaterloo.ca</a>
+        </div>
+      )}
     </main>
     </>
   )
