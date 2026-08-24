@@ -827,7 +827,7 @@ function VisitCount() {
       .catch(() => {})
   }, [])
   if (n === null) return null
-  return <div className="visit-count">{n.toLocaleString()} visits</div>
+  return <div className="visit-count">site visits: {n.toLocaleString()}</div>
 }
 
 export default App
