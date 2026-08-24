@@ -761,7 +761,7 @@ function App() {
                 ))}
               </div>
               <p className="experience-notes">
-                some things i've built recently: <a href="https://github.com/cchang3906/spex" target="_blank" rel="noopener noreferrer" className="hlink">speculative tool execution that cuts coding-agent latency</a>, and the <a href="https://github.com/sofiabod/GRAPH-JEPA" target="_blank" rel="noopener noreferrer" className="hlink">first ever architecture of JEPA applied to temporal graphs</a>.
+                some things i've built recently: <a href="https://github.com/sofiabod/spex" target="_blank" rel="noopener noreferrer" className="hlink">speculative tool execution that cuts coding-agent latency</a>, and the <a href="https://github.com/sofiabod/GRAPH-JEPA" target="_blank" rel="noopener noreferrer" className="hlink">first ever architecture of JEPA applied to temporal graphs</a>.
               </p>
             </div>
           )}
