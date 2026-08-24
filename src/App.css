@@ -526,6 +526,15 @@ main > footer {
   font-size: 0.78rem;
 }
 
+.visit-count {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 40px;
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  color: var(--muted);
+}
+
 .nav-item {
   display: flex;
   align-items: center;

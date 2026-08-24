@@ -812,9 +812,22 @@ function App() {
           <a href="mailto:sofiia.bodnar@uwaterloo.ca" className="footer-email">sofiia.bodnar@uwaterloo.ca</a>
         </div>
       )}
+      <VisitCount />
     </main>
     </>
   )
+}
+
+function VisitCount() {
+  const [n, setN] = useState<number | null>(null)
+  useEffect(() => {
+    fetch('https://abacus.jasoncameron.dev/hit/sofiabodnar-site/visits')
+      .then(r => r.json())
+      .then(d => setN(d.value))
+      .catch(() => {})
+  }, [])
+  if (n === null) return null
+  return <div className="visit-count">{n.toLocaleString()} visits</div>
 }
 
 export default App
