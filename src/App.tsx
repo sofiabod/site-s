@@ -31,14 +31,14 @@ function initAsciiRenderer() {
   document.head.appendChild(s)
 }
 
-type Job = { company: string; role: string; url: string; logo: string; h: string; description?: string; current?: boolean; round?: boolean }
+type Job = { company: string; role: string; url: string; logo: string; h: string; hov: string; description?: string; current?: boolean; round?: boolean }
 
 const jobs: Job[] = [
-  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", description: "built infrastructure for reliable AI agents across evaluation, memory, data pipelines, and dynamic workflows.", current: true },
-  { company: "Sentra", role: "Research Engineer", url: "https://www.sentra.app/", logo: "/sentra.svg", h: "20px", description: "built memory, retrieval, and evaluation infrastructure for self-improving agents—spanning entity resolution, adaptive RAG, durable citations, bi-temporal memory, and hallucination defense—while researching RL and predictive world models.", current: true },
-  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", description: "worked with the team behind Maia, human-like chess models that predict how people play across skill levels; built a dynamic data-selection method that lets a teacher model choose which examples a student learns from.", current: true },
-  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", description: "built agent-driven financial workflows for an all-in-one trading platform spanning prediction markets, perpetual futures, crypto, and equities." },
-  { company: "Convictional", role: "Software Engineering Intern", url: "https://www.ycombinator.com/companies/convictional", logo: "/convictional.png", h: "18px", description: "MUVERA and ColBERT v2 for late-interaction search.", round: true },
+  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/shopify-bg.jpeg) center 38%/100% auto", description: "built infrastructure for reliable AI agents across evaluation, memory, data pipelines, and dynamic workflows.", current: true },
+  { company: "Sentra", role: "Research Engineer", url: "https://www.sentra.app/", logo: "/sentra.svg", h: "20px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/sentra-bg.jpeg) center 45%/100% auto", description: "built memory, retrieval, and evaluation infrastructure for self-improving agents—spanning entity resolution, adaptive RAG, durable citations, bi-temporal memory, and hallucination defense—while researching RL and predictive world models.", current: true },
+  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/csslab-bg.jpeg) center 42%/auto 260% repeat", description: "worked with the team behind Maia, human-like chess models that predict how people play across skill levels; built a dynamic data-selection method that lets a teacher model choose which examples a student learns from.", current: true },
+  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/omen-bg2.jpeg) center 38%/100% auto", description: "built agent-driven financial workflows for an all-in-one trading platform spanning prediction markets, perpetual futures, crypto, and equities." },
+  { company: "Convictional", role: "Software Engineering Intern", url: "https://www.linkedin.com/company/convictional/posts/?feedView=all", logo: "/convictional.png", h: "18px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/conv-bg.jpeg) center 38%/100% auto", description: "MUVERA and ColBERT v2 for late-interaction search.", round: true },
 ]
 
 type Card = { title: string; desc?: ReactNode; slug?: string; meta?: string; img?: string; href?: string }
@@ -311,6 +311,37 @@ function Post({ title, subtitle, sections, onBack, children }: { title: string; 
   )
 }
 
+function VisitCount() {
+  const [n, setN] = useState<number | null>(null)
+  useEffect(() => {
+    fetch('https://abacus.jasoncameron.dev/hit/sofiabodnar-site/visits')
+      .then(r => r.json())
+      .then(d => setN(d.value))
+      .catch(() => {})
+  }, [])
+  if (n === null) return null
+  return <div className="visit-count">site visits: {n.toLocaleString()}</div>
+}
+
+function SocialLinks() {
+  return (
+    <nav className="nav-links">
+      <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
+        <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
+      </a>
+      <a href="https://github.com/sofiabod" target="_blank" rel="noopener noreferrer">
+        <img src="/github.svg" alt="GitHub" style={{ height: '20px' }} />
+      </a>
+      <a href="https://x.com/sofiiabodnar" target="_blank" rel="noopener noreferrer">
+        <img src="/x.svg" alt="X" style={{ height: '20px' }} />
+      </a>
+      <a href="https://scholar.google.ca/citations?hl=en&user=Z9eQbAEAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
+        <svg height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v3.3l7 3.8 7-3.8v-3.3l-7 3.8-7-3.8z" /></svg>
+      </a>
+    </nav>
+  )
+}
+
 function GraphJepaPost({ onBack }: { onBack: () => void }) {
   return (
     <Post title="Graph-JEPA" subtitle="Learning the Dynamics of Relational Worlds by Observation" sections={gjSections} onBack={onBack}>
@@ -461,7 +492,7 @@ function PiFall() {
       g.width = w
       g.height = h
       const gc = g.getContext('2d')!
-      gc.strokeStyle = 'rgba(103, 170, 249, 0.14)'
+      gc.strokeStyle = 'rgba(178, 190, 197, 0.14)'
       gc.lineWidth = 1
       gc.beginPath()
       for (let x = 0.5; x <= w; x += step) { gc.moveTo(x, 0); gc.lineTo(x, h) }
@@ -522,7 +553,7 @@ function PiFall() {
         // streams only show inside the grid region, middle stays clear
         if (edge >= 0.4 && y > startYAt(x)) {
           const alpha = 0.20 + Math.random() * 0.24
-          ctx.fillStyle = `rgba(103, 170, 249, ${alpha})`
+          ctx.fillStyle = `rgba(178, 190, 197, ${alpha})`
           const digit = PI_DIGITS[(r * 47 + cell) % PI_DIGITS.length]
           ctx.fillText(digit, x, y - 1)
         }
@@ -637,26 +668,10 @@ function App() {
   const [post, setPost] = useState<string | null>(null)
   useEffect(() => { localStorage.setItem('tab', tab) }, [tab])
   useEffect(() => { initAsciiRenderer() }, [])
-
   if (post === 'graph-jepa') return <GraphJepaPost onBack={() => setPost(null)} />
   if (post === 'spex') return <SpexPost onBack={() => setPost(null)} />
 
-  const navLinks = (
-    <nav className="nav-links">
-      <a href="https://www.linkedin.com/in/sofiia-bodnar/" target="_blank" rel="noopener noreferrer">
-        <img src="/Linkedin.svg" alt="LinkedIn" style={{ height: '20px' }} />
-      </a>
-      <a href="https://github.com/sofiabod" target="_blank" rel="noopener noreferrer">
-        <img src="/github.svg" alt="GitHub" style={{ height: '20px' }} />
-      </a>
-      <a href="https://x.com/sofiiabodnar" target="_blank" rel="noopener noreferrer">
-        <img src="/x.svg" alt="X" style={{ height: '20px' }} />
-      </a>
-      <a href="https://scholar.google.ca/citations?hl=en&user=Z9eQbAEAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
-        <svg height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zM5 13.2v3.3l7 3.8 7-3.8v-3.3l-7 3.8-7-3.8z" /></svg>
-      </a>
-    </nav>
-  )
+  const navLinks = <SocialLinks />
 
   const cardGrid = (list: Card[]) => (
     <div className="project-grid">
@@ -709,13 +724,13 @@ function App() {
         <>
           <div style={{ maxWidth: '520px', margin: '24px auto 0', textAlign: 'left', color: 'var(--muted)' }}>
             <p style={{ fontSize: '0.76rem', lineHeight: 1.8 }}>
-              i am a first year cs student @ <a href="https://cs.uwaterloo.ca/" target="_blank" rel="noopener noreferrer" className="hlink">uwaterloo</a><img src="/uwaterloo.png" alt="University of Waterloo" style={{ height: '19px', verticalAlign: 'middle', marginLeft: '5px', marginTop: '-3px' }} />. i view myself as extremely ambitious, obsessed, and resilient.
+              i am a first year cs student at the <img src="/uwaterloo.png" alt="University of Waterloo" style={{ height: '19px', verticalAlign: 'middle', marginRight: '5px', marginTop: '-3px' }} /><a href="https://cs.uwaterloo.ca/" target="_blank" rel="noopener noreferrer" className="hlink">University of Waterloo</a>. i view myself as extremely ambitious, obsessed, and resilient.
             </p>
 
             <p style={{ fontSize: '0.76rem', marginTop: '16px', marginBottom: '4px' }}>some wins:</p>
             <ul style={{ fontSize: '0.76rem', lineHeight: 1.9, margin: '0 0 0 20px' }}>
               <li><span style={{ backgroundColor: 'rgba(103, 170, 249, 0.14)', padding: '1px 5px', borderRadius: '3px' }}>the youngest intern</span> at <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" className="hlink">shopify</a><img src="/shopify.svg" alt="Shopify" style={{ height: '15px', verticalAlign: 'middle', marginLeft: '5px' }} /> at 17</li>
-              <li>in high school, i worked as a software engineer across <span style={{ color: 'var(--accent-deep)', fontWeight: 600 }}>3 yc / a16z startups</span> and published 2 papers with an <img src="/mit.svg" alt="MIT" style={{ height: '19px', verticalAlign: 'middle', margin: '0 4px' }} /> prof</li>
+              <li>in high school, i worked as a software engineer across 3 yc / a16z startups and published 2 papers with an <img src="/mit.svg" alt="MIT" style={{ height: '19px', verticalAlign: 'middle', margin: '0 4px' }} /> prof</li>
               <li>started from complete, absolute zero after moving from ukraine, and i take great pride in that</li>
             </ul>
           </div>
@@ -731,38 +746,42 @@ function App() {
               <div className="jobs">
                 <div className="job-year-label">2026</div>
                 {jobs.filter(j => j.current).map(j => (
-                  <div key={j.company} className="job">
+                  <a key={j.company} href={j.url} target="_blank" rel="noopener noreferrer" className="job" style={{ ['--hov' as string]: j.hov }}>
                     <span className="job-logo">
                       <img src={j.logo} alt={j.company} style={j.round ? { height: j.h, width: j.h, borderRadius: '50%', objectFit: 'cover' } : { height: j.h }} />
                     </span>
                     <div className="job-main">
                       <div className="job-head">
-                        <a href={j.url} target="_blank" rel="noopener noreferrer" className="hlink">{j.company}</a>
+                        <span className="hlink">{j.company}</span>
                         <span className="job-role">{j.role}</span>
                       </div>
                       {j.description && <p className="job-description">{j.description}</p>}
                     </div>
-                  </div>
+                  </a>
                 ))}
                 <div className="job-year-label">2025</div>
                 {jobs.filter(j => !j.current).map(j => (
-                  <div key={j.company} className="job">
+                  <a key={j.company} href={j.url} target="_blank" rel="noopener noreferrer" className="job" style={{ ['--hov' as string]: j.hov }}>
                     <span className="job-logo">
                       <img src={j.logo} alt={j.company} style={j.round ? { height: j.h, width: j.h, borderRadius: '50%', objectFit: 'cover' } : { height: j.h }} />
                     </span>
                     <div className="job-main">
                       <div className="job-head">
-                        <a href={j.url} target="_blank" rel="noopener noreferrer" className="hlink">{j.company}</a>
+                        <span className="hlink">{j.company}</span>
                         <span className="job-role">{j.role}</span>
                       </div>
                       {j.description && <p className="job-description">{j.description}</p>}
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
-              <p className="experience-notes">
-                some things i've built recently: <a href="https://github.com/sofiabod/spex" target="_blank" rel="noopener noreferrer" className="hlink">speculative tool execution that cuts coding-agent latency</a>, and the <a href="https://github.com/sofiabod/GRAPH-JEPA" target="_blank" rel="noopener noreferrer" className="hlink">first ever architecture of JEPA applied to temporal graphs</a>.
-              </p>
+              <div className="experience-notes">
+                some things i've built recently:
+                <ul style={{ margin: '8px 0 0 18px', padding: 0 }}>
+                  <li style={{ marginTop: '6px' }}><a href="https://github.com/sofiabod/spex" target="_blank" rel="noopener noreferrer" className="hlink">Speculative Tool Execution for Verification Tasks</a></li>
+                  <li style={{ marginTop: '6px' }}><a href="https://github.com/sofiabod/GRAPH-JEPA" target="_blank" rel="noopener noreferrer" className="hlink">Graph-JEPA: Applying the JEPA Architecture to Temporal Graphs</a></li>
+                </ul>
+              </div>
             </div>
           )}
 
@@ -775,12 +794,20 @@ function App() {
           {sub === 'community' && (
             <div style={{ marginTop: '40px' }}>
               <p style={{ fontSize: '0.76rem', lineHeight: 1.8, margin: '0 auto', maxWidth: '560px', color: 'var(--muted)' }}>
-                i love being around ambitious, like-minded people, so i help create spaces for them. i started <a href="https://www.axiomstartups.ca/" target="_blank" rel="noopener noreferrer" className="hlink">axiom</a>, a startup competition for youth, founded 3 clubs in high school, and helped host <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" className="hlink" style={{ whiteSpace: 'nowrap' }}>g hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" className="hlink">claude x socratica</a>, and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" className="hlink">prism</a>.
+                i love being around ambitious, like-minded people, so i help create spaces for them. i started <a href="https://luma.com/7epaq2w3" target="_blank" rel="noopener noreferrer" className="hlink">axiom</a>, a startup competition for youth, founded 3 clubs in high school, and helped host <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" className="hlink" style={{ whiteSpace: 'nowrap' }}>g hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" className="hlink">claude x socratica</a>, and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" className="hlink">prism</a>.
               </p>
               <div style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', maxWidth: '560px', marginLeft: 'auto', marginRight: 'auto' }}>
-                {photos.map(src => (
-                  <img key={src} src={src} alt="" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
-                ))}
+                {photos.map((src, i) => {
+                  const href = i === 0 ? 'https://luma.com/7epaq2w3' : i === 1 ? 'https://luma.com/lob2kpxt' : 'https://lu.ma/ufdrjn3n'
+                  return (
+                    <a key={src} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
+                      <div className="photo-flip">
+                        <img src={src} alt="" />
+                        <img className="photo-flip-cover" src={src.replace('.jpeg', '-cover.jpeg')} alt="" />
+                      </div>
+                    </a>
+                  )
+                })}
               </div>
             </div>
           )}
@@ -790,15 +817,17 @@ function App() {
       {tab === 'mindset' && (
         <div className="mindset-page">
         <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ textAlign: 'left', border: '1px solid var(--accent)', padding: '28px 34px' }}>
+          <div style={{ textAlign: 'left', border: '1px solid var(--accent)', padding: '28px 34px', maxWidth: '400px' }}>
             <p style={{ fontSize: '0.72rem' }}>every waking hour is a working hour</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your maximum is someone's minimum</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>patience + repetition</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>go above and beyond, over prepare, be obsessed</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>create your own opportunities</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your time is extremely precious</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>don't make decisions you will regret</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>if i can breathe i can think, and if i can think i can win</p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang</p>
-            <p className="mindset-quote">excellence is the capacity to take pain</p>
+            <p className="mindset-quote"><span style={{ backgroundColor: '#EDF9FF', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span></p>
           </div>
         </div>
         <AsciiGlobe />
@@ -807,27 +836,15 @@ function App() {
       )}
 
       {tab === 'mindset' && (
-        <div className="footer-banner">
+        <div className="footer-banner photo-flip">
           <img src="/photos/banner.jpeg" alt="" />
-          <a href="mailto:sofiia.bodnar@uwaterloo.ca" className="footer-email">sofiia.bodnar@uwaterloo.ca</a>
+          <img className="photo-flip-cover" src="/photos/banner.png" alt="" />
         </div>
       )}
       <VisitCount />
     </main>
     </>
   )
-}
-
-function VisitCount() {
-  const [n, setN] = useState<number | null>(null)
-  useEffect(() => {
-    fetch('https://abacus.jasoncameron.dev/hit/sofiabodnar-site/visits')
-      .then(r => r.json())
-      .then(d => setN(d.value))
-      .catch(() => {})
-  }, [])
-  if (n === null) return null
-  return <div className="visit-count">site visits: {n.toLocaleString()}</div>
 }
 
 export default App

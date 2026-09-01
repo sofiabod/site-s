@@ -1,13 +1,13 @@
 :root {
   --paper: #ffffff;
   --surface: #ffffff;
-  --ink: #17365f;
-  --accent: #67aaf9;
-  --accent-deep: #3478c5;
-  --muted: #526985;
-  --line: #cfdae7;
-  --line-soft: #e5edf5;
-  --font-sans: Newsreader, "Newsreader Fallback", Georgia, "Times New Roman", serif;
+  --ink: #444444;
+  --accent: #B2BEC5;
+  --accent-deep: #B2BEC5;
+  --muted: #555555;
+  --line: #dedede;
+  --line-soft: #ededed;
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-ui: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
