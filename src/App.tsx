@@ -729,7 +729,7 @@ function App() {
 
             <p style={{ fontSize: '0.76rem', marginTop: '16px', marginBottom: '4px' }}>some wins:</p>
             <ul style={{ fontSize: '0.76rem', lineHeight: 1.9, margin: '0 0 0 20px' }}>
-              <li><span style={{ backgroundColor: 'rgba(103, 170, 249, 0.14)', padding: '1px 5px', borderRadius: '3px' }}>the youngest intern</span> at <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" className="hlink">shopify</a><img src="/shopify.svg" alt="Shopify" style={{ height: '15px', verticalAlign: 'middle', marginLeft: '5px' }} /> at 17</li>
+              <li>interned @ <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" className="hlink">shopify</a><img src="/shopify.svg" alt="Shopify" style={{ height: '15px', verticalAlign: 'middle', marginLeft: '5px' }} /> at <span style={{ backgroundColor: 'rgba(103, 170, 249, 0.14)', padding: '1px 5px', borderRadius: '3px' }}>17 yrs old</span></li>
               <li>in high school, i worked as a software engineer across 3 yc / a16z startups and published 2 papers with an <img src="/mit.svg" alt="MIT" style={{ height: '19px', verticalAlign: 'middle', margin: '0 4px' }} /> prof</li>
               <li>started from complete, absolute zero after moving from ukraine, and i take great pride in that</li>
             </ul>
