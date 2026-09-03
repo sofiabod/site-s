@@ -426,6 +426,48 @@ main > footer {
   margin-top: auto;
 }
 
+.site-footer {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.webring-widget {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.webring-widget a {
+  line-height: 1;
+  text-decoration: none;
+}
+
+.webring-widget .webring-arrow {
+  color: var(--muted);
+  font-size: 0.48rem;
+  opacity: 0.5;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.webring-widget .webring-arrow:hover {
+  color: var(--ink);
+  opacity: 0.8;
+}
+
+.webring-widget .webring-arrow:last-child {
+  margin-left: -2px;
+}
+
+.webring-widget img {
+  display: block;
+  width: 16px;
+  height: auto;
+  opacity: 0.8;
+}
+
 .footer-banner {
   position: relative;
   width: 100%;
@@ -519,8 +561,8 @@ main > footer {
 
 .visit-count {
   text-align: center;
-  margin-top: auto;
-  padding-top: 40px;
+  margin-top: 0;
+  padding-top: 0;
   font-family: var(--font-ui);
   font-size: 0.64rem;
   color: var(--muted);

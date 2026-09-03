@@ -342,6 +342,20 @@ function SocialLinks() {
   )
 }
 
+function WebringWidget() {
+  const webringUrl = 'https://cs.uwatering.com/#sofiabodnar.com'
+
+  return (
+    <nav className="webring-widget" aria-label="CS Webring navigation">
+      <a className="webring-arrow" href={`${webringUrl}?nav=prev`} aria-label="Previous CS Webring site">{'<'}</a>
+      <a href={webringUrl} target="_blank" rel="noopener noreferrer" aria-label="Open the CS Webring">
+        <img src="https://cs.uwatering.com/icon.black.svg" alt="" />
+      </a>
+      <a className="webring-arrow" href={`${webringUrl}?nav=next`} aria-label="Next CS Webring site">{'>'}</a>
+    </nav>
+  )
+}
+
 function GraphJepaPost({ onBack }: { onBack: () => void }) {
   return (
     <Post title="Graph-JEPA" subtitle="Learning the Dynamics of Relational Worlds by Observation" sections={gjSections} onBack={onBack}>
@@ -841,7 +855,10 @@ function App() {
           <img className="photo-flip-cover" src="/photos/banner.png" alt="" />
         </div>
       )}
-      <VisitCount />
+      <footer className="site-footer">
+        <VisitCount />
+        <WebringWidget />
+      </footer>
     </main>
     </>
   )
