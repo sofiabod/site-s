@@ -1,4 +1,5 @@
 import './App.css'
+import FltTree from './FltTree'
 import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 import { EARTH } from './earth'
 
@@ -50,15 +51,8 @@ const publications: Card[] = [
   { title: "The Geometry of Forgetting", meta: "arXiv", img: "/geometry-of-forgetting.png", href: "https://arxiv.org/abs/2604.06222" },
 ]
 
-const GOLDEN_CURVE_POINTS = Array.from({ length: 180 }, (_, i) => {
-  const theta = (i / 179) * Math.PI * 4
-  const phi = (1 + Math.sqrt(5)) / 2
-  const radius = 2 * Math.pow(phi, theta / (Math.PI / 2))
-  return `${100 + Math.cos(theta) * radius},${100 + Math.sin(theta) * radius}`
-}).join(' ')
 
 const FIGURE_GRID_STEP = 22
-const FIGURE_FRAME_SIZE = FIGURE_GRID_STEP * 8 + 1
 const GEOMETRY_FIGURE_WIDTH = FIGURE_GRID_STEP * 12 + 1
 const GEOMETRY_FIGURE_HEIGHT = FIGURE_GRID_STEP * 11 + 1
 
@@ -75,10 +69,6 @@ function useSnappedFigurePositions() {
     return () => window.removeEventListener('resize', update)
   }, [])
 
-  const rightColumn = Math.max(
-    FIGURE_GRID_STEP,
-    Math.floor((viewport.width - FIGURE_GRID_STEP - FIGURE_FRAME_SIZE) / FIGURE_GRID_STEP) * FIGURE_GRID_STEP,
-  )
   const waveWidth = Math.floor(viewport.width / FIGURE_GRID_STEP) * FIGURE_GRID_STEP + FIGURE_GRID_STEP * 8 + 1
   const waveHeight = FIGURE_GRID_STEP * 20 + 1
 
@@ -89,15 +79,11 @@ function useSnappedFigurePositions() {
       width: waveWidth,
       height: waveHeight,
     },
-    golden: {
-      left: rightColumn,
-      top: snapFigureToGrid(viewport.height - 145 - FIGURE_FRAME_SIZE),
-    },
     geometry: {
       left: FIGURE_GRID_STEP,
       top: snapFigureToGrid(viewport.height - FIGURE_GRID_STEP - GEOMETRY_FIGURE_HEIGHT),
     },
-  } satisfies Record<'wave' | 'golden' | 'geometry', CSSProperties>
+  } satisfies Record<'wave' | 'geometry', CSSProperties>
 }
 
 function WaveMathFigure({ style }: { style: CSSProperties }) {
@@ -141,40 +127,6 @@ function WaveMathFigure({ style }: { style: CSSProperties }) {
           </svg>
         </div>
       </div>
-    </figure>
-  )
-}
-
-function GoldenRatioFigure({ style }: { style: CSSProperties }) {
-  const [curves, setCurves] = useState(4)
-  const [angle, setAngle] = useState(12)
-
-  const reshape = (event: React.PointerEvent<HTMLElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect()
-    const x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width))
-    const y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height))
-    setCurves(Math.round(2 + (1 - y) * 6))
-    setAngle(4 + x * 24)
-  }
-
-  return (
-    <figure
-      className="floating-math-card math-card-two golden-ratio-card"
-      style={style}
-      aria-label="Interactive golden-ratio curves"
-      onPointerMove={reshape}
-    >
-      <svg className="math-art golden-ratio-art" viewBox="0 0 200 200" role="img" aria-label={`${curves} golden-ratio curves`}>
-        {Array.from({ length: curves }, (_, i) => (
-          <polyline
-            key={i}
-            className="golden-spiral"
-            points={GOLDEN_CURVE_POINTS}
-            transform={`rotate(${(i - (curves - 1) / 2) * angle} 100 100)`}
-          />
-        ))}
-        <circle className="math-node golden-node" cx="100" cy="100" r="2" />
-      </svg>
     </figure>
   )
 }
@@ -234,7 +186,6 @@ function SideMathFigures() {
   return (
     <div className="side-math-figures">
       <WaveMathFigure style={positions.wave} />
-      <GoldenRatioFigure style={positions.golden} />
       <TriangleGeometryFigure style={{ ...positions.geometry, width: GEOMETRY_FIGURE_WIDTH, height: GEOMETRY_FIGURE_HEIGHT }} />
     </div>
   )
@@ -718,6 +669,7 @@ function App() {
     <PiFall />
     <div id="ascii-widget"><div id="ascii"></div></div>
     <SideMathFigures />
+    <FltTree />
     <main>
       <div>
         <div className="header-row">
