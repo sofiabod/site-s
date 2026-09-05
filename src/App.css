@@ -888,6 +888,11 @@ code {
   cursor: pointer;
 }
 
+.flt-tree video {
+  width: 100%;
+  display: block;
+}
+
 @media (max-width: 1100px), (prefers-reduced-motion: reduce) {
   .flt-tree { display: none; }
 }
