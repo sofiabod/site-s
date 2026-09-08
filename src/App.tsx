@@ -1,7 +1,6 @@
 import './App.css'
 import FltTree from './FltTree'
 import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
-import { EARTH } from './earth'
 
 let _asciiLoaded = false
 function initAsciiRenderer() {
@@ -559,65 +558,7 @@ function PiFall() {
   )
 }
 
-const EARTH_ROWS = EARTH.split('\n').filter(r => r.length > 0)
-const TEX_H = EARTH_ROWS.length
-const TEX_W = Math.max(...EARTH_ROWS.map(r => r.length))
 
-function AsciiGlobe() {
-  const [frame, setFrame] = useState('')
-  const yaw = useRef(0)
-  const pitch = useRef(0.4)
-  const drag = useRef<{ x: number; y: number } | null>(null)
-  const dirty = useRef(true)
-
-  useEffect(() => {
-    const W = 56, H = 28, cx = 28, cy = 14, rx = 22, ry = 13.2
-    const MAP: Record<string, string> = { '.': '.', H: '+', g: '*', '@': '$' }
-    let raf = 0
-    const loop = () => {
-      if (!dirty.current) { raf = requestAnimationFrame(loop); return }
-      dirty.current = false
-      const buf = new Array(W * H).fill(' ')
-      const zb = new Array(W * H).fill(-Infinity)
-      const cyw = Math.cos(yaw.current), syw = Math.sin(yaw.current)
-      const cp = Math.cos(pitch.current), sp = Math.sin(pitch.current)
-      for (let t = 0; t <= Math.PI; t += 0.02) {
-        const st = Math.sin(t), ct = Math.cos(t)
-        const trow = EARTH_ROWS[Math.min(TEX_H - 1, Math.floor(t / Math.PI * TEX_H))]
-        for (let p = 0; p < Math.PI * 2; p += 0.012) {
-          const x0 = st * Math.cos(p), y0 = ct, z0 = st * Math.sin(p)
-          const tcol = Math.min(TEX_W - 1, Math.floor(p / (Math.PI * 2) * TEX_W))
-          const ch = MAP[trow[tcol] ?? '.'] ?? '.'
-          const x1 = x0 * cyw + z0 * syw
-          const z1 = -x0 * syw + z0 * cyw
-          const y2 = y0 * cp - z1 * sp
-          const z2 = y0 * sp + z1 * cp
-          const sxp = Math.round(cx + x1 * rx)
-          const syp = Math.round(cy - y2 * ry)
-          if (sxp < 0 || sxp >= W || syp < 0 || syp >= H) continue
-          const idx = syp * W + sxp
-          if (z2 > zb[idx]) { zb[idx] = z2; buf[idx] = ch }
-        }
-      }
-      let out = ''
-      for (let r = 0; r < H; r++) out += buf.slice(r * W, r * W + W).join('') + '\n'
-      setFrame(out)
-      raf = requestAnimationFrame(loop)
-    }
-    raf = requestAnimationFrame(loop)
-    return () => cancelAnimationFrame(raf)
-  }, [])
-
-  return (
-    <pre
-      onPointerDown={e => { drag.current = { x: e.clientX, y: e.clientY }; e.currentTarget.setPointerCapture(e.pointerId); dirty.current = true }}
-      onPointerMove={e => { if (!drag.current) return; yaw.current += (e.clientX - drag.current.x) * 0.012; pitch.current = Math.max(-1.4, Math.min(1.4, pitch.current + (e.clientY - drag.current.y) * 0.012)); drag.current = { x: e.clientX, y: e.clientY }; dirty.current = true }}
-      onPointerUp={() => { drag.current = null }}
-      onPointerLeave={() => { drag.current = null }}
-      style={{ fontFamily: 'monospace', fontSize: '4.5px', lineHeight: '4.5px', color: 'var(--ink)', cursor: 'grab', userSelect: 'none', margin: '32px auto 0', width: 'fit-content' }}
-    >{frame}</pre>
-  )
-}
 
 const PRIMARY = ['work', 'mindset'] as const
 type Primary = typeof PRIMARY[number]
@@ -784,28 +725,24 @@ function App() {
         <div className="mindset-page">
         <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
           <div style={{ textAlign: 'left', border: '1px solid var(--accent)', padding: '28px 34px', maxWidth: '400px' }}>
-            <p style={{ fontSize: '0.72rem' }}>every waking hour is a working hour</p>
+            <p style={{ fontSize: '0.72rem', fontWeight: 600 }}>"your time is extremely precious" - Shayaan Azeem</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>every waking hour is a working hour</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your maximum is someone's minimum</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>patience + repetition</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>go above and beyond, over prepare, be obsessed</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>create your own opportunities</p>
-            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your time is extremely precious</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>don't make decisions you will regret</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>if i can breathe i can think, and if i can think i can win</p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang</p>
             <p className="mindset-quote"><span style={{ backgroundColor: '#EDF9FF', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span></p>
           </div>
         </div>
-        <AsciiGlobe />
-        <p style={{ fontSize: '0.72rem', textAlign: 'center', marginTop: '10px', color: 'var(--muted)' }}>the world is yours</p>
         </div>
       )}
 
       {tab === 'mindset' && (
-        <div className="footer-banner photo-flip">
-          <img src="/photos/banner.jpeg" alt="" />
-          <img className="photo-flip-cover" src="/photos/banner.png" alt="" />
-        </div>
+        <>
+        </>
       )}
       <footer className="site-footer">
         <VisitCount />
