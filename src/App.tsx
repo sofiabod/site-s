@@ -735,6 +735,7 @@ function App() {
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>if i can breathe i can think, and if i can think i can win</p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang</p>
             <p className="mindset-quote"><span style={{ backgroundColor: '#EDF9FF', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span></p>
+            <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"Go down deep enough into anything and you will find mathematics" - Dean Schlicter</p>
           </div>
         </div>
         </div>
