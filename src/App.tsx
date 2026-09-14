@@ -1,6 +1,6 @@
 import './App.css'
 import FltTree from './FltTree'
-import { useState, useEffect, useRef, type CSSProperties, type ReactNode } from 'react'
+import { useState, useEffect, useRef, type ReactNode } from 'react'
 
 let _asciiLoaded = false
 function initAsciiRenderer() {
@@ -50,145 +50,6 @@ const publications: Card[] = [
   { title: "The Geometry of Forgetting", meta: "arXiv", img: "/geometry-of-forgetting.png", href: "https://arxiv.org/abs/2604.06222" },
 ]
 
-
-const FIGURE_GRID_STEP = 22
-const GEOMETRY_FIGURE_WIDTH = FIGURE_GRID_STEP * 12 + 1
-const GEOMETRY_FIGURE_HEIGHT = FIGURE_GRID_STEP * 11 + 1
-
-function snapFigureToGrid(value: number) {
-  return Math.max(0, Math.round(value / FIGURE_GRID_STEP) * FIGURE_GRID_STEP)
-}
-
-function useSnappedFigurePositions() {
-  const [viewport, setViewport] = useState(() => ({ width: window.innerWidth, height: window.innerHeight }))
-
-  useEffect(() => {
-    const update = () => setViewport({ width: window.innerWidth, height: window.innerHeight })
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
-
-  const waveWidth = Math.floor(viewport.width / FIGURE_GRID_STEP) * FIGURE_GRID_STEP + FIGURE_GRID_STEP * 8 + 1
-  const waveHeight = FIGURE_GRID_STEP * 20 + 1
-
-  return {
-    wave: {
-      left: Math.round(((viewport.width - waveWidth) / 2) / FIGURE_GRID_STEP) * FIGURE_GRID_STEP,
-      top: snapFigureToGrid(viewport.height * 0.42 - waveHeight / 2),
-      width: waveWidth,
-      height: waveHeight,
-    },
-    geometry: {
-      left: FIGURE_GRID_STEP,
-      top: snapFigureToGrid(viewport.height - FIGURE_GRID_STEP - GEOMETRY_FIGURE_HEIGHT),
-    },
-  } satisfies Record<'wave' | 'geometry', CSSProperties>
-}
-
-function WaveMathFigure({ style }: { style: CSSProperties }) {
-  const [focusY, setFocusY] = useState(0.5)
-
-  useEffect(() => {
-    let frame = 0
-    let next = 0.5
-    const reshape = (event: PointerEvent) => {
-      next = Math.max(0, Math.min(1, event.clientY / window.innerHeight))
-      if (frame) return
-      frame = requestAnimationFrame(() => {
-        setFocusY(next)
-        frame = 0
-      })
-    }
-    window.addEventListener('pointermove', reshape, { passive: true })
-    return () => {
-      window.removeEventListener('pointermove', reshape)
-      if (frame) cancelAnimationFrame(frame)
-    }
-  }, [])
-
-  return (
-    <figure className="floating-math-card math-card-one" style={style} aria-hidden="true">
-      <div className="floating-math-inner">
-        <div className="floating-math-art">
-          <svg className="math-art math-wave" viewBox="0 0 240 160" preserveAspectRatio="none">
-            {Array.from({ length: 46 }, (_, i) => {
-              const startY = 6 + i * (148 / 45)
-              const endY = 154 - i * (148 / 45)
-              const emphasis = Math.max(0, 1 - Math.abs(i / 45 - focusY) * 5)
-              return (
-                <path
-                  key={i}
-                  d={`M 0 ${startY} C 48 ${startY}, 74 80, 90 80 L 150 80 C 166 80, 192 ${endY}, 240 ${endY}`}
-                  style={{ strokeOpacity: 0.28 + emphasis * 0.12 }}
-                />
-              )
-            })}
-          </svg>
-        </div>
-      </div>
-    </figure>
-  )
-}
-
-function TriangleGeometryFigure({ style }: { style: CSSProperties }) {
-  return (
-    <figure className="floating-math-card math-card-geometry" style={style}>
-      <svg className="geometry-art" viewBox="105 50 710 520" role="img" aria-label="Geometry construction for triangle BIC and the circle with diameter ST">
-        <path className="geometry-triangle-fill" d="M 300.1 83 L 329.5 423 L 784.6 423 Z" />
-        <circle className="geometry-circle geometry-circle-construction" cx="365.9" cy="196.9" r="131.4" />
-        <circle className="geometry-circle geometry-circle-left" cx="306.6" cy="400" r="163" />
-        <circle className="geometry-circle geometry-circle-right" cx="494.3" cy="314.2" r="125.6" />
-        <circle className="geometry-circle geometry-circle-inner" cx="431.7" cy="311.6" r="111.5" />
-
-        <path className="geometry-triangle" d="M 300.1 83 L 329.5 423 L 784.6 423 Z" />
-        <path className="geometry-diagonal" d="M 144.9 422.8 L 495.4 220.1" />
-        <path className="geometry-dashed-line" d="M 144.9 422.8 L 468.2 375" />
-        <path className="geometry-construction-line" d="M 495.4 220.1 L 468.2 375" />
-        <path className="geometry-bic-triangle" d="M 329.5 423 L 431.7 311.6 L 784.6 423 Z" />
-
-        {[
-          [300.1, 83], [329.5, 423], [784.6, 423], [144.9, 422.8], [321.1, 321.1], [495.4, 220.1],
-          [431.7, 311.6], [468.2, 375], [380.8, 367.1], [608.1, 367.3], [557.3, 423],
-        ].map(([cx, cy], index) => <circle className="geometry-point" key={index} cx={cx} cy={cy} r="4.8" />)}
-
-        <g className="geometry-labels">
-          <text x="276" y="82">A</text>
-          <text x="317" y="449">B</text>
-          <text x="773" y="449">C</text>
-          <text x="119" y="441">T</text>
-          <text x="297" y="322">F</text>
-          <text x="500" y="216">E</text>
-          <text x="413" y="315">I</text>
-          <text x="451" y="400">S</text>
-        </g>
-      </svg>
-      <a
-        className="geometry-caption"
-        href="https://web.evanchen.cc/problems.html"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open the directory of cool geometry problems"
-      >
-        <span className="geometry-caption-copy">
-          <span className="geometry-caption-title">directory of cool geometry problems</span>
-          <span className="geometry-source">Problem source: Taiwan TST Quiz 2015</span>
-        </span>
-        <span className="geometry-caption-arrow" aria-hidden="true">↗</span>
-      </a>
-    </figure>
-  )
-}
-
-function SideMathFigures() {
-  const positions = useSnappedFigurePositions()
-
-  return (
-    <div className="side-math-figures">
-      <WaveMathFigure style={positions.wave} />
-      <TriangleGeometryFigure style={{ ...positions.geometry, width: GEOMETRY_FIGURE_WIDTH, height: GEOMETRY_FIGURE_HEIGHT }} />
-    </div>
-  )
-}
 
 const gjSections = [
   { id: "overview", label: "overview" },
@@ -609,7 +470,6 @@ function App() {
     <>
     <PiFall />
     <div id="ascii-widget"><div id="ascii"></div></div>
-    <SideMathFigures />
     <FltTree />
     <main>
       <div>
