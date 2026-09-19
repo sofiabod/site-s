@@ -277,30 +277,13 @@ function SpexPost({ onBack }: { onBack: () => void }) {
   )
 }
 
-const PI_DIGITS =
-  '3141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067' +
-  '9821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819' +
-  '6442881097566593344612847564823378678316527120190914564856692346034861045432664821339360726024914127'
-
-function PiFall() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+function BackgroundGrid() {
   const gridRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current!
-    const ctx = canvas.getContext('2d')!
-    const fontSize = 11
     const step = 22
-    let raf = 0
-    let last = 0
-    let cols = 0
-    let rows = 0
-    let drops: number[] = []
-    let mx = -1
-    let my = -1
-    let overRain = false
 
-    // rain begins near the bottom mid-page and higher up toward the edges
+    // The grid begins near the bottom mid-page and higher toward the edges.
     const startYAt = (x: number) => {
       const w = window.innerWidth
       const h = window.innerHeight
@@ -346,73 +329,14 @@ function PiFall() {
       gc.globalCompositeOperation = 'source-over'
     }
 
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      drawGrid()
-      cols = canvas.width / step
-      rows = Math.floor(canvas.height / step)
-      drops = Array.from({ length: rows }, () => Math.random() * cols)
-      ctx.font = `300 ${fontSize}px "Helvetica Neue", monospace`
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'bottom'
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    const draw = (t: number) => {
-      raf = requestAnimationFrame(draw)
-      if (t - last < 120) return
-      last = t
-      ctx.globalCompositeOperation = 'destination-out'
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.18)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.globalCompositeOperation = 'source-over'
-      for (let r = 0; r < rows; r++) {
-        const cell = Math.floor(drops[r])
-        const x = cell * step + step / 2
-        const y = r * step + 0.5
-        const edge = Math.abs(x - canvas.width / 2) / (canvas.width / 2)
-        // streams only show inside the grid region, middle stays clear
-        if (edge >= 0.4 && y > startYAt(x)) {
-          const alpha = 0.20 + Math.random() * 0.24
-          ctx.fillStyle = `rgba(178, 190, 197, ${alpha})`
-          const digit = PI_DIGITS[(r * 47 + cell) % PI_DIGITS.length]
-          ctx.fillText(digit, x, y - 1)
-        }
-        if (drops[r] > cols) drops[r] = -Math.random() * 25
-        drops[r] += 0.5
-      }
-      if (overRain) {
-        const r = 90 + Math.sin(t / 300) * 12
-        const g = ctx.createRadialGradient(mx, my, 0, mx, my, r)
-        g.addColorStop(0, 'rgba(255, 255, 255, 0.95)')
-        g.addColorStop(1, 'rgba(255, 255, 255, 0)')
-        ctx.fillStyle = g
-        ctx.fillRect(mx - r, my - r, r * 2, r * 2)
-      }
-    }
-    raf = requestAnimationFrame(draw)
-
-    const move = (e: MouseEvent) => {
-      mx = e.clientX
-      my = e.clientY
-      const edge = Math.abs(e.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
-      overRain = edge >= 0.4 && e.clientY > startYAt(e.clientX)
-    }
-    window.addEventListener('mousemove', move)
-
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', resize)
-      window.removeEventListener('mousemove', move)
-    }
+    drawGrid()
+    window.addEventListener('resize', drawGrid)
+    return () => window.removeEventListener('resize', drawGrid)
   }, [])
 
   return (
-    <div className="pi-fall">
+    <div className="background-grid" aria-hidden="true">
       <canvas ref={gridRef} />
-      <canvas ref={canvasRef} />
     </div>
   )
 }
@@ -466,7 +390,7 @@ function App() {
 
   return (
     <>
-    <PiFall />
+    <BackgroundGrid />
     <div id="ascii-widget"><div id="ascii"></div></div>
     <main>
       <div>
