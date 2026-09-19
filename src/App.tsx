@@ -584,7 +584,7 @@ function App() {
                       </header>
                       <div className="community-event-gallery">
                         {event.photos.map(photo => {
-                          const href = event.linkPhotos ? event.href : undefined
+                          const href = photo.href
                           const Photo = href ? 'a' : 'div'
                           return (
                             <Photo key={photo.src} href={href} target={href ? '_blank' : undefined} rel={href ? 'noopener noreferrer' : undefined} className={`community-event-photo${photo.portrait ? ' community-event-photo-portrait' : ''}${photo.cover ? ' photo-flip' : ''}`} style={{ aspectRatio: photo.aspectRatio }}>
