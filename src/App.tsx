@@ -1,5 +1,5 @@
 import './App.css'
-import FltTree from './FltTree'
+import { eventsByYear } from './events'
 import { useState, useEffect, useRef, type ReactNode } from 'react'
 
 let _asciiLoaded = false
@@ -42,8 +42,6 @@ const jobs: Job[] = [
 ]
 
 type Card = { title: string; desc?: ReactNode; slug?: string; meta?: string; img?: string; href?: string }
-
-const photos = ["/photos/photo1.jpeg", "/photos/photo2.jpeg", "/photos/photo3.jpeg", "/photos/photo4.jpeg"]
 
 const publications: Card[] = [
   { title: "The Price of Meaning", meta: "arXiv", img: "/price-of-meaning.png", href: "https://arxiv.org/abs/2603.27116v1" },
@@ -470,7 +468,6 @@ function App() {
     <>
     <PiFall />
     <div id="ascii-widget"><div id="ascii"></div></div>
-    <FltTree />
     <main>
       <div>
         <div className="header-row">
@@ -559,23 +556,70 @@ function App() {
           )}
 
           {sub === 'community' && (
-            <div style={{ marginTop: '40px' }}>
-              <p style={{ fontSize: '0.76rem', lineHeight: 1.8, margin: '0 auto', maxWidth: '560px', color: 'var(--muted)' }}>
-                i love being around ambitious, like-minded people, so i help create spaces for them. i started <a href="https://luma.com/7epaq2w3" target="_blank" rel="noopener noreferrer" className="hlink">axiom</a>, a startup competition for youth, founded 3 clubs in high school, and helped host <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" className="hlink" style={{ whiteSpace: 'nowrap' }}>g hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" className="hlink">claude x socratica</a>, and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" className="hlink">prism</a>.
-              </p>
-              <div style={{ marginTop: '28px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', maxWidth: '560px', marginLeft: 'auto', marginRight: 'auto' }}>
-                {photos.map((src, i) => {
-                  const href = i === 0 ? 'https://luma.com/7epaq2w3' : i === 1 ? 'https://luma.com/lob2kpxt' : 'https://lu.ma/ufdrjn3n'
-                  return (
-                    <a key={src} href={href} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
-                      <div className="photo-flip">
-                        <img src={src} alt="" />
-                        <img className="photo-flip-cover" src={src.replace('.jpeg', '-cover.jpeg')} alt="" />
+            <div className="event-years">
+              {eventsByYear.map(({ year, photos, events }) => (
+                <section key={year} className="event-year" aria-labelledby={`events-${year}`}>
+                  <h2 id={`events-${year}`} className="event-year-label">{year}</h2>
+                  {events?.map(event => (
+                    <article key={event.id} className="community-event" aria-labelledby={event.id}>
+                      <header className="community-event-header">
+                        <div className="community-event-heading">
+                          <h3 id={event.id}>
+                            {event.href
+                              ? <a href={event.href} target="_blank" rel="noopener noreferrer" className="hlink">{event.title}</a>
+                              : event.title}
+                          </h3>
+                          {event.people?.length ? (
+                            <p className="community-event-subtitle">
+                              with{' '}
+                              {event.people.map((person, index, people) => (
+                                <span key={person.href}>
+                                  {index > 0 && (index === people.length - 1 ? (people.length > 2 ? ', and ' : ' and ') : ', ')}
+                                  <a href={person.href} target="_blank" rel="noopener noreferrer" className="hlink">{person.name}</a>
+                                </span>
+                              ))}
+                            </p>
+                          ) : event.subtitle && <p className="community-event-subtitle">{event.subtitle}</p>}
+                        </div>
+                      </header>
+                      <div className="community-event-gallery">
+                        {event.photos.map(photo => {
+                          const href = event.linkPhotos ? event.href : undefined
+                          const Photo = href ? 'a' : 'div'
+                          return (
+                            <Photo key={photo.src} href={href} target={href ? '_blank' : undefined} rel={href ? 'noopener noreferrer' : undefined} className={`community-event-photo${photo.portrait ? ' community-event-photo-portrait' : ''}${photo.cover ? ' photo-flip' : ''}`} style={{ aspectRatio: photo.aspectRatio }}>
+                              <img src={photo.src} alt={photo.alt} loading="lazy" />
+                              {photo.cover && <img className="photo-flip-cover" src={photo.cover} alt="" loading="lazy" />}
+                            </Photo>
+                          )
+                        })}
+                        {Array.from({ length: event.pendingPhotos ?? 0 }, (_, index) => (
+                          <div key={index} className="community-event-placeholder">
+                            <span>photo coming soon</span>
+                          </div>
+                        ))}
                       </div>
-                    </a>
-                  )
-                })}
-              </div>
+                    </article>
+                  ))}
+                  {year === 2025 && (
+                    <p className="event-year-description">
+                      i love being around ambitious, like-minded people, so i help create spaces for them. i started <a href="https://luma.com/7epaq2w3" target="_blank" rel="noopener noreferrer" className="hlink">axiom</a>, a startup competition for youth, founded 3 clubs in high school, and helped host <a href="https://www.goonhacks.ca" target="_blank" rel="noopener noreferrer" className="hlink" style={{ whiteSpace: 'nowrap' }}>g hacks</a>, <a href="https://lu.ma/ufdrjn3n" target="_blank" rel="noopener noreferrer" className="hlink">claude x socratica</a>, and <a href="https://luma.com/lob2kpxt" target="_blank" rel="noopener noreferrer" className="hlink">prism</a>.
+                    </p>
+                  )}
+                  {photos.length > 0 ? (
+                    <div className="event-photo-grid">
+                      {photos.map(photo => (
+                        <a key={photo.src} href={photo.href} target="_blank" rel="noopener noreferrer" className={`event-photo${photo.cover ? ' photo-flip' : ''}`}>
+                          <img src={photo.src} alt={photo.alt} loading="lazy" />
+                          {photo.cover && <img className="photo-flip-cover" src={photo.cover} alt="" loading="lazy" />}
+                        </a>
+                      ))}
+                    </div>
+                  ) : !events?.length && (
+                    <p className="event-year-empty">more photos soon.</p>
+                  )}
+                </section>
+              ))}
             </div>
           )}
         </>
