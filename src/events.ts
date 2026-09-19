@@ -8,6 +8,7 @@ type EventPhoto = {
 type EventImage = {
   src: string
   alt: string
+  href?: string
   cover?: string
   portrait?: boolean
   aspectRatio?: string
@@ -19,7 +20,6 @@ type CommunityEvent = {
   subtitle?: string
   people?: { name: string; href: string }[]
   href?: string
-  linkPhotos?: boolean
   photos: EventImage[]
   pendingPhotos?: number
 }
@@ -39,7 +39,7 @@ export const eventsByYear: { year: number; photos: EventPhoto[]; events?: Commun
         ],
         href: 'https://wygo.world/gc-hackathon',
         photos: [
-          { src: '/photos/2026/general-catalyst-hackathon-room.webp', alt: 'Participants working on laptops at the General Catalyst Hackathon' },
+          { src: '/photos/2026/general-catalyst-hackathon-room.webp', alt: 'Participants working on laptops at the General Catalyst Hackathon', href: 'https://x.com/IKorovinsky/status/2100670424908484998' },
           { src: '/photos/2026/general-catalyst-hackathon-stage.webp', alt: 'Speakers on stage at the General Catalyst Hackathon' },
           { src: '/photos/2026/general-catalyst-hackathon-group.webp', alt: 'Group photo at the General Catalyst Hackathon', portrait: true },
         ],
@@ -51,10 +51,9 @@ export const eventsByYear: { year: number; photos: EventPhoto[]; events?: Commun
           { name: 'Cory Levy', href: 'https://www.linkedin.com/in/clevy/' },
         ],
         href: 'https://partiful.com/e/IO8pzaqi0FXlfIkm35Vy',
-        linkPhotos: true,
         photos: [
-          { src: '/photos/2026/z-fellows-conversation.webp', cover: '/photos/2026/z-fellows-conversation-cover.webp', alt: 'A conversation with attendees at the Z Fellows event', aspectRatio: '16 / 9' },
-          { src: '/photos/2026/z-fellows-group.webp', cover: '/photos/2026/z-fellows-group-cover.webp', alt: 'Group selfie at the Z Fellows event', aspectRatio: '16 / 9' },
+          { src: '/photos/2026/z-fellows-conversation.webp', cover: '/photos/2026/z-fellows-conversation-cover.webp', alt: 'A conversation with attendees at the Z Fellows event', aspectRatio: '16 / 9', href: 'https://x.com/cory/status/2100438362444193919' },
+          { src: '/photos/2026/z-fellows-group.webp', cover: '/photos/2026/z-fellows-group-cover.webp', alt: 'Group selfie at the Z Fellows event', aspectRatio: '16 / 9', href: 'https://x.com/sofiiabodnar/status/2100430764785467568' },
         ],
       },
     ],
