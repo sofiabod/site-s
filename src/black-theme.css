@@ -1,0 +1,37 @@
+/* Black theme for the personal portfolio. */
+:root {
+  color-scheme: dark;
+  --paper: #000;
+  --surface: #000;
+  --ink: #dedede;
+  --muted: #a3a3a3;
+  --accent: #6e7478;
+  --accent-deep: #b9c0c5;
+  --line: #343434;
+  --line-soft: #191919;
+}
+
+html, body { background: #000; }
+h1 { color: #f2f2f2; }
+
+.nav-item { color: var(--muted); }
+.nav-item:hover, .nav-item.active { color: #f2f2f2; }
+.nav-item.active::before { background: #f2f2f2; }
+
+.nav-links img, .webring-widget img,
+img[src="/mit.svg"],
+.job-logo img[src="/omen.svg"],
+.job-logo img[src="/convictional.png"] {
+  filter: invert(1);
+}
+
+.job-logo { background: transparent; }
+.job:hover, .job:focus-within { background: transparent; }
+.post-cite, .seg, .pcard-ph-box, .community-event-placeholder, code { background: #111; }
+.mindset-quote { color: var(--ink); }
+.background-grid canvas { z-index: 0; }
+.bracket-card { border-color: var(--line); background: #000; }
+.bracket-card::before, .bracket-card::after { background: #000; }
+
+::selection { color: #fff; background: #414141; }
+:focus-visible { outline: 1px solid #b9c0c5; outline-offset: 4px; }

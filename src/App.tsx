@@ -34,11 +34,11 @@ function initAsciiRenderer() {
 type Job = { company: string; role: string; url: string; logo: string; h: string; hov: string; description?: string; current?: boolean; round?: boolean }
 
 const jobs: Job[] = [
-  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/shopify-bg.jpeg) center 38%/100% auto", description: "built infrastructure for reliable AI agents across evaluation, memory, data pipelines, and dynamic workflows.", current: true },
-  { company: "Sentra", role: "Research Engineer", url: "https://www.sentra.app/", logo: "/sentra.svg", h: "20px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/sentra-bg.jpeg) center 45%/100% auto", description: "built memory, retrieval, and evaluation infrastructure for self-improving agents—spanning entity resolution, adaptive RAG, durable citations, bi-temporal memory, and hallucination defense—while researching RL and predictive world models.", current: true },
-  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/csslab-bg.jpeg) center 42%/auto 260% repeat", description: "worked with the team behind Maia, human-like chess models that predict how people play across skill levels; built a dynamic data-selection method that lets a teacher model choose which examples a student learns from.", current: true },
-  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/omen-bg2.jpeg) center 38%/100% auto", description: "built agent-driven financial workflows for an all-in-one trading platform spanning prediction markets, perpetual futures, crypto, and equities." },
-  { company: "Convictional", role: "Software Engineering Intern", url: "https://www.linkedin.com/company/convictional/posts/?feedView=all", logo: "/convictional.png", h: "18px", hov: "linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url(/conv-bg.jpeg) center 38%/100% auto", description: "MUVERA and ColBERT v2 for late-interaction search.", round: true },
+  { company: "Shopify", role: "Software Engineering Intern", url: "https://www.shopify.com/ca", logo: "/shopify.svg", h: "15px", hov: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(/shopify-bg.jpeg) center 38%/100% auto", description: "built infrastructure for reliable AI agents across evaluation, memory, data pipelines, and dynamic workflows.", current: true },
+  { company: "Sentra", role: "Research Engineer", url: "https://www.sentra.app/", logo: "/sentra.svg", h: "20px", hov: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(/sentra-bg.jpeg) center 45%/100% auto", description: "built memory, retrieval, and evaluation infrastructure for self-improving agents—spanning entity resolution, adaptive RAG, durable citations, bi-temporal memory, and hallucination defense—while researching RL and predictive world models.", current: true },
+  { company: "CSS Lab", role: "Research Intern", url: "https://csslab.cs.toronto.edu/", logo: "/uoft.png", h: "20px", hov: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(/csslab-bg.jpeg) center 42%/auto 260% repeat", description: "worked with the team behind Maia, human-like chess models that predict how people play across skill levels; built a dynamic data-selection method that lets a teacher model choose which examples a student learns from.", current: true },
+  { company: "Omen", role: "Software Engineer", url: "https://omen.trade/", logo: "/omen.svg", h: "14px", hov: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(/omen-bg2.jpeg) center 38%/100% auto", description: "built agent-driven financial workflows for an all-in-one trading platform spanning prediction markets, perpetual futures, crypto, and equities." },
+  { company: "Convictional", role: "Software Engineering Intern", url: "https://www.linkedin.com/company/convictional/posts/?feedView=all", logo: "/convictional.png", h: "18px", hov: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(/conv-bg.jpeg) center 38%/100% auto", description: "MUVERA and ColBERT v2 for late-interaction search.", round: true },
 ]
 
 type Card = { title: string; desc?: ReactNode; slug?: string; meta?: string; img?: string; href?: string }
@@ -298,7 +298,7 @@ function BackgroundGrid() {
       g.width = w
       g.height = h
       const gc = g.getContext('2d')!
-      gc.strokeStyle = 'rgba(178, 190, 197, 0.14)'
+      gc.strokeStyle = 'rgba(178, 190, 197, 0.32)'
       gc.lineWidth = 1
       gc.beginPath()
       for (let x = 0.5; x <= w; x += step) { gc.moveTo(x, 0); gc.lineTo(x, h) }
@@ -417,7 +417,7 @@ function App() {
 
             <p style={{ fontSize: '0.76rem', marginTop: '16px', marginBottom: '4px' }}>some wins:</p>
             <ul style={{ fontSize: '0.76rem', lineHeight: 1.9, margin: '0 0 0 20px' }}>
-              <li>interned @ <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" className="hlink">shopify</a><img src="/shopify.svg" alt="Shopify" style={{ height: '15px', verticalAlign: 'middle', marginLeft: '5px' }} /> at <span style={{ backgroundColor: 'rgba(103, 170, 249, 0.14)', padding: '1px 5px', borderRadius: '3px' }}>17 yrs old</span></li>
+              <li>interned @ <a href="https://www.shopify.com/ca" target="_blank" rel="noopener noreferrer" className="hlink">shopify</a><img src="/shopify.svg" alt="Shopify" style={{ height: '15px', verticalAlign: 'middle', marginLeft: '5px' }} /> at 17 yrs old</li>
               <li>in high school, i worked as a software engineer across 3 yc / a16z startups and published 2 papers with an <img src="/mit.svg" alt="MIT" style={{ height: '19px', verticalAlign: 'middle', margin: '0 4px' }} /> prof</li>
               <li>started from complete, absolute zero after moving from ukraine, and i take great pride in that</li>
             </ul>
@@ -466,7 +466,7 @@ function App() {
               <div className="experience-notes">
                 some things i've built recently:
                 <ul style={{ margin: '8px 0 0 18px', padding: 0 }}>
-                  <li style={{ marginTop: '6px' }}><a href="https://github.com/sofiabod/spex" target="_blank" rel="noopener noreferrer" className="hlink">Speculative Tool Execution for Verification Tasks</a></li>
+                  <li style={{ marginTop: '6px' }}><a href="https://github.com/sofiabod/spex" target="_blank" rel="noopener noreferrer" className="hlink">Speculative Tool Execution for Verification Tasks</a>{' · '}<a href="https://github.com/sofiabod/sfx" target="_blank" rel="noopener noreferrer" className="hlink">SFX</a></li>
                   <li style={{ marginTop: '6px' }}><a href="https://github.com/sofiabod/GRAPH-JEPA" target="_blank" rel="noopener noreferrer" className="hlink">Graph-JEPA: Applying the JEPA Architecture to Temporal Graphs</a></li>
                 </ul>
               </div>
@@ -474,7 +474,7 @@ function App() {
           )}
 
           {sub === 'publications' && (
-            <div style={{ margin: '40px auto 0', maxWidth: '480px' }}>
+            <div className="publications">
               {cardGrid(publications)}
             </div>
           )}
@@ -511,7 +511,7 @@ function App() {
                           const href = photo.href
                           const Photo = href ? 'a' : 'div'
                           return (
-                            <Photo key={photo.src} href={href} target={href ? '_blank' : undefined} rel={href ? 'noopener noreferrer' : undefined} className={`community-event-photo${photo.portrait ? ' community-event-photo-portrait' : ''}${photo.cover ? ' photo-flip' : ''}`} style={{ aspectRatio: photo.aspectRatio }}>
+                            <Photo key={photo.src} href={href} target={href ? '_blank' : undefined} rel={href ? 'noopener noreferrer' : undefined} tabIndex={photo.cover && !href ? 0 : undefined} className={`community-event-photo${photo.portrait ? ' community-event-photo-portrait' : ''}${photo.cover ? ' photo-flip' : ''}`} style={{ aspectRatio: photo.aspectRatio }}>
                               <img src={photo.src} alt={photo.alt} loading="lazy" />
                               {photo.cover && <img className="photo-flip-cover" src={photo.cover} alt="" loading="lazy" />}
                             </Photo>
@@ -553,7 +553,8 @@ function App() {
         <div className="mindset-page">
         <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
           <div style={{ textAlign: 'left', border: '1px solid var(--accent)', padding: '28px 34px', maxWidth: '400px' }}>
-            <p style={{ fontSize: '0.72rem', fontWeight: 600 }}>"your time is extremely precious" - Shayaan Azeem</p>
+            <p style={{ fontSize: '0.72rem' }}>You don't lose anything by showing up</p>
+            <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"your time is extremely precious" - Shayaan Azeem</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>every waking hour is a working hour</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your maximum is someone's minimum</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>patience + repetition</p>
@@ -562,7 +563,7 @@ function App() {
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>don't make decisions you will regret</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>if i can breathe i can think, and if i can think i can win</p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang</p>
-            <p className="mindset-quote"><span style={{ backgroundColor: '#EDF9FF', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span></p>
+            <p className="mindset-quote"><span style={{ backgroundColor: 'rgba(255,255,255,0.09)', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span></p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"Go down deep enough into anything and you will find mathematics" - Dean Schlicter</p>
           </div>
         </div>

@@ -375,6 +375,11 @@ main > footer {
   margin-top: 24px;
 }
 
+.publications { width: min(100%, 360px); margin: 40px auto 0; }
+.publications .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.publications .pcard-title { font-size: 0.72rem; font-weight: 300; }
+.publications .pcard-meta { font-size: 0.6rem; }
+
 @media (max-width: 768px) {
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
