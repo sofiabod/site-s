@@ -298,8 +298,8 @@ function BackgroundGrid() {
       g.width = w
       g.height = h
       const gc = g.getContext('2d')!
-      gc.strokeStyle = 'rgba(178, 190, 197, 0.22)'
-      gc.lineWidth = 1
+      gc.strokeStyle = 'rgba(211, 211, 211, 0.05)'
+      gc.lineWidth = 0.5
       gc.beginPath()
       for (let x = 0.5; x <= w; x += step) { gc.moveTo(x, 0); gc.lineTo(x, h) }
       for (let y = 0.5; y <= h; y += step) { gc.moveTo(0, y); gc.lineTo(w, y) }

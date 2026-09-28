@@ -40,7 +40,7 @@ export const eventsByYear: { year: number; photos: EventPhoto[]; events?: Commun
         href: 'https://wygo.world/gc-hackathon',
         photos: [
           { src: '/photos/2026/general-catalyst-hackathon-room.webp', cover: '/photos/2026/general-catalyst-hackathon-room-cover-v2.webp', alt: 'Participants working on laptops at the General Catalyst Hackathon', href: 'https://x.com/IKorovinsky/status/2100670424908484998' },
-          { src: '/photos/2026/general-catalyst-hackathon-stage.webp', cover: '/photos/2026/general-catalyst-hackathon-stage-cover.webp', alt: 'Speakers on stage at the General Catalyst Hackathon' },
+          { src: '/photos/2026/general-catalyst-hackathon-stage.webp', cover: '/photos/2026/general-catalyst-hackathon-stage-cover.webp', alt: 'Speakers on stage at the General Catalyst Hackathon', href: 'https://x.com/sofiiabodnar/status/2102132714702832075' },
         ],
       },
       {
