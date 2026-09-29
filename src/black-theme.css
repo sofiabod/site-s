@@ -1,5 +1,7 @@
 /* Black theme for the personal portfolio. */
 :root {
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+  --font-ui: "Hanken Grotesk", system-ui, sans-serif;
   color-scheme: dark;
   --paper: #000;
   --surface: #000;
