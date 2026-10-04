@@ -28,7 +28,17 @@ img[src="/mit.svg"],
 }
 
 .job-logo { background: transparent; }
+.job {
+  opacity: 0.65;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
 .job:hover, .job:focus-within { background: transparent; }
+.job:hover, .job:focus-visible {
+  opacity: 1;
+  color: #fff;
+}
+.job .hlink { color: inherit; background-image: none; }
+.job-role { color: inherit; }
 .post-cite, .seg, .pcard-ph-box, .community-event-placeholder, code { background: #111; }
 .mindset-quote { color: var(--ink); }
 .background-grid canvas { z-index: 0; }
