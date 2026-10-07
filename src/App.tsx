@@ -553,17 +553,18 @@ function App() {
         <div className="mindset-page">
         <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
           <div style={{ textAlign: 'left', border: '1px solid var(--accent)', padding: '28px 34px', maxWidth: '400px' }}>
-            <p style={{ fontSize: '0.72rem' }}>You don't lose anything by showing up</p>
-            <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"your time is extremely precious" - Shayaan Azeem</p>
-            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>every waking hour is a working hour</p>
-            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your maximum is someone's minimum</p>
+            <p className="mindset-quote" style={{ marginTop: 0 }}><span style={{ backgroundColor: 'rgba(255,255,255,0.09)', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span></p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>patience + repetition</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>go above and beyond, over prepare, be obsessed</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>create your own opportunities</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '16px' }}>the pain is the only reminder it was real</p>
+            <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"your time is extremely precious" - Shayaan Azeem</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>every waking hour is a working hour</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>you don't lose anything by showing up</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>your maximum is someone's minimum</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>don't make decisions you will regret</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>if i can breathe i can think, and if i can think i can win</p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"I work from the moment I wake up to the moment I<br />go to sleep" - Jensen Huang</p>
-            <p className="mindset-quote"><span style={{ backgroundColor: 'rgba(255,255,255,0.09)', padding: '1px 5px', borderRadius: '3px' }}>excellence is the capacity to take pain</span></p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"Go down deep enough into anything and you will find mathematics" - Dean Schlicter</p>
           </div>
         </div>
