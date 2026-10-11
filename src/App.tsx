@@ -558,6 +558,7 @@ function App() {
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>go above and beyond, over prepare, be obsessed</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>create your own opportunities</p>
             <p style={{ fontSize: '0.72rem', marginTop: '16px' }}>the pain is the only reminder it was real</p>
+            <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>immer vorne nie zurück</p>
             <p style={{ fontSize: '0.72rem', fontStyle: 'italic', marginTop: '16px' }}>"your time is extremely precious" - Shayaan Azeem</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>every waking hour is a working hour</p>
             <p style={{ fontSize: '0.72rem', marginTop: '12px' }}>you don't lose anything by showing up</p>
