@@ -23,7 +23,7 @@ h1 { color: #f2f2f2; }
 .nav-links img, .webring-widget img,
 img[src="/mit.svg"],
 .job-logo img[src="/omen.svg"],
-.job-logo img[src="/convictional.png"] {
+.job-logo img[data-original-src="/convictional.png"] {
   filter: invert(1);
 }
 
